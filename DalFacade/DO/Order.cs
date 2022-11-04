@@ -50,7 +50,5 @@ public struct Order
         customer address: {CustomerAddress}
         order date: {OrderDate}
         ship date: {ShipDate}
-        delivery date: {DeliveryDate}
-";
-
+        delivery date: {DeliveryDate}";
 }

@@ -1,1 +1,1 @@
-﻿
+﻿enum Category{cat1,cat2,cat3}

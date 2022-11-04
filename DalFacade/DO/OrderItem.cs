@@ -11,6 +11,11 @@ public struct OrderItem
     /// <summary>
     /// Unique ID of ...
     /// </summary>
+    public int ID { get; set; }
+
+    /// <summary>
+    /// Unique ID of ...
+    /// </summary>
     public int ProductID { get; set; }
 
     /// <summary>

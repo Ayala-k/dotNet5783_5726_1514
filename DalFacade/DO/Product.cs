@@ -1,4 +1,5 @@
-﻿
+﻿using System.Runtime.CompilerServices;
+
 namespace DO;
 
 /// <summary>
@@ -24,6 +25,11 @@ public struct Product
     /// <summary>
     /// Unique ID of ...
     /// </summary>
+    //public Category cat { get; set; }
+
+    /// <summary>
+    /// Unique ID of ...
+    /// </summary>
     // what is category type????
     //public Category Category { get; set; }
 
@@ -38,5 +44,6 @@ public struct Product
         Price: {Price}
         Amount in stock: {InStock}
 ";
+
 // add {} out of Category
 }

@@ -1,28 +1,81 @@
 ﻿using DO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Dal;
 
-internal class DataSource
+internal static class DataSource
 {
-    internal struct Config
+    static DataSource()
     {
-        static int _productsEmptyIndex = 0;
-        static int _ordersEmptyIndex = 0;
-        public int _serialNumber;
+        s_Initialize();
     }
 
-    internal Product[] _productsArr = new Product[50];
-    internal Order[] _ordersArr = new Order[100];
-    internal OrderItem[] _orderItemsArr = new OrderItem[200];
+    static readonly int randomNumber = new Random().Next();
 
-    static void Initialize()
+    internal static class Config
     {
-        //_productsArr[0]= ;
-        //Config._serialNumber = 3;
+        internal static int _productsEmptyIndex = 0;
+        internal static int _ordersEmptyIndex = 0;
+        internal static int _ordersItemsEmptyIndex = 0;
+
+        internal static int _serialNumberOrder = 1;//what???
+        internal static int _SerialNumberOrder 
+        { get { return _serialNumberOrder + 1; } }
+
+        internal static int _serialNumberOrderItems = 1;//what???
+        internal static int _SerialNumberOrderItems
+        { get { return _serialNumberOrderItems + 1; } }//maybe we will have to lekadem it
+    }
+
+    internal static Product[] _productsArr = new Product[50];
+    internal static Order[] _ordersArr = new Order[100];
+    internal static OrderItem[] _orderItemsArr = new OrderItem[200];
+
+    private static void addProducts(Product p,int index)
+    {
+        _productsArr[index] = p;
+    }
+
+    private static void addOrders(Order o, int index)
+    {
+        _ordersArr[index] = o;
+    }
+
+    private static void addOrderItem(OrderItem oi, int index)
+    {
+        _orderItemsArr[index] = oi;
+    }
+
+    private static void s_Initialize()
+    {
+        Product p = new Product();
+        Order o = new Order();
+        OrderItem oi = new OrderItem();
+
+        p.ID = 100000;
+        p.Name = "prod1";
+        p.Price = 2.5;
+        p.InStock = 70;
+        addProducts(p, 0);//in for
+
+        o.ID = Config._SerialNumberOrder;
+        Config._serialNumberOrder++;
+        o.CustomerName = "tamar";
+        o.CustomerEmail = "@";
+        o.CustomerAddress = "fdijhvuydfhiofkdpcd";
+        o.OrderDate= DateTime.Now;
+        o.ShipDate = DateTime.Now;
+        o.DeliveryDate = DateTime.Now;
+        addOrders(o, 0);
+
+        oi.ID= Config._SerialNumberOrderItems;
+        Config._serialNumberOrderItems++;
+        oi.ProductID = 100000;
+        oi.OrderID = Config._SerialNumberOrder-1;
+        oi.Price = 5;
+        oi.Amount = 6;
+        addOrderItem(oi, 0);
+
+        //addProducts(p);
+        //addOrders(o);
+        //addOrderItem(oi);
     }
 }
