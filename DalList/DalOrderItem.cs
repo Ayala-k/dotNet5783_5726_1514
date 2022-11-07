@@ -7,17 +7,12 @@ namespace Dal;
 
 public class DalOrderItem
 {
- public void addOrderItem(OrderItem o)
+ public int addOrderItem(OrderItem o)
  {
   o.ID = Config._SerialNumberOrderItems;
-  Config._serialNumberOrderItems++;
-  for (int i = 0; i != Config._ordersItemsEmptyIndex; i++)
-  {
-   if (o.ID == _orderItemsArr[i].ID)
-    return;
-  }
   _orderItemsArr[Config._ordersItemsEmptyIndex] = o;
   Config._ordersItemsEmptyIndex++;
+  return o.ID;
  }
 
  public void deleteOrderItem(int orderItemID)
@@ -43,7 +38,7 @@ public class DalOrderItem
   for (int i = 0; i < Config._ordersItemsEmptyIndex; i++)
    if (orderItemID == _orderItemsArr[i].ID)
     return _orderItemsArr[i];
-  return null;
+  throw new Exception("order item does not exist");
  }
 
  public OrderItem getOrderItemByOrderAndProduct(int oID, int pID)
@@ -51,19 +46,20 @@ public class DalOrderItem
   for (int i = 0; i < Config._ordersItemsEmptyIndex; i++)
    if ((oID == _orderItemsArr[i].OrderID) && (pID == _orderItemsArr[i].ProductID))
     return _orderItemsArr[i];
-  return null;
+        throw new Exception("order item does not exist");
+
  }
 
- public OrderItem[] getOrderItemsByOrder(int oID)
+ public OrderItem[] getOrderItemsByOrder(int orderID)
  {
   int index = 0;
   int count = 0;
   for (int i = 0; i < Config._ordersItemsEmptyIndex; i++)
-   if (oID == _orderItemsArr[i].OrderID)
+   if (orderID == _orderItemsArr[i].OrderID)
     count++;
   OrderItem[] _orderItemsByOrderArr = new OrderItem[count];
   for (int i = 0; i < Config._ordersItemsEmptyIndex; i++)
-   if (oID == _orderItemsArr[i].OrderID)
+   if (orderID == _orderItemsArr[i].OrderID)
    {
     _orderItemsByOrderArr[index] = _orderItemsArr[i];
     index++;

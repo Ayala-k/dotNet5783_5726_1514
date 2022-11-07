@@ -6,15 +6,18 @@ namespace Dal;
 
 public class DalProduct
 {
-    public void addProduct(Product p)
+    public int addProduct(Product p)
     {
         for (int i = 0; i != Config._productsEmptyIndex; i++)
         {
             if (p.ID == _productsArr[i].ID)
-                return;
-        }
-        _productsArr[Config._productsEmptyIndex] = p;
+        throw new Exception("product already exist");
+
+  }
+  _productsArr[Config._productsEmptyIndex] = p;
         Config._productsEmptyIndex++;
+  return p.ID;
+
     }
 
     public void deleteProduct(int productID)
@@ -39,7 +42,7 @@ public class DalProduct
         for (int i = 0; i < Config._productsEmptyIndex; i++)
             if (productID == _productsArr[i].ID)
                 return _productsArr[i];
-        return null;
+        throw new Exception("product does not exist");
     }
 
     public Product[] getAllProduct()

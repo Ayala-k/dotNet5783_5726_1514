@@ -16,13 +16,13 @@ internal static class DataSource
         internal static int _ordersEmptyIndex = 0;
         internal static int _ordersItemsEmptyIndex = 0;
 
-        internal static int _serialNumberOrder = 1;//what???
+        internal static int _serialNumberOrder = 100;
         internal static int _SerialNumberOrder 
-        { get { return _serialNumberOrder + 1; } }
+        { get { return ++_serialNumberOrder; } }
 
-        internal static int _serialNumberOrderItems = 1;//what???
+        internal static int _serialNumberOrderItems = 100;
         internal static int _SerialNumberOrderItems
-        { get { return _serialNumberOrderItems + 1; } }//maybe we will have to lekadem it
+        { get { return ++_serialNumberOrderItems; } }
     }
 
     internal static Product[] _productsArr = new Product[50];

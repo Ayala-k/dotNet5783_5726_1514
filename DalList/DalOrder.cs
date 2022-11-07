@@ -5,17 +5,12 @@ namespace Dal;
 
 public class DalOrder
 {
- public void addOrder(Order o)
+ public int addOrder(Order o)
  {
   o.ID = Config._SerialNumberOrder;
-  Config._serialNumberOrder++;
-  for (int i = 0; i != Config._ordersEmptyIndex; i++)
-  {
-   if (o.ID == _ordersArr[i].ID)
-    return;
-  }
   _ordersArr[Config._ordersEmptyIndex] = o;
   Config._ordersEmptyIndex++;
+  return o.ID;
  }
 
  public void deleteOrder(int orderID)
@@ -41,7 +36,7 @@ public class DalOrder
   for (int i = 0; i < Config._ordersEmptyIndex; i++)
    if (orderID == _ordersArr[i].ID)
     return _ordersArr[i];
-  return null;
+  throw new Exception("order does not exist");
  }
 
  public Order[] getAllOrders()
