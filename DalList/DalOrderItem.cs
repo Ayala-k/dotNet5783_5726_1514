@@ -25,7 +25,7 @@ public class DalOrderItem
   for (int i = 0; i < Config._ordersItemsEmptyIndex; i++)
    if (orderItemID == _orderItemsArr[i].ID)
    {
-    _orderItemsArr[i] = _orderItemsArr[i + 1];
+    _orderItemsArr[i] = _orderItemsArr[Config._ordersItemsEmptyIndex - 1];
     Config._ordersItemsEmptyIndex--;
    }
  }
@@ -70,4 +70,14 @@ public class DalOrderItem
    }
   return _orderItemsByOrderArr;
  }
+
+ public OrderItem[] getAllOrderItems()
+ {
+  OrderItem[] _orderItemsCopy = new OrderItem[Config._ordersItemsEmptyIndex - 1];
+  for (int i = 0; i < Config._ordersItemsEmptyIndex - 1; i++)
+   _orderItemsCopy[i] = _orderItemsArr[i];
+  return _orderItemsCopy;
+ }
+
 }
+
