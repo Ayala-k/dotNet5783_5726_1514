@@ -1,6 +1,9 @@
 ﻿using DO;
 namespace Dal;
 
+/// <summary>
+/// Data managing
+/// </summary>
 internal static class DataSource
 {
     static DataSource()
@@ -8,7 +11,7 @@ internal static class DataSource
         s_Initialize();
     }
 
-    static readonly int randomNumber = new Random().Next();
+    static readonly int _randomNumber = new Random().Next();
 
     internal static class Config
     {
@@ -17,7 +20,7 @@ internal static class DataSource
         internal static int _ordersItemsEmptyIndex = 0;
 
         internal static int _serialNumberOrder = 100;
-        internal static int _SerialNumberOrder 
+        internal static int _SerialNumberOrder
         { get { return ++_serialNumberOrder; } }
 
         internal static int _serialNumberOrderItems = 100;
@@ -25,11 +28,14 @@ internal static class DataSource
         { get { return ++_serialNumberOrderItems; } }
     }
 
+    #region arrays
     internal static Product[] _productsArr = new Product[50];
     internal static Order[] _ordersArr = new Order[100];
     internal static OrderItem[] _orderItemsArr = new OrderItem[200];
-
-    private static void addProducts(Product p,int index)
+    #endregion
+     
+    #region add functions
+    private static void addProducts(Product p, int index)
     {
         _productsArr[index] = p;
     }
@@ -43,6 +49,7 @@ internal static class DataSource
     {
         _orderItemsArr[index] = oi;
     }
+    #endregion
 
     private static void s_Initialize()
     {
@@ -61,15 +68,15 @@ internal static class DataSource
         o.CustomerName = "tamar";
         o.CustomerEmail = "@";
         o.CustomerAddress = "fdijhvuydfhiofkdpcd";
-        o.OrderDate= DateTime.Now;
+        o.OrderDate = DateTime.Now;
         o.ShipDate = DateTime.Now;
         o.DeliveryDate = DateTime.Now;
         addOrders(o, 0);
 
-        oi.ID= Config._SerialNumberOrderItems;
+        oi.ID = Config._SerialNumberOrderItems;
         Config._serialNumberOrderItems++;
         oi.ProductID = 100000;
-        oi.OrderID = Config._SerialNumberOrder-1;
+        oi.OrderID = Config._SerialNumberOrder - 1;
         oi.Price = 5;
         oi.Amount = 6;
         addOrderItem(oi, 0);

@@ -1,7 +1,4 @@
-﻿
-using System.Xml.Linq;
-
-namespace DO;
+﻿namespace DO;
 
 /// <summary>
 /// Structure for order items
@@ -9,36 +6,39 @@ namespace DO;
 public struct OrderItem
 {
     /// <summary>
-    /// Unique ID of ...
+    /// Unique ID of order item
     /// </summary>
     public int ID { get; set; }
 
     /// <summary>
-    /// Unique ID of ...
+    /// ID of product
     /// </summary>
     public int ProductID { get; set; }
 
     /// <summary>
-    /// Unique ID of ...
+    /// ID of order
     /// </summary>
     public int OrderID { get; set; }
 
     /// <summary>
-    /// Unique ID of ...
+    /// price
     /// </summary>
     public double Price { get; set; }
 
     /// <summary>
-    /// Unique ID of ...
+    /// amount of products
     /// </summary>
     public int Amount { get; set; }
 
+    /// <summary>
+    ///  printing an order item
+    /// </summary>
+    /// <returns>an order item as a string</returns>
     public override string ToString() => $@"
-        Order Item={ProductID}: 
-        orderId: {OrderID}
+        OrderItemID={ID}
+        ProductID: {ProductID}
+        orderID: {OrderID}
         Price: {Price}
         Amount: {Amount}
 ";
-
-
 }

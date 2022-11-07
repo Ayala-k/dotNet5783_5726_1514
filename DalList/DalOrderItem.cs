@@ -1,79 +1,114 @@
-﻿
-using DO;
-using System.Runtime.CompilerServices;
+﻿using DO;
 using static Dal.DataSource;
 
 namespace Dal;
 
+/// <summary>
+/// accesing OrderItem
+/// </summary>
 public class DalOrderItem
 {
- public int addOrderItem(OrderItem o)
- {
-  o.ID = Config._SerialNumberOrderItems;
-  _orderItemsArr[Config._ordersItemsEmptyIndex] = o;
-  Config._ordersItemsEmptyIndex++;
-  return o.ID;
- }
+    /// <summary>
+    /// adding order item
+    /// </summary>
+    /// <param name="o">order item to add</param>
+    /// <returns>id of the added order item</returns>
+    public int AddOrderItem(OrderItem o)
+    {
+        o.ID = Config._SerialNumberOrderItems;
+        _orderItemsArr[Config._ordersItemsEmptyIndex] = o;
+        Config._ordersItemsEmptyIndex++;
+        return o.ID;
+    }
 
- public void deleteOrderItem(int orderItemID)
- {
-  for (int i = 0; i < Config._ordersItemsEmptyIndex; i++)
-   if (orderItemID == _orderItemsArr[i].ID)
-   {
-    _orderItemsArr[i] = _orderItemsArr[Config._ordersItemsEmptyIndex - 1];
-    Config._ordersItemsEmptyIndex--;
-   }
- }
+    /// <summary>
+    /// deleting order item
+    /// </summary>
+    /// <param name="orderItemID">order item id to delete</param>
+    public void DeleteOrderItem(int orderItemID)
+    {
+        for (int i = 0; i < Config._ordersItemsEmptyIndex; i++)
+            if (orderItemID == _orderItemsArr[i].ID)
+            {
+                _orderItemsArr[i] = _orderItemsArr[Config._ordersItemsEmptyIndex - 1];
+                Config._ordersItemsEmptyIndex--;
+                break;
+            }
+    }
 
- public void updateOrderItem(OrderItem o)
- {
+    /// <summary>
+    /// update order item
+    /// </summary>
+    /// <param name="o">order item to update (by id)</param>
+    public void UpdateOrderItem(OrderItem o)
+    {
+        for (int i = 0; i < Config._ordersItemsEmptyIndex; i++)
+            if (o.ID == _orderItemsArr[i].ID)
+                _orderItemsArr[i] = o;
+    }
 
-  for (int i = 0; i < Config._ordersItemsEmptyIndex; i++)
-   if (o.ID == _orderItemsArr[i].ID)
-    _orderItemsArr[i] = o;
- }
-
- public OrderItem getOrderItem(int orderItemID)
- {
-  for (int i = 0; i < Config._ordersItemsEmptyIndex; i++)
-   if (orderItemID == _orderItemsArr[i].ID)
-    return _orderItemsArr[i];
-  throw new Exception("order item does not exist");
- }
-
- public OrderItem getOrderItemByOrderAndProduct(int oID, int pID)
- {
-  for (int i = 0; i < Config._ordersItemsEmptyIndex; i++)
-   if ((oID == _orderItemsArr[i].OrderID) && (pID == _orderItemsArr[i].ProductID))
-    return _orderItemsArr[i];
+    /// <summary>
+    /// get order item by id
+    /// </summary>
+    /// <param name="orderItemID">id of requested order item</param>
+    /// <returns>requested order item</returns>
+    /// <exception cref="Exception"></exception>
+    public OrderItem GetOrderItem(int orderItemID)
+    {
+        for (int i = 0; i < Config._ordersItemsEmptyIndex; i++)
+            if (orderItemID == _orderItemsArr[i].ID)
+                return _orderItemsArr[i];
         throw new Exception("order item does not exist");
+    }
 
- }
+    /// <summary>
+    /// get all order items
+    /// </summary>
+    /// <returns>array of order items</returns>
+    public OrderItem[] GetAllOrderItems()
+    {
+        OrderItem[] _orderItemsCopy = new OrderItem[Config._ordersItemsEmptyIndex - 1];
+        for (int i = 0; i < Config._ordersItemsEmptyIndex - 1; i++)
+            _orderItemsCopy[i] = _orderItemsArr[i];
+        return _orderItemsCopy;
+    }
 
- public OrderItem[] getOrderItemsByOrder(int orderID)
- {
-  int index = 0;
-  int count = 0;
-  for (int i = 0; i < Config._ordersItemsEmptyIndex; i++)
-   if (orderID == _orderItemsArr[i].OrderID)
-    count++;
-  OrderItem[] _orderItemsByOrderArr = new OrderItem[count];
-  for (int i = 0; i < Config._ordersItemsEmptyIndex; i++)
-   if (orderID == _orderItemsArr[i].OrderID)
-   {
-    _orderItemsByOrderArr[index] = _orderItemsArr[i];
-    index++;
-   }
-  return _orderItemsByOrderArr;
- }
+    /// <summary>
+    /// finding an order item by order and product
+    /// </summary>
+    /// <param name="oID">order id</param>
+    /// <param name="pID">product id</param>
+    /// <returns>order item with these IDs</returns>
+    /// <exception cref="Exception"></exception>
+    public OrderItem GetOrderItemByOrderAndProduct(int oID, int pID)
+    {
+        for (int i = 0; i < Config._ordersItemsEmptyIndex; i++)
+            if ((oID == _orderItemsArr[i].OrderID) && (pID == _orderItemsArr[i].ProductID))
+                return _orderItemsArr[i];
+        throw new Exception("order item does not exist");
+    }
 
- public OrderItem[] getAllOrderItems()
- {
-  OrderItem[] _orderItemsCopy = new OrderItem[Config._ordersItemsEmptyIndex - 1];
-  for (int i = 0; i < Config._ordersItemsEmptyIndex - 1; i++)
-   _orderItemsCopy[i] = _orderItemsArr[i];
-  return _orderItemsCopy;
- }
+    /// <summary>
+    /// get all order items of an order
+    /// </summary>
+    /// <param name="orderID">requested order id</param>
+    /// <returns>array of order items of requested order</returns>
+    public OrderItem[] GetOrderItemsByOrder(int orderID)
+    {
+        int index = 0;
+        int count = 0;
+        for (int i = 0; i < Config._ordersItemsEmptyIndex; i++)
+            if (orderID == _orderItemsArr[i].OrderID)
+                count++;
+        OrderItem[] _orderItemsByOrderArr = new OrderItem[count];
+        for (int i = 0; i < Config._ordersItemsEmptyIndex; i++)
+            if (orderID == _orderItemsArr[i].OrderID)
+            {
+                _orderItemsByOrderArr[index] = _orderItemsArr[i];
+                index++;
+            }
+        return _orderItemsByOrderArr;
+    }
 
 }
 

@@ -3,47 +3,74 @@ using static Dal.DataSource;
 
 namespace Dal;
 
+/// <summary>
+/// accesing Order
+/// </summary>
 public class DalOrder
 {
- public int addOrder(Order o)
- {
-  o.ID = Config._SerialNumberOrder;
-  _ordersArr[Config._ordersEmptyIndex] = o;
-  Config._ordersEmptyIndex++;
-  return o.ID;
- }
+    /// <summary>
+    /// adding order
+    /// </summary>
+    /// <param name="order">order to add</param>
+    /// <returns>id of added order</returns>
+    public int AddOrder(Order order)
+    {
+        order.ID = Config._SerialNumberOrder;
+        _ordersArr[Config._ordersEmptyIndex] = order;
+        Config._ordersEmptyIndex++;
+        return order.ID;
+    }
 
- public void deleteOrder(int orderID)
- {
+    /// <summary>
+    /// deleting order
+    /// </summary>
+    /// <param name="orderID">id of order to delete</param>
+    public void DeleteOrder(int orderID)
+    {
         for (int i = 0; i < Config._ordersEmptyIndex; i++)
             if (orderID == _ordersArr[i].ID)
             {
                 _ordersArr[i] = _ordersArr[Config._ordersEmptyIndex - 1];
                 Config._ordersEmptyIndex--;
+                break;
             }
     }
 
- public void updateOrder(Order o)
- {
+    /// <summary>
+    /// updating order
+    /// </summary>
+    /// <param name="order">order to update (by id)</param>
+    public void UpdateOrder(Order order)
+    {
+        for (int i = 0; i < Config._ordersEmptyIndex; i++)
+            if (order.ID == _ordersArr[i].ID)
+                _ordersArr[i] = order;
+    }
 
-  for (int i = 0; i < Config._ordersEmptyIndex; i++)
-   if (o.ID == _ordersArr[i].ID)
-    _ordersArr[i] = o;
- }
+    /// <summary>
+    /// get order by id
+    /// </summary>
+    /// <param name="orderID">id of requested order</param>
+    /// <returns>requested order</returns>
+    /// <exception cref="Exception"></exception>
+    public Order GetOrder(int orderID)
+    {
+        for (int i = 0; i < Config._ordersEmptyIndex; i++)
+            if (orderID == _ordersArr[i].ID)
+                return _ordersArr[i];
+        throw new Exception("order does not exist");
+    }
 
- public Order getOrder(int orderID)
- {
-  for (int i = 0; i < Config._ordersEmptyIndex; i++)
-   if (orderID == _ordersArr[i].ID)
-    return _ordersArr[i];
-  throw new Exception("order does not exist");
- }
-
- public Order[] getAllOrders()
+    /// <summary>
+    /// get all orders
+    /// </summary>
+    /// <returns>array of orders</returns>
+    public Order[] GetAllOrders()
     {
         Order[] _ordersCopy = new Order[Config._ordersEmptyIndex - 1];
         for (int i = 0; i < Config._ordersEmptyIndex - 1; i++)
             _ordersCopy[i] = _ordersArr[i];
         return _ordersCopy;
     }
+
 }

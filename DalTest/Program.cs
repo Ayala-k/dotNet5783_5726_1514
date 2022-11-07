@@ -4,6 +4,7 @@ using DO;/////
 using Dal;
 //using static Dal.DalProduct;//why not dallist?
 //Console.WriteLine("Hello, World!");
+
 namespace DalTest
 {
  public class Program
@@ -36,21 +37,21 @@ namespace DalTest
          p.Name = Console.ReadLine();
          p.Price = Console.Read();
          p.InStock = Console.Read();
-         product.addProduct(p);
+         product.AddProduct(p);
          break;
         case 2://הצגה
          Console.WriteLine("הכנס מספר מזהה של מוצר");
-         Console.WriteLine(product.getProduct(Console.Read()));
+         Console.WriteLine(product.GetProduct(Console.Read()));
          break;
         case 3://חסר
          break;
         case 4://מחיקה
          Console.WriteLine("הכנס מספר מזהה של מוצר");
-         product.deleteProduct(Console.Read());
+         product.DeleteProduct(Console.Read());
          break;
         case 5://עדכון
          Console.WriteLine("הכנס מספר מזהה של מוצר מוצר");
-         p = product.getProduct(Console.Read());
+         p = product.GetProduct(Console.Read());
          Console.WriteLine(p);//המוצר לעדכון הוא
          Console.WriteLine("(הכנס פרטי מוצר חדשים(בלי מספר מזהה");
          //p.ID = Console.Read();
@@ -59,7 +60,7 @@ namespace DalTest
           p.Name = Console.ReadLine();
           p.Price = Console.Read();
           p.InStock = Console.Read();
-          product.updateProduct(p);
+          product.UpdateProduct(p);
          }
          break;
        }
@@ -84,21 +85,21 @@ namespace DalTest
          o.ShipDate = d;
          DateTime.TryParse(Console.ReadLine(), out d);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
          o.DeliveryDate = d;//צריך להמיר גם מספרים?
-         order.addOrder(o);
+         order.AddOrder(o);
          break;
         case 2://הצגה
          Console.WriteLine("הכנס מספר מזהה של הזמנה");
-         Console.WriteLine(order.getOrder(Console.Read()));
+         Console.WriteLine(order.GetOrder(Console.Read()));
          break;
         case 3://חסר
          break;
         case 4://מחיקה
          Console.WriteLine("הכנס מספר מזהה של הזמנה");
-         order.deleteOrder(Console.Read());
+         order.DeleteOrder(Console.Read());
          break;
         case 5://עדכון
          Console.WriteLine("הכנס מספר מזהה של הזמנה לעדכון");
-         o = order.getOrder(Console.Read());
+         o = order.GetOrder(Console.Read());
          Console.WriteLine(0);//המוצר לעדכון הוא
          Console.WriteLine("(הכנס פרטי הזמנה חדשים(בלי מספר מזהה");
          if (Console.ReadLine() != "")
@@ -112,7 +113,7 @@ namespace DalTest
           o.ShipDate = d;
           DateTime.TryParse(Console.ReadLine(), out d);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
           o.DeliveryDate = d;//צריך להמיר גם מספרים?
-          order.updateOrder(o);
+          order.UpdateOrder(o);
          }
          break;
        }
@@ -134,21 +135,21 @@ namespace DalTest
          oi.ProductID = Console.Read();
          oi.Amount = Console.Read();
          oi.Price = Console.Read();
-         orderItem.addOrderItem(oi);
+         orderItem.AddOrderItem(oi);
          break;
         case 2://הצגה
          Console.WriteLine("הכנס מספר מזהה של פריט בהזמנה");
-         Console.WriteLine(orderItem.getOrderItem(Console.Read()));
+         Console.WriteLine(orderItem.GetOrderItem(Console.Read()));
          break;
         case 3://חסר
          break;
         case 4://מחיקה
          Console.WriteLine("הכנס מספר מזהה של פריט בהזמנה");
-         orderItem.deleteOrderItem(Console.Read());
+         orderItem.DeleteOrderItem(Console.Read());
          break;
         case 5://עדכון
          Console.WriteLine("הכנס מספר מזהה של פריט בהזמנה לעדכון");
-         oi = orderItem.getOrderItem(Console.Read());
+         oi = orderItem.GetOrderItem(Console.Read());
          Console.WriteLine(oi);//המוצר לעדכון הוא
          Console.WriteLine("(הכנס פרטי פריט בהזמנה חדשים(בלי מספר מזהה");
          //p.ID = Console.Read();
@@ -158,11 +159,12 @@ namespace DalTest
           oi.ProductID = Console.Read();
           oi.Amount = Console.Read();
           oi.Price = Console.Read();
-          orderItem.updateOrderItem(oi);
+          orderItem.UpdateOrderItem(oi);
          }
          break;
         case 6://הצגה על פי שתי מזהים
-        case 7://הצגת פרטי הזמנה
+        case 7:
+         break;//הצגת פרטי הזמנה
 
        }
       }

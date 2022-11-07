@@ -1,7 +1,4 @@
-﻿
-using System.Diagnostics;
-
-namespace DO;
+﻿namespace DO;
 
 /// <summary>
 /// Structure for orders
@@ -9,40 +6,44 @@ namespace DO;
 public struct Order
 {
     /// <summary>
-    /// Unique ID of ...
+    /// Unique ID of order
     /// </summary>
     public int ID { get; set; }
 
     /// <summary>
-    /// Unique ID of ...
+    /// Name of customer
     /// </summary>
     public string CustomerName { get; set; }
 
     /// <summary>
-    /// Unique ID of ...
+    /// Email of customer
     /// </summary>
     public string CustomerEmail { get; set; }
 
     /// <summary>
-    /// Unique ID of ...
+    /// Address of customer
     /// </summary>
     public string CustomerAddress { get; set; }
 
     /// <summary>
-    /// Unique ID of ...
+    /// Date of Order
     /// </summary>
     public DateTime OrderDate { get; set; }
 
     /// <summary>
-    /// Unique ID of ...
+    /// Date of shipping
     /// </summary>
     public DateTime ShipDate { get; set; }
 
     /// <summary>
-    /// Unique ID of ...
+    /// Date of delivery
     /// </summary>
     public DateTime DeliveryDate { get; set; }
 
+    /// <summary>
+    ///  printing an order 
+    /// </summary>
+    /// <returns>an order as a string</returns>
     public override string ToString() => $@"
         Order ID={ID}: 
         customer name: {CustomerName}
