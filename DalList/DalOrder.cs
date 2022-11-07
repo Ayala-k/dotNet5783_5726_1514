@@ -1,5 +1,4 @@
-﻿
-using DO;
+﻿using DO;
 using static Dal.DataSource;
 
 namespace Dal;
@@ -21,13 +20,13 @@ public class DalOrder
 
  public void deleteOrder(int orderID)
  {
-  for (int i = 0; i < Config._ordersEmptyIndex; i++)
-   if (orderID == _ordersArr[i].ID)
-   {
-    _ordersArr[i] = _ordersArr[i + 1];
-    Config._ordersEmptyIndex--;
-   }
- }
+        for (int i = 0; i < Config._ordersEmptyIndex; i++)
+            if (orderID == _ordersArr[i].ID)
+            {
+                _ordersArr[i] = _ordersArr[Config._ordersEmptyIndex - 1];
+                Config._ordersEmptyIndex--;
+            }
+    }
 
  public void updateOrder(Order o)
  {
@@ -44,4 +43,12 @@ public class DalOrder
     return _ordersArr[i];
   return null;
  }
+
+ public Order[] getAllOrders()
+    {
+        Order[] _ordersCopy = new Order[Config._ordersEmptyIndex - 1];
+        for (int i = 0; i < Config._ordersEmptyIndex - 1; i++)
+            _ordersCopy[i] = _ordersArr[i];
+        return _ordersCopy;
+    }
 }
