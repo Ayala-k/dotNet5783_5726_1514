@@ -5,20 +5,17 @@ using Dal;
 //using static Dal.DalProduct;//why not dallist?
 //Console.WriteLine("Hello, World!");
 
-namespace DalTest
+namespace DalTest//להוסיף enum,לאתחל מערכים
 {
  public class Program
  {
-  private Product p = new Product();
-  private Order o = new Order();
-  private OrderItem oi = new OrderItem();
-  DalProduct product = new DalProduct();
-  DalOrder order = new DalOrder();
-  DalOrderItem orderItem = new DalOrderItem();
+ private static DalProduct product = new DalProduct();
+  private static DalOrder order = new DalOrder();
+  private static DalOrderItem orderItem = new DalOrderItem();
   
-  void Main()
+ public static void Main()
   {
-   Console.WriteLine("הכנס מספר מ1 עד 3 ו0 ליציאה");//להוסיף enum
+   Console.WriteLine("הכנס מספר מ1 עד 3 ו0 ליציאה");
    int choice = Console.Read();
    while (choice!=0)
    {
@@ -49,8 +46,10 @@ namespace DalTest
 
    void productMethod()
    {
+    Product p = new Product();
   Console.WriteLine("הכנס 1 להוספת מוצר,2 להצגה,3 להצגת כל המוצרים,4 למחיקה ו5 לעדכון ");
   int choiceProduct = Console.Read();//string choice2 = Console.ReadLine();
+    
   switch (choiceProduct)
   {
    case 1://הוספה
@@ -125,7 +124,9 @@ namespace DalTest
 
    void orderMethod()
    {
-    Console.WriteLine("הכנס 1 להוספת הזמנה,2 להצגה,3 להצגת כל ההזמנות,4 למחיקה ו5 לעדכון ");
+     Order o = new Order();
+
+  Console.WriteLine("הכנס 1 להוספת הזמנה,2 להצגה,3 להצגת כל ההזמנות,4 למחיקה ו5 לעדכון ");
     int choiceOrder = Console.Read();//string choice2 = Console.ReadLine();
     DateTime d;
     switch (choiceOrder)
@@ -142,8 +143,8 @@ namespace DalTest
       o.ShipDate = d;
       DateTime.TryParse(Console.ReadLine(), out d);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
       o.DeliveryDate = d;//צריך להמיר גם מספרים?
-    
-       order.AddOrder(o);
+
+      order.AddOrder(o);
 
       break;
      case 2://הצגת ההזמנה
@@ -212,7 +213,9 @@ namespace DalTest
 
  void orderItemMethod()
   {
-    Console.WriteLine("  הכנס 1 להוספת פריט בהזמנה,2 להצגה,3 להצגת כל הפריטים בהזמנה,4 למחיקה ,5 לעדכון, 6 לץץ ו7 לץץץ");
+     OrderItem oi = new OrderItem();
+
+  Console.WriteLine("  הכנס 1 להוספת פריט בהזמנה,2 להצגה,3 להצגת כל הפריטים בהזמנה,4 למחיקה ,5 לעדכון, 6 לץץ ו7 לץץץ");
     int choiceOrderItem = Console.Read();//string choice2 = Console.ReadLine();
     switch (choiceOrderItem)
     {

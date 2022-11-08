@@ -49,21 +49,34 @@ internal static class DataSource
     {
         _orderItemsArr[index] = oi;
     }
-    #endregion
+ #endregion
 
-    private static void s_Initialize()
-    {
-        Product p = new Product();
-        Order o = new Order();
-        OrderItem oi = new OrderItem();
+ private static void s_Initialize()
+ {
+  Product p = new Product();
+  Order o = new Order();
+  OrderItem oi = new OrderItem();
 
-        p.ID = 100000;
-        p.Name = "prod1";
-        p.Price = 2.5;
-        p.InStock = 70;
-        addProducts(p, 0);//in for
 
-        o.ID = Config._SerialNumberOrder;
+  int[] ids = new int[] {100000,100001,100002,100003,100004,100005,100006,100007,100008,100009};
+  string[] names = new string[] { 100000, 100001, 100002, 100003, 100004, 100005, 100006, 100007, 100008, 100009 };
+  Categories[] categories = new Categories[] { Categories.cat1, Categories.cat1, Categories.cat2, 100003, 100004, 100005, 100006, 100007, 100008, 100009 };
+  double[] prices = new double[] { 50, 56, 73.5, 100, 44, 32, 160, 10, 15.5, 70 };
+  int[] inStock = new int[] { 500, 200, 10, 69, 32, 14, 48, 432, 321, 53 };
+
+  for (int i = 0; i < _productsArr.Length; i++)
+  {
+
+  p.ID = ids[i];
+  p.Name = names[i];
+  p.Category = categories[i];
+  p.Price = prices[i];
+  p.InStock=inStock[i];
+   addProducts(p, i);
+
+  }
+
+  o.ID = Config._SerialNumberOrder;
         Config._serialNumberOrder++;
         o.CustomerName = "tamar";
         o.CustomerEmail = "@";
