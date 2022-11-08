@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 using DO;/////
 using System.Xml.Linq;
 using Dal;
-using static Dal.DataSource;
+//using static Dal.DataSource;
 //Console.WriteLine("Hello, World!");
 
 namespace DalTest//להוסיף enum,לאתחל מערכים
@@ -16,9 +16,11 @@ namespace DalTest//להוסיף enum,לאתחל מערכים
 
         public static void Main()
         {
+            product.initializeDataSource();
             Console.WriteLine("enter 1 to product, 2 to order, 3 to order item, 0 to exit");
             int choice;
             int.TryParse(Console.ReadLine(), out choice);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
+            int parse;
 
             while (choice != 0)
             {
@@ -41,7 +43,7 @@ namespace DalTest//להוסיף enum,לאתחל מערכים
 
                         }
                 }
-                Console.WriteLine("enter your choice");
+                Console.WriteLine("enter 1 to product, 2 to order, 3 to order item, 0 to exit");
                 int.TryParse(Console.ReadLine(), out choice);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
 
             }
@@ -58,15 +60,15 @@ namespace DalTest//להוסיף enum,לאתחל מערכים
 
                 switch (choiceProduct)
                 {
-                    case 1://הוספה
+                    case 1:
                         Console.WriteLine("enter product details");
-                        int id ;
-                        //p.ID = Console.ReadLine();
-                       int.TryParse(Console.ReadLine(), out id);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
-                        p.ID = id;
+                        int.TryParse(Console.ReadLine(), out parse);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
+                        p.ID = parse;
                         p.Name = Console.ReadLine();
-                        p.Price = Console.Read();
-                        p.InStock = Console.Read();
+                        int.TryParse(Console.ReadLine(), out parse);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
+                        p.Price = parse;
+                        int.TryParse(Console.ReadLine(), out parse);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
+                        p.InStock = parse ;
                         try
                         {
                             product.AddProduct(p);
@@ -80,7 +82,8 @@ namespace DalTest//להוסיף enum,לאתחל מערכים
                         Console.WriteLine("enter product ID");
                         try
                         {
-                            Console.WriteLine(product.GetProduct(Console.Read()));
+                            int.TryParse(Console.ReadLine(), out parse);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
+                            Console.WriteLine(product.GetProduct(parse));
                         }
                         catch (Exception e)
                         {
@@ -89,14 +92,20 @@ namespace DalTest//להוסיף enum,לאתחל מערכים
 
                         break;
                     case 3://הצגת כל המוצרים
-                        product.GetAllProduct();
+                        //Console.WriteLine(product.GetAllProduct()) ;
+                        Product[] pArr= product.GetAllProduct();
+                        Console.WriteLine("length"+ pArr.Length);
+                        for(int i=0;i< pArr.Length; i++)
+                        {
+                            Console.WriteLine(pArr[i]);
+                        }
                         break;
                     case 4://מחיקה
                         Console.WriteLine("enter product ID");
                         try
                         {
-                            product.DeleteProduct(Console.Read());
-
+                            int.TryParse(Console.ReadLine(), out parse);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
+                            product.DeleteProduct(parse);
                         }
                         catch (Exception e)
                         {
@@ -108,7 +117,9 @@ namespace DalTest//להוסיף enum,לאתחל מערכים
                         Console.WriteLine("enter product ID");
                         try
                         {
-                            p = product.GetProduct(Console.Read());
+                            int.TryParse(Console.ReadLine(), out parse);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
+
+                            p = product.GetProduct(parse);
 
                         }
                         catch (Exception e)
@@ -117,12 +128,14 @@ namespace DalTest//להוסיף enum,לאתחל מערכים
                         }
 
                         Console.WriteLine(p);//המוצר לעדכון הוא
-                        Console.WriteLine("(enter new product ID");
+                        Console.WriteLine("(enter new product details");
                         if (Console.ReadLine() != "")
                         {
                             p.Name = Console.ReadLine();
-                            p.Price = Console.Read();
-                            p.InStock = Console.Read();
+                            int.TryParse(Console.ReadLine(), out parse);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
+                            p.Price = parse;
+                            int.TryParse(Console.ReadLine(), out parse);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
+                            p.InStock = parse;
                             product.UpdateProduct(p);
                         }
                         break;
@@ -161,7 +174,8 @@ namespace DalTest//להוסיף enum,לאתחל מערכים
                         Console.WriteLine("enter order ID");
                         try
                         {
-                            Console.WriteLine(order.GetOrder(Console.Read()));
+                            int.TryParse(Console.ReadLine(), out parse);
+                            Console.WriteLine(order.GetOrder(parse));
                         }
                         catch (Exception e)
                         {
@@ -176,7 +190,8 @@ namespace DalTest//להוסיף enum,לאתחל מערכים
                         Console.WriteLine("enter order ID");
                         try
                         {
-                            order.DeleteOrder(Console.Read());
+                            int.TryParse(Console.ReadLine(), out parse);
+                            order.DeleteOrder(parse);
 
                         }
                         catch (Exception e)
@@ -189,7 +204,8 @@ namespace DalTest//להוסיף enum,לאתחל מערכים
                         Console.WriteLine("enter order ID to update");
                         try
                         {
-                            o = order.GetOrder(Console.Read());
+                            int.TryParse(Console.ReadLine(), out parse);
+                            o = order.GetOrder(parse);
 
                         }
                         catch (Exception e)
@@ -209,7 +225,7 @@ namespace DalTest//להוסיף enum,לאתחל מערכים
                             DateTime.TryParse(Console.ReadLine(), out d);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
                             o.ShipDate = d;
                             DateTime.TryParse(Console.ReadLine(), out d);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
-                            o.DeliveryDate = d;//צריך להמיר גם מספרים?
+                            o.DeliveryDate = d;
                             order.UpdateOrder(o);
                         }
                         break;
@@ -227,10 +243,14 @@ namespace DalTest//להוסיף enum,לאתחל מערכים
                     case 1://הוספה
                         Console.WriteLine("enter order item details");
                         oi.ID = 0;
-                        oi.OrderID = Console.Read();
-                        oi.ProductID = Console.Read();
-                        oi.Amount = Console.Read();
-                        oi.Price = Console.Read();
+                        int.TryParse(Console.ReadLine(), out parse);
+                        oi.OrderID = parse;
+                        int.TryParse(Console.ReadLine(), out parse);
+                        oi.ProductID =parse;
+                        int.TryParse(Console.ReadLine(), out parse);
+                        oi.Amount =parse;
+                        int.TryParse(Console.ReadLine(), out parse);
+                        oi.Price = parse;
                         orderItem.AddOrderItem(oi);
                         break;
 
@@ -238,7 +258,8 @@ namespace DalTest//להוסיף enum,לאתחל מערכים
                         Console.WriteLine("enter order item ID");
                         try
                         {
-                            Console.WriteLine(orderItem.GetOrderItem(Console.Read()));
+                            int.TryParse(Console.ReadLine(), out parse);
+                            Console.WriteLine(orderItem.GetOrderItem(parse));
 
                         }
                         catch (Exception e)
@@ -256,7 +277,8 @@ namespace DalTest//להוסיף enum,לאתחל מערכים
                         Console.WriteLine("enter order item ID");
                         try
                         {
-                            orderItem.DeleteOrderItem(Console.Read());
+                            int.TryParse(Console.ReadLine(), out parse);
+                            orderItem.DeleteOrderItem(parse);
                         }
                         catch (Exception e)
                         {
@@ -269,7 +291,8 @@ namespace DalTest//להוסיף enum,לאתחל מערכים
                         Console.WriteLine("enter order item ID");
                         try
                         {
-                            oi = orderItem.GetOrderItem(Console.Read());
+                            int.TryParse(Console.ReadLine(), out parse);
+                            oi = orderItem.GetOrderItem(parse);
 
                         }
                         catch (Exception e)
@@ -278,13 +301,16 @@ namespace DalTest//להוסיף enum,לאתחל מערכים
                         }
                         Console.WriteLine(oi);//המוצר לעדכון הוא
                         Console.WriteLine("enter new order item ID");
-                        //p.ID = Console.Read();
                         if (Console.ReadLine() != "")
                         {
-                            oi.OrderID = Console.Read();
-                            oi.ProductID = Console.Read();
-                            oi.Amount = Console.Read();
-                            oi.Price = Console.Read();
+                            int.TryParse(Console.ReadLine(), out parse);
+                            oi.OrderID =parse;
+                            int.TryParse(Console.ReadLine(), out parse);
+                            oi.ProductID =parse;
+                            int.TryParse(Console.ReadLine(), out parse);
+                            oi.Amount = parse;
+                            int.TryParse(Console.ReadLine(), out parse);
+                            oi.Price = parse;
                             orderItem.UpdateOrderItem(oi);
                         }
                         break;
@@ -293,7 +319,10 @@ namespace DalTest//להוסיף enum,לאתחל מערכים
                         Console.WriteLine("enter order ID and product ID");
                         try
                         {
-                            Console.WriteLine(orderItem.GetOrderItemByOrderAndProduct(Console.Read(), Console.Read()));
+                            int parse2;
+                            int.TryParse(Console.ReadLine(), out parse);
+                            int.TryParse(Console.ReadLine(), out parse2);
+                            Console.WriteLine(orderItem.GetOrderItemByOrderAndProduct(parse, parse2));
                         }
                         catch (Exception e)
                         {

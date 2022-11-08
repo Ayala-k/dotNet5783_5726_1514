@@ -67,8 +67,8 @@ public class DalOrderItem
     /// <returns>array of order items</returns>
     public OrderItem[] GetAllOrderItems()
     {
-        OrderItem[] _orderItemsCopy = new OrderItem[Config._ordersItemsEmptyIndex - 1];
-        for (int i = 0; i < Config._ordersItemsEmptyIndex - 1; i++)
+        OrderItem[] _orderItemsCopy = new OrderItem[Config._ordersItemsEmptyIndex];
+        for (int i = 0; i < Config._ordersItemsEmptyIndex ; i++)
             _orderItemsCopy[i] = _orderItemsArr[i];
         return _orderItemsCopy;
     }

@@ -8,6 +8,7 @@ namespace Dal;
 /// </summary>
 public class DalProduct
 {
+
     /// <summary>
     /// adding product
     /// </summary>
@@ -72,11 +73,14 @@ public class DalProduct
     /// <returns>array of all products</returns>
     public Product[] GetAllProduct()
     {
-        Console.WriteLine(Config._productsEmptyIndex);
-        Product[] _productsCopy = new Product[Config._productsEmptyIndex - 1];
-        for (int i = 0; i < Config._productsEmptyIndex - 1; i++)
+        Product[] _productsCopy = new Product[Config._productsEmptyIndex];
+        for (int i = 0; i < Config._productsEmptyIndex ; i++)
             _productsCopy[i] = _productsArr[i];
         return _productsCopy;
+    }
+    public void initializeDataSource()
+    {
+        Order[] x = DataSource._ordersArr;
     }
 
 }
