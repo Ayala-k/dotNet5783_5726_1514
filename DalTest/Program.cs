@@ -15,9 +15,8 @@ namespace DalTest
   DalProduct product = new DalProduct();
   DalOrder order = new DalOrder();
   DalOrderItem orderItem = new DalOrderItem();
-
-
-  void main()
+  
+  void Main()
   {
    Console.WriteLine("הכנס מספר מ1 עד 3 ו0 ליציאה");//להוסיף enum
    int choice = Console.Read();
@@ -313,10 +312,10 @@ namespace DalTest
 
   }
 
-
+  
  }
-
-
+ 
+ 
 
 
 
