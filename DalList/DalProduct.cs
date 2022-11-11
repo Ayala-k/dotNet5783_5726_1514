@@ -74,10 +74,15 @@ public class DalProduct
     public Product[] GetAllProduct()
     {
         Product[] _productsCopy = new Product[Config._productsEmptyIndex];
-        for (int i = 0; i < Config._productsEmptyIndex ; i++)
+        for (int i = 0; i < Config._productsEmptyIndex; i++)
             _productsCopy[i] = _productsArr[i];
         return _productsCopy;
     }
+    
+    /// <summary>
+    /// a function for executing DataSource constructor
+    /// (called in the beginning of the main prorgram
+    /// </summary>
     public void initializeDataSource()
     {
         Order[] x = DataSource._ordersArr;
