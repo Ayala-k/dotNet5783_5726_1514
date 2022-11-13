@@ -1,12 +1,13 @@
 ﻿using DO;
 using static Dal.DataSource;
+using DalApi;
 
 namespace Dal;
 
 /// <summary>
 /// accesing Order
 /// </summary>
-public class DalOrder
+internal class DalOrder:IOrder
 {
     /// <summary>
     /// adding order

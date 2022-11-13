@@ -1,12 +1,13 @@
 ﻿using DO;
 using static Dal.DataSource;
+using DalApi;
 
 namespace Dal;
 
 /// <summary>
 /// accesing OrderItem
 /// </summary>
-public class DalOrderItem
+internal class DalOrderItem:IOrderItem
 {
     /// <summary>
     /// adding order item
