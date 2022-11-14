@@ -9,7 +9,6 @@ namespace Dal;
 /// </summary>
 internal class DalProduct:IProduct
 {
-
     /// <summary>
     /// adding product
     /// </summary>
@@ -18,13 +17,12 @@ internal class DalProduct:IProduct
     /// <exception cref="Exception"></exception>
     public int AddProduct(Product p)
     {
-        for (int i = 0; i != Config._productsEmptyIndex; i++)
+        foreach (var item in _productsList)
         {
-            if (p.ID == _productsArr[i].ID)
-                throw new Exception("product already exist");
+            if (item.ID == p.ID)
+                throw new Exception();
         }
-        _productsArr[Config._productsEmptyIndex] = p;
-        Config._productsEmptyIndex++;
+        _productsList.Add(p);
         return p.ID;
     }
 
@@ -34,11 +32,10 @@ internal class DalProduct:IProduct
     /// <param name="productID">id of product to delete</param>
     public void DeleteProduct(int productID)
     {
-        for (int i = 0; i < Config._productsEmptyIndex; i++)
-            if (productID == _productsArr[i].ID)
+        foreach (var item in _productsList)
+            if (item.ID == productID)
             {
-                _productsArr[i] = _productsArr[Config._productsEmptyIndex - 1];
-                Config._productsEmptyIndex--;
+                _productsList.Remove(item);
                 break;
             }
     }
@@ -49,9 +46,15 @@ internal class DalProduct:IProduct
     /// <param name="product">product to update (by id)</param>
     public void UpdateProduct(Product product)
     {
-        for (int i = 0; i < Config._productsEmptyIndex; i++)
-            if (product.ID == _productsArr[i].ID)
-                _productsArr[i] = product;
+        for (var i = 0; i < _productsList.Count; i++)
+        {
+            if (_productsList[i].ID == product.ID)
+            {
+                _productsList[i] = product;
+                return;
+            }
+        }
+        throw new Exception();
     }
 
     /// <summary>
@@ -62,18 +65,19 @@ internal class DalProduct:IProduct
     /// <exception cref="Exception"></exception>
     public Product GetProduct(int productID)
     {
-        //for (int i = 0; i < Config._productsEmptyIndex; i++)
-        //    if (productID == _productsArr[i].ID)
-        //        return _productsArr[i];
-        //throw new Exception("product does not exist");
-        List
+        foreach (var item in _productsList)
+            if (item.ID == productID)
+            {
+               return item;
+            }
+        throw new Exception();
     }
 
     /// <summary>
     /// get all the products
     /// </summary>
     /// <returns>array of all products</returns>
-    public IEnumerable<Product> GetAllProduct()//check copy!!!!!!
+    public IEnumerable<Product> GetAllProduct()
     {
         List<Product> productsListCopy = _productsList;
         return productsListCopy;
@@ -85,7 +89,7 @@ internal class DalProduct:IProduct
     /// </summary>
     public void initializeDataSource()
     {
-        Order[] x = DataSource._ordersArr;
+        Product x = DataSource._productsList.First();
     }
 
 }

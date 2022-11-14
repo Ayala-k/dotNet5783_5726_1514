@@ -1,6 +1,7 @@
 ﻿using DO;
 using Dal;
 using System.ComponentModel.Design;
+using DalApi;
 
 namespace DalTest;
 
@@ -9,7 +10,8 @@ public class Program
     private static DalProduct product = new DalProduct();
     private static DalOrder order = new DalOrder();
     private static DalOrderItem orderItem = new DalOrderItem();
-
+    static IDal IDalVariable = new DalList();
+  
     public static void Main()
     {
         product.initializeDataSource();
