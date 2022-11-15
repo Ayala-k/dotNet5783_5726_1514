@@ -1,6 +1,8 @@
 ﻿using DO;
 using Dal;
 using DalApi;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace DalTest;
 
@@ -8,13 +10,13 @@ public class Program
 {
     static IDal IDalVariable = new DalList();
 
-    private static DalProduct product = new DalProduct();
-    private static DalOrder order = new DalOrder();
-    private static DalOrderItem orderItem = new DalOrderItem();
-    
+    //private static DalProduct product = new DalProduct();
+    //private static DalOrder order = new DalOrder();
+    //private static DalOrderItem orderItem = new DalOrderItem();
+
     public static void Main()
     {
-        product.initializeDataSource();
+        IDalVariable.Product.initializeDataSource();
         Console.WriteLine("enter 1 to product, 2 to order, 3 to order item, 0 to exit");
         int choice;
         int.TryParse(Console.ReadLine(), out choice);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
@@ -68,7 +70,7 @@ public class Program
                 p.InStock = parse;
                 //try
                 //{
-                    product.AddProduct(p);
+                IDalVariable.Product.Add(p);
                 //}
                 //catch (Exception e)
                 //{
@@ -80,8 +82,8 @@ public class Program
                 Console.WriteLine("enter product ID");
                 //try
                 //{
-                    int.TryParse(Console.ReadLine(), out parse);
-                    Console.WriteLine(product.GetProduct(parse));
+                int.TryParse(Console.ReadLine(), out parse);
+                Console.WriteLine(IDalVariable.Product.Get(parse));
                 //}
                 //catch (Exception e)
                 //{
@@ -90,8 +92,8 @@ public class Program
                 break;
 
             case 3://view all orders
-                Product[] pArr = product.GetAllProduct();
-                foreach (Product x in pArr)
+                IEnumerable<Product> pList = IDalVariable.Product.GetAll();
+                foreach (Product x in pList)
                     Console.WriteLine(x);
                 break;
 
@@ -99,8 +101,8 @@ public class Program
                 Console.WriteLine("enter product ID");
                 //try
                 //{
-                    int.TryParse(Console.ReadLine(), out parse);
-                    product.DeleteProduct(parse);
+                int.TryParse(Console.ReadLine(), out parse);
+                IDalVariable.Product.Delete(parse);
                 //}
                 //catch (Exception e)
                 //{
@@ -112,8 +114,8 @@ public class Program
                 Console.WriteLine("enter product ID");
                 //try
                 //{
-                    int.TryParse(Console.ReadLine(), out parse);
-                    p = product.GetProduct(parse);
+                int.TryParse(Console.ReadLine(), out parse);
+                p = IDalVariable.Product.Get(parse);
                 //}
                 //catch (Exception e)
                 //{
@@ -128,7 +130,7 @@ public class Program
                     p.Price = parse;
                     int.TryParse(Console.ReadLine(), out parse);
                     p.InStock = parse;
-                    product.UpdateProduct(p);
+                    IDalVariable.Product.Update(p);
                 }
                 break;
         }
@@ -159,15 +161,15 @@ public class Program
                 o.ShipDate = d;
                 DateTime.TryParse(Console.ReadLine(), out d);
                 o.DeliveryDate = d;
-                order.AddOrder(o);
+                IDalVariable.Order.Add(o);
                 break;
 
             case 2://view order
                 Console.WriteLine("enter order ID");
                 //try
                 //{
-                    int.TryParse(Console.ReadLine(), out parse);
-                    Console.WriteLine(order.GetOrder(parse));
+                int.TryParse(Console.ReadLine(), out parse);
+                Console.WriteLine(IDalVariable.Order.Get(parse));
                 //}
                 //catch (Exception e)
                 //{
@@ -176,8 +178,8 @@ public class Program
                 break;
 
             case 3://view all orders
-                Order[] oArr = order.GetAllOrders();
-                foreach (Order x in oArr)
+                IEnumerable<Order> oList = IDalVariable.Order.GetAll();
+                foreach (Order x in oList)
                     Console.WriteLine(x);
                 break;
 
@@ -185,12 +187,12 @@ public class Program
                 Console.WriteLine("enter order ID");
                 //try
                 //{
-                    int.TryParse(Console.ReadLine(), out parse);
-                    order.DeleteOrder(parse);
+                int.TryParse(Console.ReadLine(), out parse);
+                IDalVariable.Order.Delete(parse);
                 //}
                 //catch (Exception e)
                 //{
-                    //Console.WriteLine(e);
+                //Console.WriteLine(e);
                 //}
                 break;
 
@@ -198,12 +200,12 @@ public class Program
                 Console.WriteLine("enter order ID to update");
                 //try
                 //{
-                    int.TryParse(Console.ReadLine(), out parse);
-                    o = order.GetOrder(parse);
+                int.TryParse(Console.ReadLine(), out parse);
+                o = IDalVariable.Order.Get(parse);
                 //}
                 //catch (Exception e)
                 //{
-                    //Console.WriteLine(e);
+                //Console.WriteLine(e);
                 //}
                 Console.WriteLine(o);
                 Console.WriteLine("enter new order details");
@@ -218,7 +220,7 @@ public class Program
                     o.ShipDate = d;
                     DateTime.TryParse(Console.ReadLine(), out d);
                     o.DeliveryDate = d;
-                    order.UpdateOrder(o);
+                    IDalVariable.Order.Update(o);
                 }
                 break;
         }
@@ -248,15 +250,15 @@ public class Program
                 oi.Amount = parse;
                 int.TryParse(Console.ReadLine(), out parse);
                 oi.Price = parse;
-                orderItem.AddOrderItem(oi);
+                IDalVariable.OrderItem.Add(oi);
                 break;
 
             case 2://view order item
                 Console.WriteLine("enter order item ID");
                 //try
                 //{
-                    int.TryParse(Console.ReadLine(), out parse);
-                    Console.WriteLine(orderItem.GetOrderItem(parse));
+                int.TryParse(Console.ReadLine(), out parse);
+                Console.WriteLine(IDalVariable.OrderItem.Get(parse));
                 //}
                 //catch (Exception e)
                 //{
@@ -265,8 +267,8 @@ public class Program
                 break;
 
             case 3://view all order items
-                OrderItem[] oiArr = orderItem.GetAllOrderItems();
-                foreach (OrderItem x in oiArr)
+                IEnumerable<OrderItem> oiList = IDalVariable.OrderItem.GetAll();
+                foreach (OrderItem x in oiList)
                     Console.WriteLine(x);
                 break;
 
@@ -274,8 +276,8 @@ public class Program
                 Console.WriteLine("enter order item ID");
                 //try
                 //{
-                    int.TryParse(Console.ReadLine(), out parse);
-                    orderItem.DeleteOrderItem(parse);
+                int.TryParse(Console.ReadLine(), out parse);
+                IDalVariable.OrderItem.Delete(parse);
                 //}
                 //catch (Exception e)
                 //{
@@ -287,8 +289,8 @@ public class Program
                 Console.WriteLine("enter order item ID");
                 //try
                 //{
-                    int.TryParse(Console.ReadLine(), out parse);
-                    oi = orderItem.GetOrderItem(parse);
+                int.TryParse(Console.ReadLine(), out parse);
+                oi = IDalVariable.OrderItem.Get(parse);
 
                 //}
                 //catch (Exception e)
@@ -307,7 +309,7 @@ public class Program
                     oi.Amount = parse;
                     int.TryParse(Console.ReadLine(), out parse);
                     oi.Price = parse;
-                    orderItem.UpdateOrderItem(oi);
+                    IDalVariable.OrderItem.Update(oi);
                 }
                 break;
 
@@ -315,10 +317,10 @@ public class Program
                 Console.WriteLine("enter order ID and product ID");
                 //try
                 //{
-                    int parse2;
-                    int.TryParse(Console.ReadLine(), out parse);
-                    int.TryParse(Console.ReadLine(), out parse2);
-                    Console.WriteLine(orderItem.GetOrderItemByOrderAndProduct(parse, parse2));
+                int parse2;
+                int.TryParse(Console.ReadLine(), out parse);
+                int.TryParse(Console.ReadLine(), out parse2);
+                Console.WriteLine(IDalVariable.OrderItem.GetOrderItemByOrderAndProduct(parse, parse2));
                 //}
                 //catch (Exception e)
                 //{
@@ -331,7 +333,7 @@ public class Program
                 int ID;
                 int.TryParse(Console.ReadLine(), out parse);
                 ID = parse;
-                OrderItem[] orderItems = orderItem.GetOrderItemsByOrder(ID);
+                IEnumerable<OrderItem> orderItems = IDalVariable.OrderItem.GetOrderItemsByOrder(ID);
                 foreach (OrderItem x in orderItems)
                     Console.WriteLine(x);
                 break;
