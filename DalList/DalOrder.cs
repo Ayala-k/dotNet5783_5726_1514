@@ -14,7 +14,7 @@ internal class DalOrder:IOrder
     /// </summary>
     /// <param name="order">order to add</param>
     /// <returns>id of added order</returns>
-    public int AddOrder(Order order)
+    public int Add(Order order)
     {
         order.ID = Config._SerialNumberOrder;
         _ordersList.Add(order);
@@ -25,7 +25,7 @@ internal class DalOrder:IOrder
     /// deleting order
     /// </summary>
     /// <param name="orderID">id of order to delete</param>
-    public void DeleteOrder(int orderID)
+    public void Delete(int orderID)
     {
         foreach (var item in _ordersList)
             if (item.ID == orderID)
@@ -39,7 +39,7 @@ internal class DalOrder:IOrder
     /// updating order
     /// </summary>
     /// <param name="order">order to update (by id)</param>
-    public void UpdateOrder(Order order)
+    public void Update(Order order)
     {
         for (var i = 0; i < _ordersList.Count; i++)
         {
@@ -58,7 +58,7 @@ internal class DalOrder:IOrder
     /// <param name="orderID">id of requested order</param>
     /// <returns>requested order</returns>
     /// <exception cref="Exception"></exception>
-    public Order GetOrder(int orderID)
+    public Order Get(int orderID)
     {
         foreach (var item in _ordersList)
             if (item.ID == orderID)
@@ -72,7 +72,7 @@ internal class DalOrder:IOrder
     /// get all orders
     /// </summary>
     /// <returns>array of orders</returns>
-    public IEnumerable<Order> GetAllOrders()
+    public IEnumerable<Order> GetAll()
     {
         List<Order> ordersListCopy = _ordersList;
         return ordersListCopy;

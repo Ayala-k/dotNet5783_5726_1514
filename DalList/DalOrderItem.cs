@@ -14,7 +14,7 @@ internal class DalOrderItem : IOrderItem
     /// </summary>
     /// <param name="o">order item to add</param>
     /// <returns>id of the added order item</returns>
-    public int AddOrderItem(OrderItem oi)
+    public int Add(OrderItem oi)
     {
         oi.ID = Config._SerialNumberOrder;
         _orderItemsList.Add(oi);
@@ -25,7 +25,7 @@ internal class DalOrderItem : IOrderItem
     /// deleting order item
     /// </summary>
     /// <param name="orderItemID">order item id to delete</param>
-    public void DeleteOrderItem(int orderItemID)
+    public void Delete(int orderItemID)
     {
         foreach (var item in _orderItemsList)
             if (item.ID == orderItemID)
@@ -39,7 +39,7 @@ internal class DalOrderItem : IOrderItem
     /// update order item
     /// </summary>
     /// <param name="o">order item to update (by id)</param>
-    public void UpdateOrderItem(OrderItem oi)
+    public void Update(OrderItem oi)
     {
         for (var i = 0; i < _orderItemsList.Count; i++)
         {
@@ -58,7 +58,7 @@ internal class DalOrderItem : IOrderItem
     /// <param name="orderItemID">id of requested order item</param>
     /// <returns>requested order item</returns>
     /// <exception cref="Exception"></exception>
-    public OrderItem GetOrderItem(int orderItemID)
+    public OrderItem Get(int orderItemID)
     {
         foreach (var item in _orderItemsList)
             if (item.ID == orderItemID)
@@ -72,7 +72,7 @@ internal class DalOrderItem : IOrderItem
     /// get all order items
     /// </summary>
     /// <returns>array of order items</returns>
-    public IEnumerable<OrderItem> GetAllOrderItems()
+    public IEnumerable<OrderItem> GetAll()
     {
         List<OrderItem> orderItemsListCopy = _orderItemsList;
         return orderItemsListCopy;

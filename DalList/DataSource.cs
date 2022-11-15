@@ -14,12 +14,8 @@ internal static class DataSource
 
     static readonly int _randomNumber = new Random().Next();
 
-    internal static class Config
-    {
-        //internal static int _productsEmptyIndex = 0;
-        //internal static int _ordersEmptyIndex = 0;
-        //internal static int _ordersItemsEmptyIndex = 0;
-
+    internal static class Config 
+    { 
         internal static int _serialNumberOrder = 100;
         internal static int _SerialNumberOrder
         { get { return ++_serialNumberOrder; } }
@@ -30,9 +26,6 @@ internal static class DataSource
     }
 
     #region lists
-    //internal static Product[] _productsArr = new Product[50];
-    //internal static Order[] _ordersArr = new Order[100];
-    //internal static OrderItem[] _orderItemsArr = new OrderItem[200];
     internal static List<Product> _productsList= new List<Product>();
     internal static List<Order> _ordersList = new List<Order>();
     internal static List<OrderItem> _orderItemsList = new List<OrderItem>();

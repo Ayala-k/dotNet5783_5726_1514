@@ -15,7 +15,7 @@ internal class DalProduct:IProduct
     /// <param name="p">product to add</param>
     /// <returns>id of the added product</returns>
     /// <exception cref="Exception"></exception>
-    public int AddProduct(Product p)
+    public int Add(Product p)
     {
         foreach (var item in _productsList)
         {
@@ -30,7 +30,7 @@ internal class DalProduct:IProduct
     /// deleting product
     /// </summary>
     /// <param name="productID">id of product to delete</param>
-    public void DeleteProduct(int productID)
+    public void Delete(int productID)
     {
         foreach (var item in _productsList)
             if (item.ID == productID)
@@ -44,7 +44,7 @@ internal class DalProduct:IProduct
     /// updating product
     /// </summary>
     /// <param name="product">product to update (by id)</param>
-    public void UpdateProduct(Product product)
+    public void Update(Product product)
     {
         for (var i = 0; i < _productsList.Count; i++)
         {
@@ -63,7 +63,7 @@ internal class DalProduct:IProduct
     /// <param name="productID">id of the requested product</param>
     /// <returns>requested product</returns>
     /// <exception cref="Exception"></exception>
-    public Product GetProduct(int productID)
+    public Product Get(int productID)
     {
         foreach (var item in _productsList)
             if (item.ID == productID)
@@ -77,7 +77,7 @@ internal class DalProduct:IProduct
     /// get all the products
     /// </summary>
     /// <returns>array of all products</returns>
-    public IEnumerable<Product> GetAllProduct()
+    public IEnumerable<Product> GetAll()
     {
         List<Product> productsListCopy = _productsList;
         return productsListCopy;
