@@ -14,7 +14,7 @@ internal class DalProduct:IProduct
     /// </summary>
     /// <param name="p">product to add</param>
     /// <returns>id of the added product</returns>
-    /// <exception cref="Exception"></exception>
+    /// <exception cref="System.Exception"></exception>
     public int Add(Product p)
     {
         foreach (var item in _productsList)
@@ -62,7 +62,7 @@ internal class DalProduct:IProduct
     /// </summary>
     /// <param name="productID">id of the requested product</param>
     /// <returns>requested product</returns>
-    /// <exception cref="Exception"></exception>
+    /// <exception cref="System.Exception"></exception>
     public Product Get(int productID)
     {
         foreach (var item in _productsList)

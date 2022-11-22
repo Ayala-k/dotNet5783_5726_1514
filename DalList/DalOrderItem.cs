@@ -57,7 +57,7 @@ internal class DalOrderItem : IOrderItem
     /// </summary>
     /// <param name="orderItemID">id of requested order item</param>
     /// <returns>requested order item</returns>
-    /// <exception cref="Exception"></exception>
+    /// <exception cref="System.Exception"></exception>
     public OrderItem Get(int orderItemID)
     {
         foreach (var item in _orderItemsList)
@@ -84,7 +84,7 @@ internal class DalOrderItem : IOrderItem
     /// <param name="oID">order id</param>
     /// <param name="pID">product id</param>
     /// <returns>order item with these IDs</returns>
-    /// <exception cref="Exception"></exception>
+    /// <exception cref="System.Exception"></exception>
     public OrderItem GetOrderItemByOrderAndProduct(int oID, int pID)
     {
         foreach (var item in _orderItemsList)

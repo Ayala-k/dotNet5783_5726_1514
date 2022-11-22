@@ -1,5 +1,5 @@
 ﻿
-namespace DalApi;
+namespace BlTest.BO;
 
 internal class Exceptions
 {

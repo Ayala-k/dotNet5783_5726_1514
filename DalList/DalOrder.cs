@@ -57,7 +57,7 @@ internal class DalOrder:IOrder
     /// </summary>
     /// <param name="orderID">id of requested order</param>
     /// <returns>requested order</returns>
-    /// <exception cref="Exception"></exception>
+    /// <exception cref="System.Exception"></exception>
     public Order Get(int orderID)
     {
         foreach (var item in _ordersList)
