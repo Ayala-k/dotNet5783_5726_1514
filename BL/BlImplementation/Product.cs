@@ -1,75 +1,158 @@
 ﻿
+using BL.BO;
 using Dal;
 using DalApi;
+using DO;
 
 namespace BL.BlImplementation;
 
 internal class Product : BlApi.IProduct
 {
     IDal Dal = new DalList();
-    IEnumerable<BO.Product> BlApi.IProduct.GetProducts()
+    IEnumerable<ProductForList> BlApi.IProduct.GetProducts()
     {
         IEnumerable<DO.Product> productsListDal = Dal.Product.GetAll();
-        List<BO.Product> productsListBL = new List<BO.Product>();
+        List<ProductForList> productsListBL = new List<ProductForList>();
         foreach (DO.Product productDal in productsListDal)
         {
-            BO.Product productBL = new BO.Product();
-            productBL.ID = productDal.ID;
-            productBL.Name = productDal.Name;
-            productBL.Price = productDal.Price;
-            productBL.Category = (Categories)productDal.Category;
-            productBL.InStock = productDal.InStock;
-            productsListBL.Add(productBL);
+            ProductForList product = new ProductForList()
+            {
+                ID = productDal.ID,
+                Name = productDal.Name,
+                Price = productDal.Price,
+                Category = (Categories)productDal.Category
+            };
+            productsListBL.Add(product);
         }
         return productsListBL;
     }
     BO.Product BlApi.IProduct.GetProductDetailsManager(int productID)
     {
-        DO.Product productDal = Dal.Product.Get(productID);
-        BO.Product productBL = new BO.Product();
-        productBL.ID = productDal.ID;
-        productBL.Name = productDal.Name;
-        productBL.Price = productDal.Price;
-        productBL.Category = (Categories)productDal.Category;
-        productBL.InStock = productDal.InStock;
-        return productBL;
+        if (productID > 0)
+        {
+            DO.Product productDal = new DO.Product();
+            try
+            {
+                productDal = Dal.Product.Get(productID);
+            }
+            catch (EntityNotFoundException e)
+            {
+                //throw new Exception(e);
+            }
+            BO.Product productBL = new BO.Product()
+            {
+                ID = productDal.ID,
+                Name = productDal.Name,
+                Price = productDal.Price,
+                Category = (Categories)productDal.Category,
+                InStock = productDal.InStock
+            };
+            return productBL;
+        }
+        else
+            throw new Exception();
     }
-    BO.Product BlApi.IProduct.GetProductDetailsCustomer(int productID)
+    BO.ProductItem BlApi.IProduct.GetProductDetailsCustomer(int productID, Cart cart)
     {
-        DO.Product productDal = Dal.Product.Get(productID);
-        BO.Product productBL = new BO.Product();
-        productBL.ID = productDal.ID;
-        productBL.Name = productDal.Name;
-        productBL.Price = productDal.Price;
-        productBL.Category = (Categories)productDal.Category;
-        return productBL;
+        if (productID > 0)
+        {
+            DO.Product productDal = new DO.Product();
+            try
+            {
+                productDal = Dal.Product.Get(productID);
+            }
+            catch (EntityNotFoundException e)
+            {
+                //throw new Exception(e);
+            }
+
+            int amountInCart = 0;
+            foreach (BO.OrderItem oi in cart.ItemsList)
+            {
+                if (oi.ID == productID)
+                {
+                    amountInCart = oi.Amount;
+                    break;
+                }
+            }
+            if (amountInCart == 0)
+                throw new Exception();
+
+            ProductItem product = new ProductItem()
+            {
+                ID = productDal.ID,
+                Name = productDal.Name,
+                Price = productDal.Price,
+                Category = (Categories)productDal.Category,
+                AmountInCart = amountInCart,
+                InStock = (amountInCart <= productDal.InStock)
+            };
+            return product;
+        }
+        else
+            throw new Exception();
     }
     void BlApi.IProduct.AddProduct(BO.Product productBL)
     {
+        if (productBL.ID <= 0 || productBL.Name == "" || productBL.Price <= 0 || productBL.InStock < 0)
+            throw new Exception();
         //check what dan meant in the explanation---
-        DO.Product productDal = new DO.Product();
-        productDal.ID = productBL.ID;
-        productDal.Name = productBL.Name;
-        productDal.Price = productBL.Price;
-        productDal.Category = (DO.Categories)productBL.Category;
-        productDal.InStock = productBL.InStock;
-        Dal.Product.Add(productDal);
+        DO.Product productDal = new DO.Product()
+        {
+            ID = productBL.ID,
+            Name = productBL.Name,
+            Price = productBL.Price,
+            Category = (DO.Categories)productBL.Category,
+            InStock = productBL.InStock,
+        };
+        try
+        {
+            Dal.Product.Add(productDal);
+        }
+        catch (EntityAlreadyExistsException e)
+        {
+            //throw new Exception();
+        }
     }
     void BlApi.IProduct.DeleteProduct(int productID)
     {
-        Dal.Product.Delete(productID);
+        IEnumerable<BO.Order> ordersList = BO.Order.GetOrders();//fix
+        foreach (BO.Order order in ordersList)
+        {
+            foreach (BO.OrderItem oi in order.ItemsList)
+                if (oi.ID == productID)
+                    throw new Exception();
+        }
+        try
+        {
+            Dal.Product.Delete(productID);
+        }
+        catch (EntityNotFoundException e)
+        {
+            //throw new Exception();
+        }
     }
     void BlApi.IProduct.UpdateProduct(BO.Product productBL)
     {
-        DO.Product oldProduct=Dal.Product.Get(productBL.ID);
-        if (!(productBL.Name==null))
-            oldProduct.Name = productBL.Name;
-        if (!(productBL.Price == null))
-            oldProduct.Price = productBL.Price;
-        if (!(productBL.Category == null))
-            oldProduct.Category = (DO.Categories)productBL.Category;
-        if (!(productBL.InStock == null))
-            oldProduct.InStock = productBL.InStock;
-        Dal.Product.Update(oldProduct);
+        if (productBL.ID <= 0 || productBL.Name == "" || productBL.Price <= 0 || productBL.InStock < 0)
+            throw new Exception();
+
+        DO.Product productDal = new DO.Product()
+        {
+            ID = productBL.ID,
+            Name = productBL.Name,
+            Price = productBL.Price,
+            Category = (DO.Categories)productBL.Category,
+            InStock = productBL.InStock,
+        };
+
+        try
+        {
+            Dal.Product.Update(productDal);
+        }
+        catch(EntityNotFoundException e)
+        {
+            //throw new Exception();
+        }
     }
 }

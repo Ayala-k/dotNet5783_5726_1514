@@ -5,9 +5,9 @@ namespace BL.BlApi;
 
 public interface IProduct
 {
-    IEnumerable<Product> GetProducts();
+    IEnumerable<ProductForList> GetProducts();
     Product GetProductDetailsManager(int productID);
-    Product GetProductDetailsCustomer(int productID);
+    ProductItem GetProductDetailsCustomer(int productID, Cart cart);
     void AddProduct(Product product);
     void DeleteProduct(int productID);
     void UpdateProduct(Product product);
