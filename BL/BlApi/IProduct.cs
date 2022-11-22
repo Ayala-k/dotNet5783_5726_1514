@@ -1,7 +1,7 @@
 ﻿
-using BlTest.BO;
+using BL.BO;
 
-namespace BlTest.BlApi;
+namespace BL.BlApi;
 
 public interface IProduct
 {
@@ -9,6 +9,6 @@ public interface IProduct
     Product GetProductDetailsManager(int productID);
     Product GetProductDetailsCustomer(int productID);
     void AddProduct(Product product);
-    void DeleteProduct();
+    void DeleteProduct(int productID);
     void UpdateProduct(Product product);
 }

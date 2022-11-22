@@ -1,5 +1,5 @@
 ﻿
-namespace BlTest.BlApi;
+namespace BL.BlApi;
 
 public interface IBl
 {

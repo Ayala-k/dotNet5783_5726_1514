@@ -1,5 +1,5 @@
 ﻿
-namespace BlTest.BO;
+namespace BL.BO;
 
 internal class Exceptions
 {

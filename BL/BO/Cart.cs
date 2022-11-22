@@ -1,5 +1,6 @@
 ﻿
-namespace BlTest.BO;
+namespace BL.BO;
+
 
 public class Cart
 {

@@ -1,7 +1,7 @@
 ﻿
-using BlTest.BO;
+using BL.BO;
 
-namespace BlTest.BlApi;
+namespace BL.BlApi;
 
 public interface ICart
 {

@@ -1,9 +1,9 @@
 ﻿
-using BlTest.BlApi;
+using BL.BlApi;
 using Dal;
 using DalApi;
 
-namespace BlTest.BlImplementation;
+namespace BL.BlImplementation;
 
 internal class Order:IOrder
 {

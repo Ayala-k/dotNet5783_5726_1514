@@ -1,8 +1,8 @@
 ﻿
-using BlTest.BO;
+using BL.BO;
 using DO;
 
-namespace BlTest.BlApi;
+namespace BL.BlApi;
 
 public interface IOrder
 {
