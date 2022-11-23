@@ -6,11 +6,11 @@ namespace BL.BO;
 public class OrderTracking
 {
     public int ID { get; set; }
-    public OrderStatus status { get; set; }
+    public OrderStatus Status { get; set; }
     public struct DateAndProgressDescription
     {
-        DateTime ProgressDate { get; set; }
-        string ProgressDescription { get; set; }
+        public DateTime ProgressDate { get; set; }
+        public string ProgressDescription { get; set; }
     }
-    public IEnumerable<DateAndProgressDescription> _dateAndProgressDescriptions;
+    public IEnumerable<DateAndProgressDescription> DateAndProgressDescriptionsList;
 }

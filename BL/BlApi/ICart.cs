@@ -5,7 +5,8 @@ namespace BL.BlApi;
 
 public interface ICart
 {
-    void AddOrderItem(OrderItem orderItem);
-    void UpdateOrderItemAmountInStock(OrderItem orderItem);
+    //art BlApi.ICart.AddOrderItem(BO.Cart cart,int productID)
+    BO.Cart AddOrderItem(BO.Cart cart, int productID);
+    BO.Cart UpdateOrderItemAmountInStock(BO.Cart cart, int productID, int updatedAmount);
     void CommitOrder();
 }

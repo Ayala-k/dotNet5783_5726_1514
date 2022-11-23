@@ -7,8 +7,8 @@ public interface IOrder
 {
     IEnumerable<OrderForList> GetOrders();
     BO.Order GetOrderDetails(int orderID);
-    void UpdateOrderShipping(int orderID);
-    void UpdateOrderDelivering(int orderID);
+    BO.Order UpdateOrderShipping(int orderID);
+    BO.Order UpdateOrderDelivering(int orderID);
     OrderTracking OrderTrack(int orderID);
-    BO.Order UpdateOrder(BO.Order order);
+    //BO.Order UpdateOrder(BO.Order order);
 }
