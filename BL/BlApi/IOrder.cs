@@ -1,16 +1,14 @@
 ﻿
 using BL.BO;
-using DO;
 
 namespace BL.BlApi;
 
 public interface IOrder
 {
-    IEnumerable<BlTest.BO.Order> GetOrders();
-    BlTest.BO.Order GetOrderDetails(int orderID);
-    void UpdateOrderShipping(BlTest.BO.Order order);
-    void UpdateOrderDelivering(BlTest.BO.Order order);
+    IEnumerable<OrderForList> GetOrders();
+    BO.Order GetOrderDetails(int orderID);
+    void UpdateOrderShipping(int orderID);
+    void UpdateOrderDelivering(int orderID);
     OrderTracking OrderTrack(int orderID);
-    BlTest.BO.Order UpdateOrder(BlTest.BO.Order order);
-
+    BO.Order UpdateOrder(BO.Order order);
 }

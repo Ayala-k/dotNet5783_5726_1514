@@ -2,7 +2,7 @@
 using BL.BO;
 using Dal;
 using DalApi;
-using DO;
+//using DO;
 
 namespace BL.BlImplementation;
 
@@ -35,7 +35,7 @@ internal class Product : BlApi.IProduct
             {
                 productDal = Dal.Product.Get(productID);
             }
-            catch (EntityNotFoundException e)
+            catch (DO.EntityNotFoundException e)
             {
                 //throw new Exception(e);
             }
@@ -61,7 +61,7 @@ internal class Product : BlApi.IProduct
             {
                 productDal = Dal.Product.Get(productID);
             }
-            catch (EntityNotFoundException e)
+            catch (DO.EntityNotFoundException e)
             {
                 //throw new Exception(e);
             }
@@ -109,7 +109,7 @@ internal class Product : BlApi.IProduct
         {
             Dal.Product.Add(productDal);
         }
-        catch (EntityAlreadyExistsException e)
+        catch (DO.EntityAlreadyExistsException e)
         {
             //throw new Exception();
         }
@@ -127,7 +127,7 @@ internal class Product : BlApi.IProduct
         {
             Dal.Product.Delete(productID);
         }
-        catch (EntityNotFoundException e)
+        catch (DO.EntityNotFoundException e)
         {
             //throw new Exception();
         }
@@ -150,7 +150,7 @@ internal class Product : BlApi.IProduct
         {
             Dal.Product.Update(productDal);
         }
-        catch(EntityNotFoundException e)
+        catch(DO.EntityNotFoundException e)
         {
             //throw new Exception();
         }
