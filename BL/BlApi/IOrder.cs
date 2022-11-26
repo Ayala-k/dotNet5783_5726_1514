@@ -10,5 +10,5 @@ public interface IOrder
  public BO.Order UpdateOrderShipping(int orderID);
  public BO.Order UpdateOrderDelivering(int orderID);
  public BO.OrderTracking OrderTrack(int orderID);
- public BO.Order UpdateOrder(int orderID, int productID, int newAmount);
+ public void UpdateOrder(int orderID, int productID, int newAmount);
 }
