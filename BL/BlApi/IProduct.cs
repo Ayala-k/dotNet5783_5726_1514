@@ -1,14 +1,14 @@
 ﻿
-using BL.BO;
+using BL;
 
 namespace BL.BlApi;
 
 public interface IProduct
 {
-    IEnumerable<ProductForList> GetProducts();
-    Product GetProductDetailsManager(int productID);
-    ProductItem GetProductDetailsCustomer(int productID, Cart cart);
-    void AddProduct(Product product);
-    void DeleteProduct(int productID);
-    void UpdateProduct(Product product);
+ public IEnumerable<BO.ProductForList> GetProducts();
+ public BO.Product GetProductDetailsManager(int productID);
+ public BO.ProductItem GetProductDetailsCustomer(int productID, BO.Cart cart);
+ public void AddProduct(BO.Product product);
+ public void DeleteProduct(int productID);
+ public void UpdateProduct(BO.Product product);
 }

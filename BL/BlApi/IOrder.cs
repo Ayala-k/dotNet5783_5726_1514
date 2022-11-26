@@ -1,14 +1,14 @@
 ﻿
-using BL.BO;
+using BL;
 
 namespace BL.BlApi;
 
 public interface IOrder
 {
-    IEnumerable<OrderForList> GetOrders();
-    BO.Order GetOrderDetails(int orderID);
-    BO.Order UpdateOrderShipping(int orderID);
-    BO.Order UpdateOrderDelivering(int orderID);
-    OrderTracking OrderTrack(int orderID);
-    //BO.Order UpdateOrder(BO.Order order);
+ public IEnumerable<BO.OrderForList> GetOrders();
+ public BO.Order GetOrderDetails(int orderID);
+ public BO.Order UpdateOrderShipping(int orderID);
+ public BO.Order UpdateOrderDelivering(int orderID);
+ public BO.OrderTracking OrderTrack(int orderID);
+ public BO.Order UpdateOrder(int orderID, int productID, int newAmount);
 }
