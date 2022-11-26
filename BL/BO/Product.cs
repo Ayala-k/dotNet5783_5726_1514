@@ -8,4 +8,14 @@ public class Product
     public double Price { get; set; }
     public Categories Category { get; set; }
     public int InStock { get; set; }
+
+
+
+ public override string ToString() => $@"
+        Product ID:{ID},
+        Product name: {Name},
+        price: {Price},
+        category: {Category},
+        Amount in stock: {InStock}";
+
 }

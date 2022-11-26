@@ -9,4 +9,14 @@ public class OrderItem
     public double Price { get; set; }
     public int Amount { get; set; }
     public double TotalPrice { get; set; }
+
+
+ public override string ToString() => $@"
+        OrderItem ID={ID},
+        name: {Name},
+        product ID: {ProductID},
+        price: {Price},
+        amount: {Amount},
+        total price: {TotalPrice}";
+
 }
