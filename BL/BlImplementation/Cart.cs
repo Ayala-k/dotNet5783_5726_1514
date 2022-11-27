@@ -14,7 +14,7 @@ internal class Cart : ICart
         BO.OrderItem productInCart = new BO.OrderItem();
         foreach (var orderItem in cart.ItemsList)
         {
-            if (orderItem.ID == productID)
+            if (orderItem.ProductID == productID)
             {
                 productInCartBool = true;
                 productInCart = orderItem;
@@ -68,7 +68,7 @@ internal class Cart : ICart
         BO.OrderItem productInCart = new BO.OrderItem();
         foreach (var orderItem in cart.ItemsList)
         {
-            if (orderItem.ID == productID)
+            if (orderItem.ProductID == productID)
             {
                 productInCart = orderItem;
                 break;

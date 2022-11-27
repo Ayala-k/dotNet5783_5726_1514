@@ -1,6 +1,7 @@
 ﻿
 using Dal;
 using DalApi;
+using System.Xml.Linq;
 
 namespace BL.BlImplementation;
 
@@ -298,13 +299,21 @@ internal class Order : BlApi.IOrder
     }
     private List<BO.OrderItem> getOrderItem(IEnumerable<DO.OrderItem> OrderItemsDal)
     {
+        DO.Product productDal = new DO.Product();
         List<BO.OrderItem> OrderItemsBL = new List<BO.OrderItem>();
         foreach (DO.OrderItem oi in OrderItemsDal)
         {
+            try
+            {
+                productDal = Dal.Product.Get(oi.ProductID);
+            }
+            catch (DO.EntityNotFoundException e)
+            {
+                throw new BO.EntityNotFoundLogicException("product not found", e);
+            }
             BO.OrderItem orderItemBL = new BO.OrderItem()
             {
-                ID = oi.ID,
-                Name = Dal.Product.Get(oi.ProductID).Name,//try
+                Name = productDal.Name,
                 ProductID = oi.ProductID,
                 Price = oi.Price,
                 Amount = oi.Amount,

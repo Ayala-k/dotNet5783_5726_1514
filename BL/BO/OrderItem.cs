@@ -3,7 +3,7 @@ namespace BL.BO;
 
 public class OrderItem
 {
-    public int ID { get; set; }
+    //public int ID { get; set; }
     public string Name { get; set; }
     public int ProductID { get; set; }
     public double Price { get; set; }
@@ -12,7 +12,7 @@ public class OrderItem
 
 
  public override string ToString() => $@"
-        OrderItem ID={ID},
+        OrderItem
         name: {Name},
         product ID: {ProductID},
         price: {Price},

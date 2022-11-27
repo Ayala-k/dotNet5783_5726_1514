@@ -67,7 +67,7 @@ internal class Product : BlApi.IProduct
             int amountInCart = 0;
             foreach (BO.OrderItem oi in cart.ItemsList)
             {
-                if (oi.ID == productID)
+                if (oi.ProductID == productID)
                 {
                     amountInCart = oi.Amount;
                     break;
