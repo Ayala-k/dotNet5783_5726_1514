@@ -83,7 +83,15 @@ namespace BlTest
     case 4://delete product
      Console.WriteLine("enter product ID");
      int.TryParse(Console.ReadLine(), out parse);
-     bl.Product.DeleteProduct(parse);
+     try
+     {
+      bl.Product.DeleteProduct(parse);
+     }
+     catch(BL.BO.EntityNotFoundLogicException e)
+     {
+      Console.WriteLine("EntityNotFoundLogicException");
+      Console.WriteLine(e);
+     }
      break;
 
     case 5://update product
@@ -104,39 +112,7 @@ namespace BlTest
      Console.WriteLine("enter product ID ");
      int.TryParse(Console.ReadLine(), out parse);
      product.ID = parse;
-     //cart.CustomerName = Console.ReadLine();
-     //cart.CustomerEmail = Console.ReadLine();
-     //cart.CustomerAddress = Console.ReadLine();
-
-     //Console.WriteLine("enter product ID");
-     //int productID;
-     //int.TryParse(Console.ReadLine(), out parse);
-     //productID = parse;
-     //Console.WriteLine("enter amount of items");
-     //int amount;
-     //int.TryParse(Console.ReadLine(), out parse);
-     //amount = parse;
-     //cart.ItemsList = new List<BL.BO.OrderItem>();
-     //while (amount > 0 && productID > 0)
-     //{
-     // BL.BO.OrderItem orderItem = new BL.BO.OrderItem()
-     // {
-     //  Name = bl.Product.GetProductDetailsManager(productID).Name,
-     //  ProductID = productID,
-     //  Price = bl.Product.GetProductDetailsManager(productID).Price,//manager
-     //  Amount = amount
-     // };
-     // cart.ItemsList.Add(orderItem);
-
-     // Console.WriteLine("enter product ID");
-     // int.TryParse(Console.ReadLine(), out parse);
-     // productID = parse;
-
-     // Console.WriteLine("enter amount of items");
-     // int.TryParse(Console.ReadLine(), out parse);
-     // amount = parse;
-     //}
-     CartItemsMethod(cart);
+     cart=CartItemsMethod(cart);
      Console.WriteLine(bl.Product.GetProductDetailsCustomer(parse, cart));
      break;
    }
@@ -157,8 +133,6 @@ namespace BlTest
    int.TryParse(Console.ReadLine(), out choiceOrder);
    int parse;
    double parseDouble;
-   //Categories parseCategory;
-   //BL.BO.OrderItem parseOrderItem;
    switch (choiceOrder)
    {
     case 1://view all orders
@@ -230,10 +204,7 @@ namespace BlTest
      Console.WriteLine("enter product id ");
      int.TryParse(Console.ReadLine(), out parse);
      int productID = parse;
-     //cart.CustomerName = Console.ReadLine();
-     //cart.CustomerEmail = Console.ReadLine();
-     //cart.CustomerAddress = Console.ReadLine();
-     CartItemsMethod(cart);
+     cart=CartItemsMethod(cart);
      Console.WriteLine(bl.Cart.AddOrderItem(cart, productID));
      break;
     case 2:
@@ -242,65 +213,12 @@ namespace BlTest
      productID = parse;
      int.TryParse(Console.ReadLine(), out parse);
      int newAmount = parse;
-     //cart.CustomerName = Console.ReadLine();
-     //cart.CustomerEmail = Console.ReadLine();
-     //cart.CustomerAddress = Console.ReadLine();
-     //Console.WriteLine("enter product id and amount of items in cart,for finish enter 0");
-
-     //int.TryParse(Console.ReadLine(), out parse);
-     //productId = parse;
-     //int.TryParse(Console.ReadLine(), out parse);
-     //amount = parse;
-     //cart.ItemsList = new List<BL.BO.OrderItem>();
-     //while (productId != 0)
-     //{
-     // BL.BO.OrderItem orderItem = new BL.BO.OrderItem()
-     // {
-     //  Name = bl.Product.GetProductDetailsManager(productId).Name,
-     //  ProductID = productId,
-     //  Price = bl.Product.GetProductDetailsManager(productId).Price,//manager
-     //  Amount = amount
-     // };
-     // cart.ItemsList.Add(orderItem);
-     // Console.WriteLine("enter product id and amount of items in cart,for finish enter 0");
-     // int.TryParse(Console.ReadLine(), out parse);
-     // productId = parse;
-     // int.TryParse(Console.ReadLine(), out parse);
-     // amount = parse;
-     //}
-     CartItemsMethod(cart);
+     cart=CartItemsMethod(cart);
      Console.WriteLine(bl.Cart.UpdateOrderItemAmountInStock(cart, productID, newAmount));
      break;
 
     case 3:
-     //Console.WriteLine("enter your details ");
-     //cart.CustomerName = Console.ReadLine();
-     //cart.CustomerEmail = Console.ReadLine();
-     //cart.CustomerAddress = Console.ReadLine();
-     //Console.WriteLine("enter product id and amount of items in cart,for finish enter 0");
-
-     //int.TryParse(Console.ReadLine(), out parse);
-     //productId = parse;
-     //int.TryParse(Console.ReadLine(), out parse);
-     //amount = parse;
-     //cart.ItemsList = new List<BL.BO.OrderItem>();
-     //while (productId != 0)
-     //{
-     // BL.BO.OrderItem orderItem = new BL.BO.OrderItem()
-     // {
-     //  Name = bl.Product.GetProductDetailsManager(productId).Name,
-     //  ProductID = productId,
-     //  Price = bl.Product.GetProductDetailsManager(productId).Price,//manager
-     //  Amount = amount
-     // };
-     // cart.ItemsList.Add(orderItem);
-     // Console.WriteLine("enter product id and amount of items in cart,for finish enter 0");
-     // int.TryParse(Console.ReadLine(), out parse);
-     // productId = parse;
-     // int.TryParse(Console.ReadLine(), out parse);
-     // amount = parse;
-     //}
-     CartItemsMethod(cart);
+     cart=CartItemsMethod(cart);
      bl.Cart.CommitOrder(cart);
      break;
    }
@@ -326,9 +244,9 @@ namespace BlTest
    {
     BL.BO.OrderItem orderItem = new BL.BO.OrderItem()
     {
-     Name = bl.Product.GetProductDetailsManager(productId).Name,//manager
+     Name = bl.Product.GetProductDetailsManager(productId).Name,
      ProductID = productId,
-     Price = bl.Product.GetProductDetailsManager(productId).Price,//manager
+     Price = bl.Product.GetProductDetailsManager(productId).Price,
      Amount = amount
     };
     cart.ItemsList.Add(orderItem);
