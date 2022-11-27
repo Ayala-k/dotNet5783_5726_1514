@@ -65,13 +65,18 @@ namespace BlTest
      try
      {
       Console.WriteLine(bl.Product.GetProductDetailsManager(parse));
-
      }
      catch (BL.BO.EntityNotFoundLogicException e)
      {
       Console.WriteLine("EntityNotFoundException");
       Console.WriteLine(e);
      }
+     catch (BL.BO.InvalidDetailsException e)
+     {
+      Console.WriteLine("InvalidDetailsException");
+      Console.WriteLine(e);
+     }
+
 
      break;
 
@@ -91,11 +96,15 @@ namespace BlTest
       bl.Product.AddProduct(product);
 
      }
+     catch (BL.BO.InvalidDetailsException e)
+     {
+      Console.WriteLine("InvalidDetailsException");
+      Console.WriteLine(e);
+     }
      catch (BL.BO.EntityAlreadyExistsLogicException e)
      {
       Console.WriteLine("EntityAlreadyExistsLogicException");
       Console.WriteLine(e);
-
      }
 
      break;
@@ -106,6 +115,11 @@ namespace BlTest
      try
      {
       bl.Product.DeleteProduct(parse);
+     }
+     catch (BL.BO.EntityInUseException e)
+     {
+      Console.WriteLine("EntityInUseException");
+      Console.WriteLine(e);
      }
      catch (BL.BO.EntityNotFoundLogicException e)
      {
@@ -128,6 +142,11 @@ namespace BlTest
      try
      {
       bl.Product.UpdateProduct(product);
+     }
+     catch (BL.BO.InvalidDetailsException e)
+     {
+      Console.WriteLine("InvalidDetailsException");
+      Console.WriteLine(e);
      }
      catch (BL.BO.EntityNotFoundLogicException e)
      {
