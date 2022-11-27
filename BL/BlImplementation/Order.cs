@@ -135,7 +135,7 @@ internal class Order : BlApi.IOrder
    }
    catch (DO.EntityNotFoundException e)
    {
-    throw new BO.EntityNotFoundLogicException("order not fpund", e);
+    throw new BO.EntityNotFoundLogicException("order not found", e);
    }
 
    IEnumerable<DO.OrderItem> OrderItemsDal = new List<DO.OrderItem>();
@@ -232,7 +232,7 @@ internal class Order : BlApi.IOrder
    {
     if (Dal.Order.Get(orderID).ShipDate <= DateTime.Now)
      throw new BO.ProgressAlreadyDoneException("order has been sent");
-    if (newAmount>Dal.Product.Get(productID).InStock)
+    if (newAmount > Dal.Product.Get(productID).InStock)
      throw new BO.NotEnoughInStockException("not enough products in stock");
     DO.OrderItem newItem = orderItemsList[i];
     newItem.Amount = newAmount;
@@ -245,20 +245,7 @@ internal class Order : BlApi.IOrder
      throw new BO.EntityNotFoundLogicException("order item not found", e);
     }
 
-    //BO.Order orderBL = new BO.Order()
-    //{
-    //    ID = orderID,
-    //    CustomerName = orderDal.CustomerName,
-    //    CustomerEmail = orderDal.CustomerEmail,
-    //    CustomerAddress = orderDal.CustomerAddress,
-    //    Status = findStatus(orderDal),
-    //    PaymentDate = orderDal.OrderDate,
-    //    ShipDate = orderDal.ShipDate,
-    //    DeliveryDate = orderDal.DeliveryDate,
-    //    ItemsList = getOrderItem(orderItemsList),
-    //    TotalPrice = findTotalPrice(orderDal.ID)
-    //};
-    //return orderBL;
+    //return;
    }
   }
 

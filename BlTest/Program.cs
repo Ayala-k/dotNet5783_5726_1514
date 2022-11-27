@@ -62,8 +62,17 @@ namespace BlTest
     case 2://view product details for manager
      Console.WriteLine("enter product ID");
      int.TryParse(Console.ReadLine(), out parse);
+     try
+     {
+      Console.WriteLine(bl.Product.GetProductDetailsManager(parse));
 
-     Console.WriteLine(bl.Product.GetProductDetailsManager(parse));
+     }
+     catch (BL.BO.EntityNotFoundLogicException e)
+     {
+      Console.WriteLine("EntityNotFoundException");
+      Console.WriteLine(e);
+     }
+
      break;
 
     case 3://add product
@@ -77,7 +86,18 @@ namespace BlTest
      product.Category = parseCategory;
      int.TryParse(Console.ReadLine(), out parse);
      product.InStock = parse;
-     bl.Product.AddProduct(product);
+     try
+     {
+      bl.Product.AddProduct(product);
+
+     }
+     catch (BL.BO.EntityAlreadyExistsLogicException e)
+     {
+      Console.WriteLine("EntityAlreadyExistsLogicException");
+      Console.WriteLine(e);
+
+     }
+
      break;
 
     case 4://delete product
@@ -87,7 +107,7 @@ namespace BlTest
      {
       bl.Product.DeleteProduct(parse);
      }
-     catch(BL.BO.EntityNotFoundLogicException e)
+     catch (BL.BO.EntityNotFoundLogicException e)
      {
       Console.WriteLine("EntityNotFoundLogicException");
       Console.WriteLine(e);
@@ -105,15 +125,36 @@ namespace BlTest
      product.Category = parseCategory;
      int.TryParse(Console.ReadLine(), out parse);
      product.InStock = parse;
-     bl.Product.UpdateProduct(product);
+     try
+     {
+      bl.Product.UpdateProduct(product);
+     }
+     catch (BL.BO.EntityNotFoundLogicException e)
+     {
+      Console.WriteLine("EntityNotFoundLogicException");
+      Console.WriteLine(e);
+     }
      break;
 
     case 6://view product details for customer
      Console.WriteLine("enter product ID ");
      int.TryParse(Console.ReadLine(), out parse);
      product.ID = parse;
-     cart=CartItemsMethod(cart);
-     Console.WriteLine(bl.Product.GetProductDetailsCustomer(parse, cart));
+     cart = CartItemsMethod(cart);
+     try
+     {
+      Console.WriteLine(bl.Product.GetProductDetailsCustomer(parse, cart));
+     }
+     catch (BL.BO.EntityNotFoundLogicException e)
+     {
+      Console.WriteLine("EntityNotFoundLogicException");
+      Console.WriteLine(e);
+     }
+     catch (BL.BO.InvalidDetailsException e)
+     {
+      Console.WriteLine("InvalidDetailsException");
+      Console.WriteLine(e);
+     }
      break;
    }
 
@@ -144,27 +185,88 @@ namespace BlTest
     case 2://view order details for manager
      Console.WriteLine("enter order ID");
      int.TryParse(Console.ReadLine(), out parse);
-     Console.WriteLine(bl.Order.GetOrderDetails(parse));
+     try
+     {
+      Console.WriteLine(bl.Order.GetOrderDetails(parse));
+     }
+     catch (BL.BO.EntityNotFoundLogicException e)
+     {
+      Console.WriteLine("EntityNotFoundLogicException");
+      Console.WriteLine(e);
+     }
+     catch (BL.BO.InvalidDetailsException e)
+     {
+      Console.WriteLine("InvalidDetailsException");
+      Console.WriteLine(e);
+     }
+
      break;
 
     case 3://update shipping date
      Console.WriteLine("enter order ID");
      int.TryParse(Console.ReadLine(), out parse);
-     order = bl.Order.UpdateOrderShipping(parse);
+     try
+     {
+      order = bl.Order.UpdateOrderShipping(parse);
+     }
+     catch (BL.BO.EntityNotFoundLogicException e)
+     {
+      Console.WriteLine("EntityNotFoundLogicException");
+      Console.WriteLine(e);
+     }
+     catch (BL.BO.ProgressAlreadyDoneException e)
+     {
+      Console.WriteLine("ProgressAlreadyDoneException");
+      Console.WriteLine(e);
+     }
      Console.WriteLine(order);
      break;
 
     case 4://update delivert date
      Console.WriteLine("enter order ID");
      int.TryParse(Console.ReadLine(), out parse);
-     order = bl.Order.UpdateOrderDelivering(parse);
+     try
+     {
+      order = bl.Order.UpdateOrderDelivering(parse);
+     }
+     catch (BL.BO.EntityNotFoundLogicException e)
+     {
+      Console.WriteLine("EntityNotFoundLogicException");
+      Console.WriteLine(e);
+     }
+     catch (BL.BO.ProgressAlreadyDoneException e)
+     {
+      Console.WriteLine("ProgressAlreadyDoneException");
+      Console.WriteLine(e);
+     }
+
      Console.WriteLine(order);
      break;
 
     case 5://order tracking
      Console.WriteLine("enter order ID");
      int.TryParse(Console.ReadLine(), out parse);
-     orderTracking = bl.Order.OrderTrack(parse);
+     try
+     {
+      orderTracking = bl.Order.OrderTrack(parse);
+     }
+     catch (BL.BO.EntityNotFoundLogicException e)
+     {
+      Console.WriteLine("EntityNotFoundLogicException");
+      Console.WriteLine(e);
+     }
+     catch (BL.BO.ProgressAlreadyDoneException e)
+     {
+      Console.WriteLine("ProgressAlreadyDoneException");
+      Console.WriteLine(e);
+     }
+     catch (BL.BO.NotEnoughInStockException e)
+     {
+      Console.WriteLine("NotEnoughInStockException");
+      Console.WriteLine(e);
+     }
+
+
      Console.WriteLine(orderTracking);
      break;
 
@@ -181,10 +283,22 @@ namespace BlTest
      {
       bl.Order.UpdateOrder(orderId, productId, newAmount);
      }
-     catch
+     catch (BL.BO.EntityNotFoundLogicException e)
      {
+      Console.WriteLine("EntityNotFoundLogicException");
+      Console.WriteLine(e);
      }
-      break;
+     catch (BL.BO.ProgressAlreadyDoneException e)
+     {
+      Console.WriteLine("ProgressAlreadyDoneException");
+      Console.WriteLine(e);
+     }
+     catch (BL.BO.NotEnoughInStockException e)
+     {
+      Console.WriteLine("NotEnoughInStockException");
+      Console.WriteLine(e);
+     }
+     break;
    }
   }
 
@@ -204,8 +318,21 @@ namespace BlTest
      Console.WriteLine("enter product id ");
      int.TryParse(Console.ReadLine(), out parse);
      int productID = parse;
-     cart=CartItemsMethod(cart);
-     Console.WriteLine(bl.Cart.AddOrderItem(cart, productID));
+     cart = CartItemsMethod(cart);
+     try
+     {
+      Console.WriteLine(bl.Cart.AddOrderItem(cart, productID));
+     }
+     catch (BL.BO.EntityNotFoundLogicException e)
+     {
+      Console.WriteLine("EntityNotFoundLogicException");
+      Console.WriteLine(e);
+     }
+     catch (BL.BO.NotEnoughInStockException e)
+     {
+      Console.WriteLine("NotEnoughInStockException");
+      Console.WriteLine(e);
+     }
      break;
     case 2:
      Console.WriteLine("enter product id ,new amount ");
@@ -213,13 +340,33 @@ namespace BlTest
      productID = parse;
      int.TryParse(Console.ReadLine(), out parse);
      int newAmount = parse;
-     cart=CartItemsMethod(cart);
-     Console.WriteLine(bl.Cart.UpdateOrderItemAmountInStock(cart, productID, newAmount));
+     cart = CartItemsMethod(cart);
+     Console.WriteLine(bl.Cart.UpdateOrderItemAmountInStock(cart, productID, newAmount));//add try catch for addOrderItem function
+
      break;
 
     case 3:
-     cart=CartItemsMethod(cart);
-     bl.Cart.CommitOrder(cart);
+     cart = CartItemsMethod(cart);
+     try
+     {
+      bl.Cart.CommitOrder(cart);
+     }
+     catch (BL.BO.EntityNotFoundLogicException e)
+     {
+      Console.WriteLine("EntityNotFoundLogicException");
+      Console.WriteLine(e);
+     }
+     catch (BL.BO.InvalidDetailsException e)
+     {
+      Console.WriteLine("InvalidDetailsException");
+      Console.WriteLine(e);
+     }
+     catch (BL.BO.NotEnoughInStockException e)
+     {
+      Console.WriteLine("NotEnoughInStockException");
+      Console.WriteLine(e);
+     }
+
      break;
    }
 
