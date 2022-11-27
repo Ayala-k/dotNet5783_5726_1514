@@ -181,7 +181,6 @@ namespace BlTest
   {
    BL.BO.Order order = new BL.BO.Order();
    BL.BO.OrderTracking orderTracking = new BL.BO.OrderTracking();
-
    Console.WriteLine("enter 1 to view order's list," +
     " 2 to view order's details," +
     " 3 to update a order's date shipping" +
