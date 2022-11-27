@@ -176,7 +176,6 @@ namespace BlTest
      }
      break;
    }
-
   }
   private static void orderMethod()
   {
