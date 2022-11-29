@@ -27,7 +27,7 @@ internal class DalOrder : IOrder
  /// <param name="orderID">id of order to delete</param>
  public void Delete(int orderID)
  {
-  foreach (Order? item in _ordersList)
+  foreach (Order item in _ordersList)
    if (item.ID == orderID)
    {
     _ordersList.Remove(item);
@@ -44,7 +44,7 @@ internal class DalOrder : IOrder
  {
   for (var i = 0; i < _ordersList.Count; i++)
   {
-   if (_ordersList[i].ID == order.ID)
+   if (_ordersList[i]?.ID == order.ID)
    {
     _ordersList[i] = order;
     return;
@@ -90,7 +90,7 @@ internal class DalOrder : IOrder
   }
   return ordersListCopy;
  }
- public Order? GetByCondition(Func<Order, bool>? predict)
+ public Order GetByCondition(Func<Order, bool>? predict)
  {
   foreach (Order order in _ordersList)
   {

@@ -28,7 +28,7 @@ internal class DalOrderItem : IOrderItem
  public void Delete(int orderItemID)
  {
   foreach (var item in _orderItemsList)
-   if (item.ID == orderItemID)
+   if (item?.ID == orderItemID)
    {
     _orderItemsList.Remove(item);
     return;
@@ -44,7 +44,7 @@ internal class DalOrderItem : IOrderItem
  {
   for (var i = 0; i < _orderItemsList.Count; i++)
   {
-   if (_orderItemsList[i].ID == oi.ID)
+   if (_orderItemsList[i]?.ID == oi.ID)
    {
     _orderItemsList[i] = oi;
     return;
@@ -73,7 +73,7 @@ internal class DalOrderItem : IOrderItem
  /// get all order items
  /// </summary>
  /// <returns>array of order items</returns>
- public IEnumerable<OrderItem?> GetAll(Func<OrderItem, bool>? predict = null)
+ public IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? predict = null)
  {
   List<OrderItem?> orderItemsListCopy=new List<OrderItem?>();
   if (predict == null)
@@ -82,16 +82,17 @@ internal class DalOrderItem : IOrderItem
   }
   else
   {
-   foreach (OrderItem orderItem in _orderItemsList)
+   foreach (OrderItem? orderItem in _orderItemsList)
    {
     if (predict(orderItem))
      orderItemsListCopy.Add(orderItem);
    }
   }
-  return orderItemsListCopy;
+  IEnumerable<OrderItem?> newrdOerItemsListCopy = new List<OrderItem?>(orderItemsListCopy);
+  return newrdOerItemsListCopy;
  }
 
- public OrderItem? GetByCondition(Func<OrderItem, bool>? predict)
+ public OrderItem GetByCondition(Func<OrderItem, bool>? predict)
  {
   foreach (OrderItem orderItem in _orderItemsList)
   {

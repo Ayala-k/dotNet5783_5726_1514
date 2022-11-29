@@ -19,7 +19,7 @@ internal class DalProduct : IProduct
  {
   foreach (var item in _productsList)
   {
-   if (item.ID == p.ID)
+   if (item?.ID == p.ID)
     throw new EntityAlreadyExistsException("product already exist");
   }
   _productsList.Add(p);
@@ -33,7 +33,7 @@ internal class DalProduct : IProduct
  public void Delete(int productID)
  {
   foreach (var item in _productsList)
-   if (item.ID == productID)
+   if (item?.ID == productID)
    {
     _productsList.Remove(item);
     return;
@@ -49,7 +49,7 @@ internal class DalProduct : IProduct
  {
   for (var i = 0; i < _productsList.Count; i++)
   {
-   if (_productsList[i].ID == product.ID)
+   if (_productsList[i]?.ID == product.ID)
    {
     _productsList[i] = product;
     return;
@@ -98,7 +98,7 @@ internal class DalProduct : IProduct
 
  }
 
- public Product? GetByCondition(Func<Product, bool>? predict)
+ public Product GetByCondition(Func<Product, bool>? predict)
  {
   foreach (Product product in _productsList)
   {
