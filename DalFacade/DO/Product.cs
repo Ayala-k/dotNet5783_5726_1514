@@ -13,12 +13,12 @@ public struct Product
     /// <summary>
     /// name of product
     /// </summary>
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// category of product
     /// </summary>
-    public Categories Category { get; set; }
+    public Categories? Category { get; set; }
 
     /// <summary>
     /// price of product

@@ -25,7 +25,7 @@ internal class Cart : ICart
   DO.Product productToAddToCart = new DO.Product();
   try
   {
-   productToAddToCart = Dal.Product.Get(productID);
+   productToAddToCart = Dal.Product.GetByCondition(item => item.ID == productID);
   }
   catch (DO.EntityNotFoundException e)
   {
@@ -104,7 +104,7 @@ internal class Cart : ICart
   {
    try
    {
-    product = Dal.Product.Get(item.ProductID);
+    product = Dal.Product.GetByCondition(p => p.ID == item.ProductID);
    }
    catch (DO.EntityNotFoundException e)
    {
@@ -128,8 +128,8 @@ internal class Cart : ICart
    CustomerEmail = cart.CustomerEmail,
    CustomerAddress = cart.CustomerAddress,
    OrderDate = DateTime.Now,
-   ShipDate = default(DateTime),
-   DeliveryDate = default(DateTime),
+   ShipDate = null,
+   DeliveryDate = null,
   };
 
   int orderDalID;
@@ -164,7 +164,7 @@ internal class Cart : ICart
 
    try
    {
-    product = Dal.Product.Get(item.ProductID);
+    product = Dal.Product.GetByCondition(p => p.ID == item.ProductID);
    }
    catch (DO.EntityNotFoundException e)
    {
