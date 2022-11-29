@@ -1,7 +1,6 @@
 ﻿
 using Dal;
 using DalApi;
-using System.Xml.Linq;
 
 namespace BL.BlImplementation;
 
@@ -250,7 +249,6 @@ internal class Order : BlApi.IOrder
   }
 
  }
-
  private OrderStatus findStatus(DO.Order order)
  {
   OrderStatus status = OrderStatus.OrderCommited;
@@ -312,5 +310,4 @@ internal class Order : BlApi.IOrder
   }
   return OrderItemsBL;
  }
-
 }

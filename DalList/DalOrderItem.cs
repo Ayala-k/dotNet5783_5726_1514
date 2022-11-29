@@ -108,5 +108,3 @@ internal class DalOrderItem : IOrderItem
         return ordersItemsList;
     }
 }
-
-

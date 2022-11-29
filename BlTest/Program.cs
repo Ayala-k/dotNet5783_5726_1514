@@ -318,7 +318,6 @@ namespace BlTest
      break;
    }
   }
-
   private static void cartMethod()
   {
    BL.BO.Cart cart = new BL.BO.Cart();
@@ -359,7 +358,6 @@ namespace BlTest
      int newAmount = parse;
      cart = CartItemsMethod(cart);
      Console.WriteLine(bl.Cart.UpdateOrderItemAmountInStock(cart, productID, newAmount));//add try catch for addOrderItem function
-
      break;
 
     case 3:
@@ -383,11 +381,8 @@ namespace BlTest
       Console.WriteLine("NotEnoughInStockException");
       Console.WriteLine(e);
      }
-
      break;
    }
-
-
   }
   private static BL.BO.Cart CartItemsMethod(BL.BO.Cart cart)
   {

@@ -19,7 +19,7 @@ public class OrderTracking
     public override string ToString()
     {
 
-        string descriptionStr= "";
+        string descriptionStr = "";
         foreach (DateAndProgressDescription description in DateAndProgressDescriptionsList)
         {
             descriptionStr += (description.ProgressDate.ToString() + " " + description.ProgressDescription);
@@ -29,6 +29,5 @@ public class OrderTracking
         Order tracking ID={ID},
         Status: {Status},
         Date And Progres sDescriptions List: {descriptionStr}");
-
     }
 }

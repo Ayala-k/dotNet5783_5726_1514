@@ -9,19 +9,19 @@ public class Cart
     public string CustomerAddress { get; set; }
     public List<OrderItem> ItemsList { get; set; }
     public double TotalPrice { get; set; }
- public override string ToString()
- {
-  string itemsList = "";
-  foreach (OrderItem item in ItemsList)
-  {
-   itemsList += (item.ToString());
-  }
-  return (
-  $@"
+    public override string ToString()
+    {
+        string itemsList = "";
+        foreach (OrderItem item in ItemsList)
+        {
+            itemsList += (item.ToString());
+        }
+        return (
+        $@"
         Customer name: {CustomerName},
         Customer Email: {CustomerEmail},
         Customer Address: {CustomerAddress},
         Items List: {itemsList}");
- }
+    }
 
 }

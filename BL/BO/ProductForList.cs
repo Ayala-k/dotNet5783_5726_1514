@@ -8,7 +8,7 @@ public class ProductForList
     public double Price { get; set; }
     public Categories Category { get; set; }
 
- public override string ToString() => $@"
+    public override string ToString() => $@"
         Product for list ID:{ID},
         name: {Name},
         price: {Price},
