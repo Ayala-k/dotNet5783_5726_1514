@@ -73,23 +73,27 @@ internal class DalOrderItem : IOrderItem
  /// get all order items
  /// </summary>
  /// <returns>array of order items</returns>
- public IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? predict = null)
+ public IEnumerable<OrderItem> GetAll(Func<OrderItem, bool>? predict = null)
  {
-  List<OrderItem?> orderItemsListCopy=new List<OrderItem?>();
+  List<OrderItem> orderItemsListCopy=new List<OrderItem>();
   if (predict == null)
   {
-   orderItemsListCopy = _orderItemsList;
+   //orderItemsListCopy = _orderItemsList;
+   foreach (OrderItem orderItem in _orderItemsList)
+   {
+     orderItemsListCopy.Add(orderItem);
+   }
   }
   else
   {
-   foreach (OrderItem? orderItem in _orderItemsList)
+   foreach (OrderItem orderItem in _orderItemsList)
    {
     if (predict(orderItem))
      orderItemsListCopy.Add(orderItem);
    }
   }
-  IEnumerable<OrderItem?> newrdOerItemsListCopy = new List<OrderItem?>(orderItemsListCopy);
-  return newrdOerItemsListCopy;
+  //IEnumerable<OrderItem?> newrdOerItemsListCopy = new List<OrderItem?>(orderItemsListCopy);
+  return orderItemsListCopy;
  }
 
  public OrderItem GetByCondition(Func<OrderItem, bool>? predict)
