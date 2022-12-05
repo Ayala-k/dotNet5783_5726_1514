@@ -32,5 +32,9 @@ namespace PL
    
   }
 
- }
+        private void CategoriesSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+    }
 }
