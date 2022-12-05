@@ -78,9 +78,9 @@ internal class DalProduct : IProduct
  /// get all the products
  /// </summary>
  /// <returns>array of all products</returns>
- public IEnumerable<Product> GetAll(Func<Product, bool>? predict = null)
+ public IEnumerable<Product?> GetAll(Func<Product?, bool>? predict = null)
  {
-  List<Product> orderItemsListCopy=new List<Product>();
+  List<Product?> orderItemsListCopy=new List<Product?>();
   if (predict == null)
   {
    foreach (Product orderItem in _productsList)

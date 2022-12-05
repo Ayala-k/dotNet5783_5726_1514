@@ -73,9 +73,9 @@ internal class DalOrderItem : IOrderItem
  /// get all order items
  /// </summary>
  /// <returns>array of order items</returns>
- public IEnumerable<OrderItem> GetAll(Func<OrderItem, bool>? predict = null)
+ public IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? predict = null)
  {
-  List<OrderItem> orderItemsListCopy=new List<OrderItem>();
+  List<OrderItem?> orderItemsListCopy=new List<OrderItem?>();
   if (predict == null)
   {
    //orderItemsListCopy = _orderItemsList;
@@ -104,7 +104,6 @@ internal class DalOrderItem : IOrderItem
     return orderItem;
   }
   throw new EntityNotFoundException("order item not found");
-
  }
  /// <summary>
  /// finding an order item by order and product

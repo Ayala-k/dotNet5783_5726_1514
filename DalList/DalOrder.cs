@@ -73,9 +73,9 @@ internal class DalOrder : IOrder
  /// get all orders
  /// </summary>
  /// <returns>array of orders</returns>
- public IEnumerable<Order> GetAll(Func<Order, bool>? predict = null)
+ public IEnumerable<Order?> GetAll(Func<Order?, bool>? predict = null)
  {
-  List<Order> ordersListCopy=new List<Order>();
+  List<Order?> ordersListCopy=new List<Order?>();
   if (predict == null)
   {
    foreach (Order order in _ordersList)

@@ -9,8 +9,8 @@ internal class Order : BlApi.IOrder
  IDal Dal = new DalList();
  public IEnumerable<BO.OrderForList> GetOrders()
  {
-  IEnumerable<DO.Order> ordersListDal = Dal.Order.GetAll();
-  List<BO.OrderForList> orderListBL = new List<BO.OrderForList>();
+  IEnumerable<DO.Order?> ordersListDal = Dal.Order.GetAll();
+  List<BO.OrderForList?> orderListBL = new List<BO.OrderForList?>();
 
   foreach (DO.Order orderDal in ordersListDal)
   {
@@ -40,9 +40,9 @@ internal class Order : BlApi.IOrder
     throw new BO.EntityNotFoundLogicException("order not found", e);
    }
 
-   IEnumerable<DO.OrderItem> OrderItemsDal = new List<DO.OrderItem>();
+   IEnumerable<DO.OrderItem?> OrderItemsDal = new List<DO.OrderItem?>();
    //OrderItemsDal = Dal.OrderItem.GetOrderItemsByOrder(orderID);
-   OrderItemsDal = Dal.OrderItem.GetAll(item => item.OrderID == orderID);
+   OrderItemsDal = Dal.OrderItem.GetAll(item => item?.OrderID == orderID);
    BO.Order orderBL = new BO.Order()
    {
     ID = orderDal.ID,
@@ -85,10 +85,10 @@ internal class Order : BlApi.IOrder
     throw new BO.EntityNotFoundLogicException("order not found", e);
    }
 
-   IEnumerable<DO.OrderItem> OrderItemsDal = new List<DO.OrderItem>();
+   IEnumerable<DO.OrderItem?> OrderItemsDal = new List<DO.OrderItem?>();
    try
    {
-    OrderItemsDal = Dal.OrderItem.GetAll(item => item.OrderID == orderID);
+    OrderItemsDal = Dal.OrderItem.GetAll(item => item?.OrderID == orderID);
    }
    catch (DO.EntityNotFoundException e)
    {
@@ -138,10 +138,10 @@ internal class Order : BlApi.IOrder
     throw new BO.EntityNotFoundLogicException("order not found", e);
    }
 
-   IEnumerable<DO.OrderItem> OrderItemsDal = new List<DO.OrderItem>();
+   IEnumerable<DO.OrderItem?> OrderItemsDal = new List<DO.OrderItem?>();
    try
    {
-    OrderItemsDal = Dal.OrderItem.GetAll(item => item.OrderID == orderID);
+    OrderItemsDal = Dal.OrderItem.GetAll(item => item?.OrderID == orderID);
    }
    catch (DO.EntityNotFoundException e)
    {
@@ -223,18 +223,18 @@ internal class Order : BlApi.IOrder
    throw new BO.EntityNotFoundLogicException("order not found", e);
   }
 
-  IEnumerable<DO.OrderItem> orderItems = Dal.OrderItem.GetAll();
+  IEnumerable<DO.OrderItem?> orderItems = Dal.OrderItem.GetAll();
 
-  List<DO.OrderItem> orderItemsList = new List<DO.OrderItem>(orderItems);
+  List<DO.OrderItem?> orderItemsList = new List<DO.OrderItem?>(orderItems);
   for (var i = 0; i < orderItemsList.Count; i++)
   {
-   if (orderItemsList[i].OrderID == orderID && orderItemsList[i].ProductID == productID)
+   if (orderItemsList[i]?.OrderID == orderID && orderItemsList[i]?.ProductID == productID)
    {
     if (Dal.Order.GetByCondition(order => order.ID == orderID).ShipDate <= DateTime.Now)
      throw new BO.ProgressAlreadyDoneException("order has been sent");
     if (newAmount > Dal.Product.GetByCondition(order => order.ID == productID).InStock)
      throw new BO.NotEnoughInStockException("not enough products in stock");
-    DO.OrderItem newItem = orderItemsList[i];
+    DO.OrderItem newItem = orderItemsList[i].Value;///value??
     newItem.Amount = newAmount;
     try
     {
@@ -261,7 +261,7 @@ internal class Order : BlApi.IOrder
  }
  private int findAmountOfItems(int orderID)
  {
-  IEnumerable<DO.OrderItem> orderItems = Dal.OrderItem.GetAll();
+  IEnumerable<DO.OrderItem?> orderItems = Dal.OrderItem.GetAll();
   int amountOfItems = 0;
   foreach (DO.OrderItem oi in orderItems)
   {
@@ -274,7 +274,7 @@ internal class Order : BlApi.IOrder
  }
  private double findTotalPrice(int orderID)
  {
-  IEnumerable<DO.OrderItem> orderItems = Dal.OrderItem.GetAll();
+  IEnumerable<DO.OrderItem?> orderItems = Dal.OrderItem.GetAll();
   double totalPrice = 0;
   foreach (DO.OrderItem oi in orderItems)
   {
@@ -285,10 +285,10 @@ internal class Order : BlApi.IOrder
   }
   return totalPrice;
  }
- private List<BO.OrderItem> getOrderItem(IEnumerable<DO.OrderItem> OrderItemsDal)
+ private List<BO.OrderItem?> getOrderItem(IEnumerable<DO.OrderItem?> OrderItemsDal)
  {
   DO.Product productDal = new DO.Product();
-  List<BO.OrderItem> OrderItemsBL = new List<BO.OrderItem>();
+  List<BO.OrderItem?> OrderItemsBL = new List<BO.OrderItem?>();
   foreach (DO.OrderItem oi in OrderItemsDal)
   {
    try

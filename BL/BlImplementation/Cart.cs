@@ -8,6 +8,7 @@ namespace BL.BlImplementation;
 internal class Cart : ICart
 {
  IDal Dal = new DalList();
+ BO.Cart cart=new BO.Cart(); 
  public BO.Cart AddOrderItem(BO.Cart cart, int productID)
  {
   bool productInCartBool = false;

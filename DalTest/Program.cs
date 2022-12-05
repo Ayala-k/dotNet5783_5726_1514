@@ -92,7 +92,7 @@ public class Program
     break;
 
    case 3://view all orders
-    IEnumerable<Product> pList = IDalVariable.Product.GetAll();
+    IEnumerable<Product?> pList = IDalVariable.Product.GetAll();
     foreach (Product x in pList)
      Console.WriteLine(x);
     break;
@@ -178,7 +178,7 @@ public class Program
     break;
 
    case 3://view all orders
-    IEnumerable<Order> oList = IDalVariable.Order.GetAll();
+    IEnumerable<Order?> oList = IDalVariable.Order.GetAll();
     foreach (Order x in oList)
      Console.WriteLine(x);
     break;
@@ -267,7 +267,7 @@ public class Program
     break;
 
    case 3://view all order items
-    IEnumerable<OrderItem> oiList = IDalVariable.OrderItem.GetAll();
+    IEnumerable<OrderItem?> oiList = IDalVariable.OrderItem.GetAll();
     foreach (OrderItem x in oiList)
      Console.WriteLine(x);
     break;
@@ -325,7 +325,7 @@ public class Program
     int ID;
     int.TryParse(Console.ReadLine(), out parse);
     ID = parse;
-    IEnumerable<OrderItem> orderItems = IDalVariable.OrderItem.GetAll(item=>item.OrderID==ID);
+    IEnumerable<OrderItem?> orderItems = IDalVariable.OrderItem.GetAll(item=>item?.OrderID==ID);
     foreach (OrderItem x in orderItems)
      Console.WriteLine(x);
     break;

@@ -9,7 +9,7 @@ internal class Product : BlApi.IProduct
  IDal Dal = new DalList();
  public IEnumerable<BO.ProductForList> GetProducts()
  {
-  IEnumerable<DO.Product> productsListDal = Dal.Product.GetAll();
+  IEnumerable<DO.Product?> productsListDal = Dal.Product.GetAll();
   List<BO.ProductForList> productsListBL = new List<BO.ProductForList>();
   foreach (DO.Product productDal in productsListDal)
   {
@@ -115,7 +115,7 @@ internal class Product : BlApi.IProduct
  }
  public void DeleteProduct(int productID)
  {
-  IEnumerable<DO.OrderItem> orderItemsList = Dal.OrderItem.GetAll();
+  IEnumerable<DO.OrderItem?> orderItemsList = Dal.OrderItem.GetAll();
   foreach (DO.OrderItem oi in orderItemsList)
    if (oi.ID == productID)
     throw new BO.EntityInUseException("product exist in some orders, cannot be deleted");
