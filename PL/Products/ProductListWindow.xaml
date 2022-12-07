@@ -21,10 +21,11 @@ VerticalAlignment="Stretch" Width="auto">
    <Label Grid.Column="0"></Label>
    <ComboBox Name="CategoriesSelector"
     HorizontalAlignment= "Left"
-    Grid.Column="1" Width="400">
+    Grid.Column="1" Width="400" SelectionChanged="CategoriesSelector_SelectionChanged_1">
    </ComboBox>
+   <Button Content="Add new Product" Grid.Row="2" HorizontalAlignment="Right" Margin="5" Padding="5" Click="Button_Click"/>
   </Grid>
-  <ListView Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5} " x:Name="ProductListview">
+  <ListView Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5} " x:Name="ProductListview" SelectionChanged="ProductListview_SelectionChanged">
    <ListView.View>
     <GridView>
      <GridViewColumn/>

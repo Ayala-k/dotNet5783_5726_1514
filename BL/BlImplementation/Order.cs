@@ -181,22 +181,22 @@ internal class Order : BlApi.IOrder
   List<BO.OrderTracking.DateAndProgressDescription?> dateAndProgressDescriptionsList = new List<BO.OrderTracking.DateAndProgressDescription?>();
   BO.OrderTracking.DateAndProgressDescription dateAndProgressDescription = new BO.OrderTracking.DateAndProgressDescription();
 
-  OrderStatus status = findStatus(orderDal);
+  BO.OrderStatus status = findStatus(orderDal);
 
-  if (status == OrderStatus.OrderCommited || status == OrderStatus.OrderShipped
-      || status == OrderStatus.OrderDelivered)
+  if (status ==  BO.OrderStatus.OrderCommited || status == BO.OrderStatus.OrderShipped
+      || status == BO.OrderStatus.OrderDelivered)
   {
    dateAndProgressDescription.ProgressDate = orderDal.OrderDate;
    dateAndProgressDescription.ProgressDescription = "order commited";
    dateAndProgressDescriptionsList.Add(dateAndProgressDescription);
   }
-  if (status == OrderStatus.OrderShipped || status == OrderStatus.OrderDelivered)
+  if (status == BO.OrderStatus.OrderShipped || status == BO.OrderStatus.OrderDelivered)
   {
    dateAndProgressDescription.ProgressDate = orderDal.ShipDate;
    dateAndProgressDescription.ProgressDescription = "order shipped";
    dateAndProgressDescriptionsList.Add(dateAndProgressDescription);
   }
-  if (status == OrderStatus.OrderDelivered)
+  if (status == BO.OrderStatus.OrderDelivered)
   {
    dateAndProgressDescription.ProgressDate = orderDal.DeliveryDate;
    dateAndProgressDescription.ProgressDescription = "order delivered";
@@ -250,13 +250,13 @@ internal class Order : BlApi.IOrder
   }
 
  }
- private OrderStatus findStatus(DO.Order order)
+ private BO.OrderStatus findStatus(DO.Order order)
  {
-  OrderStatus status = OrderStatus.OrderCommited;
+  BO.OrderStatus status = BO.OrderStatus.OrderCommited;
   if (order.ShipDate < DateTime.Now)
-   status = OrderStatus.OrderShipped;
+   status = BO.OrderStatus.OrderShipped;
   if (order.DeliveryDate < DateTime.Now)
-   status = OrderStatus.OrderDelivered;
+   status = BO.OrderStatus.OrderDelivered;
   return status;
  }
  private int findAmountOfItems(int orderID)
