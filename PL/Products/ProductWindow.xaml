@@ -8,8 +8,8 @@
         Title="ProductWindow" Height="450" Width="800">
  <Grid>
   <Button x:Name="buttonAddUpdate" Content="Button" HorizontalAlignment="Left" Margin="108,277,0,0" VerticalAlignment="Top" Click="buttonAddUpdate_Click"/>
-  <TextBox x:Name="id" HorizontalAlignment="Left" Margin="88,136,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-  <TextBox x:Name="name" HorizontalAlignment="Left" Margin="89,163,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.5,0.5">
+  <TextBox x:Name="id" HorizontalAlignment="Left" Margin="88,136,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+  <TextBox x:Name="name" HorizontalAlignment="Left" Margin="89,163,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.5,0.5">
    <TextBox.RenderTransform>
     <TransformGroup>
      <ScaleTransform/>
@@ -19,8 +19,8 @@
     </TransformGroup>
    </TextBox.RenderTransform>
   </TextBox>
-  <TextBox x:Name="price" HorizontalAlignment="Left" Margin="88,195,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-  <TextBox x:Name="inStock" HorizontalAlignment="Left" Margin="88,228,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+  <TextBox x:Name="price" HorizontalAlignment="Left" Margin="88,195,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+  <TextBox x:Name="inStock" HorizontalAlignment="Left" Margin="88,228,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
   <ComboBox x:Name="CategoriesSelector" HorizontalAlignment="Left" Margin="88,97,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged"/>
   <Label Content="category" HorizontalAlignment="Left" Margin="35,97,0,0" VerticalAlignment="Top"/>
   <Label Content="name" HorizontalAlignment="Left" Margin="37,159,0,0" VerticalAlignment="Top"/>
