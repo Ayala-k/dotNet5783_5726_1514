@@ -25,13 +25,13 @@ VerticalAlignment="Stretch" Width="auto">
    </ComboBox>
    <Button Content="Add new Product" HorizontalAlignment="Left" Margin="291,5,0,0" Padding="5" Click="Button_Click" Height="36" VerticalAlignment="Top"/>
   </Grid>
-  <ListView Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5} " x:Name="ProductListview" SelectionChanged="ProductListview_SelectionChanged">
-   <ListView.View>
-    <GridView>
-     <GridViewColumn/>
-    </GridView>
-   </ListView.View>
-  </ListView>
-
- </Grid>
+        <ListView Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5} " x:Name="ProductListview" SelectionChanged="ProductListview_SelectionChanged">
+            
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
 </Window>

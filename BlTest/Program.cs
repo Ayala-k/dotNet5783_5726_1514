@@ -357,7 +357,7 @@ namespace BlTest
      int.TryParse(Console.ReadLine(), out parse);
      int newAmount = parse;
      cart = CartItemsMethod(cart);
-     Console.WriteLine(bl.Cart.UpdateOrderItemAmountInStock(cart, productID, newAmount));//add try catch for addOrderItem function
+     Console.WriteLine(bl.Cart.UpdateOrderItemAmountInCart(cart, productID, newAmount));//add try catch for addOrderItem function
      break;
 
     case 3:

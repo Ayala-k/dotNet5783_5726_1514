@@ -18,39 +18,45 @@ using System.Windows.Shapes;
 
 namespace PL
 {
- /// <summary>
- /// Interaction logic for OrderListWindow.xaml
- /// </summary>
- public partial class ProductListWindow : Window
- {
-  private IBl bl = new BlImplementation.Bl();
+    /// <summary>
+    /// Interaction logic for OrderListWindow.xaml
+    /// </summary>
+    public partial class ProductListWindow : Window
+    {
+        private IBl bl = new BlImplementation.Bl();
 
-  public ProductListWindow()
-  {
-   InitializeComponent();
-   ProductListview.ItemsSource = bl.Product.GetProducts();
-   CategoriesSelector.ItemsSource = Enum.GetValues(typeof(Categories));
-  }
-  //private void CategoriesSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
-  //{
-  // ProductListview.ItemsSource = bl.Product.GetProducts
-  //  (p => p.Category == (DO.Categories)CategoriesSelector.SelectedItem);
-  //}
+        public ProductListWindow()
+        {
+            InitializeComponent();
+            ProductListview.ItemsSource = bl.Product.GetProducts();
+            CategoriesSelector.ItemsSource = Enum.GetValues(typeof(Categories));
+        }
+        //private void CategoriesSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        // ProductListview.ItemsSource = bl.Product.GetProducts
+        //  (p => p.Category == (DO.Categories)CategoriesSelector.SelectedItem);
+        //}
 
-  private void CategoriesSelector_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-  {
-   ProductListview.ItemsSource = bl.Product.GetProducts
- (p => p.Category == (DO.Categories)CategoriesSelector.SelectedItem);
-  }
+        private void CategoriesSelector_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            ProductListview.ItemsSource = bl.Product.GetProducts
+          (p => p.Category == (DO.Categories)CategoriesSelector.SelectedItem);
+        }
 
-  private void ProductListview_SelectionChanged(object sender, SelectionChangedEventArgs e)
-  {
-   new ProductWindow("update",100000).Show();////
-  }
-  private void Button_Click(object sender, RoutedEventArgs e)
-  {
-   new ProductWindow("add").Show();
-  }  
-  
- }
+        private void ProductListview_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int id = 0;
+            if (ProductListview.SelectedItem is BL.BO.ProductForList)
+                id = ((BL.BO.ProductForList)ProductListview.SelectedItem).ID;
+            new ProductWindow("update", id).Show();
+            // ProductListview.ItemsSource = bl.Product.GetProducts();
+            //this.Close();
+///            new ProductListWindow().Show();
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new ProductWindow("add").Show();
+        }
+
+    }
 }
