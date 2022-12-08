@@ -45,13 +45,11 @@ namespace PL
 
   private void ProductListview_SelectionChanged(object sender, SelectionChangedEventArgs e)
   {
-   
+   new ProductWindow("update",100000).Show();////
   }
-
   private void Button_Click(object sender, RoutedEventArgs e)
   {
-   new ProductWindow().Show();
-
+   new ProductWindow("add").Show();
   }  
   
  }

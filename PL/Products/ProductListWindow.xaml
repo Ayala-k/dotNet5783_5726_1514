@@ -23,7 +23,7 @@ VerticalAlignment="Stretch" Width="auto">
     HorizontalAlignment= "Left"
     Grid.Column="1" Width="400" SelectionChanged="CategoriesSelector_SelectionChanged_1">
    </ComboBox>
-   <Button Content="Add new Product" Grid.Row="2" HorizontalAlignment="Right" Margin="5" Padding="5" Click="Button_Click"/>
+   <Button Content="Add new Product" HorizontalAlignment="Left" Margin="291,5,0,0" Padding="5" Click="Button_Click" Height="36" VerticalAlignment="Top"/>
   </Grid>
   <ListView Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5} " x:Name="ProductListview" SelectionChanged="ProductListview_SelectionChanged">
    <ListView.View>
