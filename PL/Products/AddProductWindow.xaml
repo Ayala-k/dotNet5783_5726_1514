@@ -1,0 +1,17 @@
+﻿<Window x:Class="PL.Products.AddProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL.Products"
+        mc:Ignorable="d"
+        Title="AddProductWindow" Height="450" Width="800">
+    <Grid RenderTransformOrigin="0.333,0.478" Margin="0,0,-46,0">
+        <TextBox x:Name="ProductIdTextBox" HorizontalAlignment="Left" Margin="603,199,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" TextChanged="ProductIdTextBox_TextChanged"/>
+        <TextBox x:Name="ProductNameTextBox" HorizontalAlignment="Left" Margin="603,154,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" TextChanged="ProductNameTextBox_TextChanged"/>
+        <TextBox x:Name="ProductPriceTextBox" HorizontalAlignment="Left" Margin="603,106,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" TextChanged="ProductPriceTextBox_TextChanged"/>
+        <TextBox x:Name="ProductAmountInStockTextBox" HorizontalAlignment="Left" Margin="603,67,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" TextChanged="ProductAmountInStockTextBox_TextChanged"/>
+        <ComboBox Name="CategoriesSelector"
+            HorizontalAlignment= "Left" Width="149" SelectionChanged="CategoriesSelector_SelectionChanged_1" Margin="574,252,0,161"/>
+    </Grid>
+</Window>

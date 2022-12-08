@@ -50,7 +50,7 @@ namespace BlTest
    int.TryParse(Console.ReadLine(), out choiceProduct);
    int parse;
    double parseDouble;
-   Categories parseCategory;
+   BL.BO.Categories parseCategory;
    switch (choiceProduct)
    {
     case 1://view all products
@@ -87,7 +87,7 @@ namespace BlTest
      product.Name = Console.ReadLine();
      int.TryParse(Console.ReadLine(), out parse);
      product.Price = parse;
-     Categories.TryParse(Console.ReadLine(), out parseCategory);
+     BL.BO.Categories.TryParse(Console.ReadLine(), out parseCategory);
      product.Category = parseCategory;
      int.TryParse(Console.ReadLine(), out parse);
      product.InStock = parse;
@@ -135,7 +135,7 @@ namespace BlTest
      product.Name = Console.ReadLine();
      int.TryParse(Console.ReadLine(), out parse);
      product.Price = parse;
-     Categories.TryParse(Console.ReadLine(), out parseCategory);
+     BL.BO.Categories.TryParse(Console.ReadLine(), out parseCategory);
      product.Category = parseCategory;
      int.TryParse(Console.ReadLine(), out parse);
      product.InStock = parse;

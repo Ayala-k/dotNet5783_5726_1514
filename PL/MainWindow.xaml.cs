@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BL.BlImplementation;
-using PL.Orders;
+//using PL.Orders;
 
 namespace PL
 {
