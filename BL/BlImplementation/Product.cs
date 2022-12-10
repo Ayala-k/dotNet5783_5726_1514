@@ -95,6 +95,12 @@ internal class Product : BlApi.IProduct
   else
    throw new BO.InvalidDetailsException("invalid ID");
  }
+ /// <summary>
+ /// 
+ /// </summary>
+ /// <param name="productBL"></param>
+ /// <exception cref="BO.InvalidDetailsException"></exception>
+ /// <exception cref="BO.EntityAlreadyExistsLogicException"></exception>
  public void AddProduct(BO.Product productBL)
  {
   if (productBL.ID <= 0 || productBL.Name == "" || productBL.Price <= 0 || productBL.InStock < 0)
@@ -133,6 +139,12 @@ internal class Product : BlApi.IProduct
    throw new BO.EntityNotFoundLogicException("product not found", e);
   }
  }
+ /// <summary>
+ /// 
+ /// </summary>
+ /// <param name="productBL"></param>
+ /// <exception cref="BO.InvalidDetailsException"></exception>
+ /// <exception cref="BO.EntityNotFoundLogicException"></exception>
  public void UpdateProduct(BO.Product productBL)
  {
   if (productBL.ID <= 0 || productBL.Name == "" || productBL.Price <= 0 || productBL.InStock < 0)

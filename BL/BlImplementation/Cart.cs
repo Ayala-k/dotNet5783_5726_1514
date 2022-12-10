@@ -101,16 +101,16 @@ internal class Cart : ICart
             }
         }
 
-        //if updated amount is smaller than before
-        if (productInCart.Amount > updatedAmount)
+        //if updated amount is bigger than before
+        if (productInCart.Amount < updatedAmount)
         {
             for (int i = 0; i < (updatedAmount - productInCart.Amount); i++)
             {
                 AddOrderItem(cart, productID);
             }
         }
-        //if updated amount is bigger than before- update the cart
-        else if (productInCart.Amount < updatedAmount)
+        //if updated amount is amaller than before- update the cart
+        else if (productInCart.Amount > updatedAmount)
         {
             cart.ItemsList.Remove(productInCart);
             int oldAmount = productInCart.Amount;

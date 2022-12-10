@@ -7,6 +7,6 @@ public interface ICrud<T> where T : struct
  public void Delete(int ID);
  public void Update(T obj);
  //public T Get(int ID);
- public IEnumerable<T?> GetAll(Func<T?, bool>? predict = null) ;
+ public IEnumerable<T?> GetAll(Func<T?, bool>? predict = null);
  public T GetByCondition(Func<T, bool>? predict);
 }
