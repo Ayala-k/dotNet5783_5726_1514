@@ -1,7 +1,11 @@
 ﻿
 //using BO;
+using BlImplementation;
 using Dal;
 using DalApi;
+using System;
+using System.Data;
+using System.Reflection;
 
 namespace BL.BlImplementation;
 
@@ -105,6 +109,9 @@ internal class Product : BlApi.IProduct
  {
   if (productBL.ID <= 0 || productBL.Name == "" || productBL.Price <= 0 || productBL.InStock < 0)
    throw new BO.InvalidDetailsException("product details are invalid");
+
+  //DO.Product productDal = new DO.Product();
+  //productDal = productBL!.copy(productDal);
 
   DO.Product productDal = new DO.Product()
   {

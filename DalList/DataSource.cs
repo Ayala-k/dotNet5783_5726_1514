@@ -57,13 +57,13 @@ internal static class DataSource
         OrderItem oi = new OrderItem();
 
         int[] ids = new int[] { 100000, 100001, 100002, 100003, 100004, 100005, 100006, 100007, 100008, 100009 };
-        string[] names = new string[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j" };
+        string[] names = new string[] { "Grand piano", "Electric piano", "classic guitar", "Electric Guitar", " violin", "cello", "recorder", "Saxophone", "Single drum", "Electronic drums" };
 
-        Categories[] categories = new Categories[] { Categories.cat1, Categories.cat1,
-            Categories.cat2, Categories.cat2, Categories.cat2,
-            Categories.cat2, Categories.cat2, Categories.cat2,
-            Categories.cat2, Categories.cat2 };
-        double[] prices = new double[] { 50, 56, 73.5, 100, 44, 32, 160, 10, 15.5, 70 };
+        Categories[] categories = new Categories[] { Categories.keyboards, Categories.keyboards,
+            Categories.guitars, Categories.guitars, Categories.bowTool,
+            Categories.bowTool, Categories.WindInstruments, Categories.WindInstruments,
+            Categories.percussions, Categories.percussions };
+        double[] prices = new double[] { 30000, 4000, 2605, 900, 2083, 2129, 58, 2188, 1559, 2385 };
         int[] inStock = new int[] { 500, 200, 10, 69, 32, 14, 48, 0, 321, 53 };
 
         for (int i = 0; i < 10; i++)

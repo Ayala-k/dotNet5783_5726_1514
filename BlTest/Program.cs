@@ -1,5 +1,8 @@
 ﻿using BL;
 using BL.BlImplementation;
+using BlImplementation;
+using System.Reflection;
+
 namespace BlTest
 {
  internal class Program
@@ -8,6 +11,9 @@ namespace BlTest
 
   static void Main(string[] args)
   {
+   //Console.WriteLine(p.ToStringProperty());
+
+
    Console.WriteLine("enter 1 to product, 2 to order, 3 to order item, 0 to exit");
    int choice;
    int.TryParse(Console.ReadLine(), out choice);
@@ -56,7 +62,7 @@ namespace BlTest
     case 1://view all products
      IEnumerable<BL.BO.ProductForList> pList = bl.Product.GetProducts();
      foreach (BL.BO.ProductForList x in pList)
-      Console.WriteLine(x);
+      Console.WriteLine(x.ToStringProperty());
      break;
 
     case 2://view product details for manager
@@ -64,7 +70,7 @@ namespace BlTest
      int.TryParse(Console.ReadLine(), out parse);
      try
      {
-      Console.WriteLine(bl.Product.GetProductDetailsManager(parse));
+      Console.WriteLine(bl.Product.GetProductDetailsManager(parse).ToStringProperty());
      }
      catch (BL.BO.EntityNotFoundLogicException e)
      {
@@ -85,10 +91,10 @@ namespace BlTest
      int.TryParse(Console.ReadLine(), out parse);
      product.ID = parse;
      product.Name = Console.ReadLine();
-     int.TryParse(Console.ReadLine(), out parse);
-     product.Price = parse;
      BL.BO.Categories.TryParse(Console.ReadLine(), out parseCategory);
      product.Category = parseCategory;
+     int.TryParse(Console.ReadLine(), out parse);
+     product.Price = parse;
      int.TryParse(Console.ReadLine(), out parse);
      product.InStock = parse;
      try
@@ -162,7 +168,7 @@ namespace BlTest
      cart = CartItemsMethod(cart);
      try
      {
-      Console.WriteLine(bl.Product.GetProductDetailsCustomer(parse, cart));
+      Console.WriteLine(bl.Product.GetProductDetailsCustomer(parse, cart).ToStringProperty());
      }
      catch (BL.BO.EntityNotFoundLogicException e)
      {
@@ -196,7 +202,7 @@ namespace BlTest
     case 1://view all orders
      IEnumerable<BL.BO.OrderForList> oList = bl.Order.GetOrders();
      foreach (BL.BO.OrderForList x in oList)
-      Console.WriteLine(x);
+      Console.WriteLine(x.ToStringProperty());
      break;
 
     case 2://view order details for manager
@@ -204,7 +210,7 @@ namespace BlTest
      int.TryParse(Console.ReadLine(), out parse);
      try
      {
-      Console.WriteLine(bl.Order.GetOrderDetails(parse));
+      Console.WriteLine(bl.Order.GetOrderDetails(parse).ToStringProperty());
      }
      catch (BL.BO.EntityNotFoundLogicException e)
      {
@@ -257,7 +263,7 @@ namespace BlTest
       Console.WriteLine(e);
      }
 
-     Console.WriteLine(order);
+     Console.WriteLine(order.ToStringProperty());
      break;
 
     case 5://order tracking
@@ -284,7 +290,7 @@ namespace BlTest
      }
 
 
-     Console.WriteLine(orderTracking);
+     Console.WriteLine(orderTracking.ToStringProperty());
      break;
 
 
@@ -337,7 +343,7 @@ namespace BlTest
      cart = CartItemsMethod(cart);
      try
      {
-      Console.WriteLine(bl.Cart.AddOrderItem(cart, productID));
+      Console.WriteLine(bl.Cart.AddOrderItem(cart, productID).ToStringProperty());
      }
      catch (BL.BO.EntityNotFoundLogicException e)
      {
@@ -357,7 +363,7 @@ namespace BlTest
      int.TryParse(Console.ReadLine(), out parse);
      int newAmount = parse;
      cart = CartItemsMethod(cart);
-     Console.WriteLine(bl.Cart.UpdateOrderItemAmountInCart(cart, productID, newAmount));//add try catch for addOrderItem function
+     Console.WriteLine(bl.Cart.UpdateOrderItemAmountInCart(cart, productID, newAmount).ToStringProperty());//add try catch for addOrderItem function
      break;
 
     case 3:

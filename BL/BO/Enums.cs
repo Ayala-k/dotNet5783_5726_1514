@@ -1,5 +1,5 @@
 ﻿namespace BL.BO;
 
- public enum Categories { cat1, cat2, cat3 }
+ public enum Categories { guitars, keyboards, percussions, WindInstruments , bowTool }
 
  public enum OrderStatus { OrderCommited, OrderShipped, OrderDelivered }

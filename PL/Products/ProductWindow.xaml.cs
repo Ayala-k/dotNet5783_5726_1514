@@ -36,7 +36,10 @@ namespace PL.Products
   {
    InitializeComponent();
    if (str == "add")
+   {
     buttonAddUpdate.Content = "add";
+    pageName.Content = "add product";
+   }
    CategoriesSelector.ItemsSource = Enum.GetValues(typeof(Categories));
 
   }
@@ -45,7 +48,10 @@ namespace PL.Products
    Product product = bl.Product.GetProductDetailsManager(productId);
    InitializeComponent();
    if (str == "update")
+   {
     buttonAddUpdate.Content = "update";
+    pageName.Content = "update product";
+   }
    CategoriesSelector.ItemsSource = Enum.GetValues(typeof(Categories));
    id.Text = Convert.ToString(productId);
    id.IsReadOnly = true;
@@ -63,41 +69,51 @@ namespace PL.Products
 
   private void buttonAddUpdate_Click(object sender, RoutedEventArgs e)
   {
-   Product product = new Product()
+   errorMessage.Content = "";
+   if (id.Text==""|| name.Text==""|| CategoriesSelector.SelectedItem==null
+    || price.Text==""|| inStock.Text=="")
    {
-    ID = Convert.ToInt32(id.Text),//??
-    Name = name.Text,
-    Category = (BL.BO.Categories)CategoriesSelector.SelectedItem,
-    Price = Convert.ToDouble(price.Text),
-    InStock = Convert.ToInt32(inStock.Text)
-   };
-   if (buttonAddUpdate.Content == "add")
-    try
-    {
-     bl.Product.AddProduct(product);
-    }
-    catch (InvalidDetailsException exp)
-    {
-     errorMessage.Content = exp.Message.ToString();
-    }
-    catch (EntityAlreadyExistsLogicException exp)
-    {
-     errorMessage.Content = exp.Message.ToString();
-    }
+    errorMessage.Content = "please fill in all fields";
+   }
    else
-    try
+   {
+    Product product = new Product()
     {
-     bl.Product.UpdateProduct(product);
-    }
-    catch (InvalidDetailsException exp)
-    {
-     errorMessage.Content = exp.Message.ToString();
-    }
-    catch (EntityNotFoundLogicException exp)
-    {
-     errorMessage.Content = exp.Message.ToString();
+     ID = Convert.ToInt32(id.Text),
+     Name = name.Text,
+     Category = (BL.BO.Categories)CategoriesSelector.SelectedItem,
+     Price = Convert.ToDouble(price.Text),
+     InStock = Convert.ToInt32(inStock.Text)
+    };
+    if (buttonAddUpdate.Content == "add")
+     try
+     {
+      bl.Product.AddProduct(product);
+     }
+     catch (InvalidDetailsException exp)
+     {
+      errorMessage.Content = exp.Message.ToString();
+     }
+     catch (EntityAlreadyExistsLogicException exp)
+     {
+      errorMessage.Content = exp.Message.ToString();
+     }
+    else
+     try
+     {
+      bl.Product.UpdateProduct(product);
+     }
+     catch (InvalidDetailsException exp)
+     {
+      errorMessage.Content = exp.Message.ToString();
+     }
+     catch (EntityNotFoundLogicException exp)
+     {
+      errorMessage.Content = exp.Message.ToString();
 
-    }
+     }
+
+   }
    if (errorMessage.Content == "")
    {
     this.Close();

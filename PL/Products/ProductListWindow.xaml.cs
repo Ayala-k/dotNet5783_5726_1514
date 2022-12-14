@@ -16,7 +16,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace PL;
-
 /// <summary>
 /// Interaction logic for OrderListWindow.xaml
 /// </summary>
@@ -26,6 +25,9 @@ public partial class ProductListWindow : Window
  public ProductListWindow()
  {
   InitializeComponent();
+  CategoriesSelector.Text = "--all--";
+  
+  //CategoriesSelector.SelectedIndex = "--all categories--";
   ProductListview.ItemsSource = bl.Product.GetProducts();
   CategoriesSelector.ItemsSource = Enum.GetValues(typeof(Categories));
  }
@@ -51,6 +53,7 @@ public partial class ProductListWindow : Window
  private void Button_Click_1(object sender, RoutedEventArgs e)
  {
   ProductListview.ItemsSource = bl.Product.GetProducts();
+
   CategoriesSelector.Text = " ";
  }
 }

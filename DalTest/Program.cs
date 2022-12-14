@@ -3,6 +3,7 @@ using Dal;
 using DalApi;
 using System.Collections.Generic;
 using System.Collections;
+using System.Reflection;
 
 namespace DalTest;
 
@@ -83,7 +84,7 @@ public class Program
     //try
     //{
     int.TryParse(Console.ReadLine(), out parse);
-    Console.WriteLine(IDalVariable.Product.GetByCondition(product=>product.ID==parse));
+    Console.WriteLine(IDalVariable.Product.GetByCondition(product=>product.ID==parse).ToStringProperty());
     //}
     //catch (Exception e)
     //{
@@ -94,7 +95,7 @@ public class Program
    case 3://view all orders
     IEnumerable<Product?> pList = IDalVariable.Product.GetAll();
     foreach (Product x in pList)
-     Console.WriteLine(x);
+     Console.WriteLine(x.ToStringProperty());
     break;
 
    case 4://delete product
@@ -121,7 +122,7 @@ public class Program
     //{
     //    Console.WriteLine(e);
     //}
-    Console.WriteLine(p);
+    Console.WriteLine(p.ToStringProperty());
     Console.WriteLine("(enter new product details");
     if (Console.ReadLine() != "")
     {
@@ -169,7 +170,7 @@ public class Program
     //try
     //{
     int.TryParse(Console.ReadLine(), out parse);
-    Console.WriteLine(IDalVariable.Order.GetByCondition(order => order.ID == parse));
+    Console.WriteLine(IDalVariable.Order.GetByCondition(order => order.ID == parse).ToStringProperty());
     //}
     //catch (Exception e)
     //{
@@ -180,7 +181,7 @@ public class Program
    case 3://view all orders
     IEnumerable<Order?> oList = IDalVariable.Order.GetAll();
     foreach (Order x in oList)
-     Console.WriteLine(x);
+     Console.WriteLine(x.ToStringProperty());
     break;
 
    case 4://delete order
@@ -207,7 +208,7 @@ public class Program
     //{
     //Console.WriteLine(e);
     //}
-    Console.WriteLine(o);
+    Console.WriteLine(o.ToStringProperty());
     Console.WriteLine("enter new order details");
     if (Console.ReadLine() != "")
     {
@@ -258,7 +259,7 @@ public class Program
     //try
     //{
     int.TryParse(Console.ReadLine(), out parse);
-    Console.WriteLine(IDalVariable.OrderItem.GetByCondition(orderItem => orderItem.ID == parse));
+    Console.WriteLine(IDalVariable.OrderItem.GetByCondition(orderItem => orderItem.ID == parse).ToStringProperty());
     //}
     //catch (Exception e)
     //{
@@ -269,7 +270,7 @@ public class Program
    case 3://view all order items
     IEnumerable<OrderItem?> oiList = IDalVariable.OrderItem.GetAll();
     foreach (OrderItem x in oiList)
-     Console.WriteLine(x);
+     Console.WriteLine(x.ToStringProperty());
     break;
 
    case 4://delete order item
@@ -296,7 +297,7 @@ public class Program
     //{
     //    Console.WriteLine(e);
     //}
-    Console.WriteLine(oi);
+    Console.WriteLine(oi.ToStringProperty());
     Console.WriteLine("enter order item ID");
     if (Console.ReadLine() != "")
     {
@@ -317,7 +318,7 @@ public class Program
     int parse2;
     int.TryParse(Console.ReadLine(), out parse);
     int.TryParse(Console.ReadLine(), out parse2);
-    Console.WriteLine(IDalVariable.OrderItem.GetByCondition(item=>item.OrderID==parse&&item.ProductID==parse2));
+    Console.WriteLine(IDalVariable.OrderItem.GetByCondition(item=>item.OrderID==parse&&item.ProductID==parse2).ToStringProperty());
     break;
 
    case 7://View an order's items
@@ -327,7 +328,7 @@ public class Program
     ID = parse;
     IEnumerable<OrderItem?> orderItems = IDalVariable.OrderItem.GetAll(item=>item?.OrderID==ID);
     foreach (OrderItem x in orderItems)
-     Console.WriteLine(x);
+     Console.WriteLine(x.ToStringProperty());
     break;
   }
  }
