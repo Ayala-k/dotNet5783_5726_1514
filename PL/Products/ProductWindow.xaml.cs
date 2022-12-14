@@ -20,6 +20,12 @@ namespace PL.Products
    InitializeComponent();
    CategoriesSelector.ItemsSource = Enum.GetValues(typeof(Categories));
   }
+
+  /// <summary>
+  /// product window ctor for add
+  /// </summary>
+  /// <param name="str">str=add to make sure the action to be done is adding</param>
+
   public ProductWindow(string str)
   {
    InitializeComponent();
@@ -31,6 +37,13 @@ namespace PL.Products
    CategoriesSelector.ItemsSource = Enum.GetValues(typeof(Categories));
 
   }
+
+  /// <summary>
+  /// product window ctor for update
+  /// </summary>
+  /// <param name="str">str=update to make sure the action to be done is updating</param>
+  /// <param name="productId">product to be updated</param>
+
   public ProductWindow(string str, int productId)
   {
    Product product = bl.Product.GetProductDetailsManager(productId);
@@ -50,7 +63,13 @@ namespace PL.Products
    inStock.Text = Convert.ToString(product.InStock);
   }
 
-        private void inStock_TextChanged(object sender, TextChangedEventArgs e) { }
+   private void inStock_TextChanged(object sender, TextChangedEventArgs e) { }
+
+  /// <summary>
+  /// add or update
+  /// </summary>
+  /// <param name="sender"></param>
+  /// <param name="e"></param>
 
   private void buttonAddUpdate_Click(object sender, RoutedEventArgs e)
   {
@@ -70,6 +89,8 @@ namespace PL.Products
      Price = Convert.ToDouble(price.Text),
      InStock = Convert.ToInt32(inStock.Text)
     };
+
+    //add
     if (buttonAddUpdate.Content == "add")
      try
      {
@@ -83,6 +104,7 @@ namespace PL.Products
      {
       errorMessage.Content = exp.Message.ToString();
      }
+    //update
     else
      try
      {
@@ -99,6 +121,8 @@ namespace PL.Products
      }
 
    }
+
+   //if the action has been done
    if (errorMessage.Content == "")
    {
     this.Close();

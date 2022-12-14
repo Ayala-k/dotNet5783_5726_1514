@@ -22,7 +22,11 @@ static public class Reflection
   {
    var same = propertyInfos.Where((prop) => prop.Name == item.Name && prop.PropertyType == item.PropertyType);
    if (same.Count() != 0)
-    same.First().SetValue(a, item.GetValue(t));
+   {
+    object boxed = a;
+    same.First().SetValue(boxed, item.GetValue(t));//will always contain only one, because there cannot be two props with the same name 
+    a = (A)boxed;
+   }
   }
   return a;
  }

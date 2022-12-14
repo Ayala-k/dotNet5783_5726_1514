@@ -15,12 +15,15 @@ public partial class ProductListWindow : Window
  public ProductListWindow()
  {
   InitializeComponent();
-  CategoriesSelector.Text = "--all--";
-  
-  //CategoriesSelector.SelectedIndex = "--all categories--";
   ProductListview.ItemsSource = bl.Product.GetProducts();
   CategoriesSelector.ItemsSource = Enum.GetValues(typeof(Categories));
  }
+
+ /// <summary>
+ /// category selector
+ /// </summary>
+ /// <param name="sender"></param>
+ /// <param name="e"></param>
 
  private void CategoriesSelector_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
  {
@@ -28,6 +31,15 @@ public partial class ProductListWindow : Window
    ProductListview.ItemsSource = bl.Product.GetProducts
  (p => p.Category == (DO.Categories)CategoriesSelector.SelectedItem);
  }
+
+
+ /// <summary>
+ /// when a product is clicked- upadte it
+ /// </summary>
+ /// <param name="sender"></param>
+ /// <param name="e"></param>
+
+
  private void ProductListview_SelectionChanged(object sender, SelectionChangedEventArgs e)
  {
   int id = 0;
@@ -35,15 +47,20 @@ public partial class ProductListWindow : Window
    id = ((BL.BO.ProductForList)ProductListview.SelectedItem).ID;
   new ProductWindow("update", id).ShowDialog();
  }
+
+ /// <summary>
+ /// when "add product" is clicked- open add window
+ /// </summary>
+ /// <param name="sender"></param>
+ /// <param name="e"></param>
+
  private void Button_Click(object sender, RoutedEventArgs e)
  {
   new ProductWindow("add").ShowDialog();
-  //ProductListview.ItemsSource = bl.Product.GetProducts();
  }
  private void Button_Click_1(object sender, RoutedEventArgs e)
  {
   ProductListview.ItemsSource = bl.Product.GetProducts();
-
   CategoriesSelector.Text = " ";
  }
 }
