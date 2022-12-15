@@ -1,6 +1,4 @@
 ﻿
-using System.Collections.Generic;
-using System.Data.SqlTypes;
 using System.Reflection;
 
 namespace BlImplementation;

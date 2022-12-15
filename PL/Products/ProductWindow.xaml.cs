@@ -1,5 +1,4 @@
-﻿using BL.BlApi;
-using BL.BO;
+﻿using BL.BO;
 using System;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -13,9 +12,8 @@ namespace PL.Products
     /// </summary>
     public partial class ProductWindow : Window
     {
-        private IBl bl = new BlImplementation.Bl();
-
-  public ProductWindow()
+        BL.BlApi.IBl? bl = BlApi.Factory.Get();
+        public ProductWindow()
   {
    InitializeComponent();
    CategoriesSelector.ItemsSource = Enum.GetValues(typeof(Categories));

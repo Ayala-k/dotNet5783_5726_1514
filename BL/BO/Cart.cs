@@ -1,7 +1,6 @@
 ﻿
 namespace BL.BO;
 
-
 public class Cart
 {
  public string? CustomerName { get; set; }

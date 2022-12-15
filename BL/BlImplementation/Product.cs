@@ -1,7 +1,6 @@
 ﻿
 //using BO;
 using BlImplementation;
-using Dal;
 using DalApi;
 using System;
 using System.Data;
@@ -11,14 +10,14 @@ namespace BL.BlImplementation;
 
 internal class Product : BlApi.IProduct
 {
- IDal Dal = new DalList();
+    IDal? Dal = Factory.Get();
 
- /// <summary>
- /// get all products or by condition
- /// </summary>
- /// <param name="predict">condition</param>
- /// <returns></returns>
- public IEnumerable<BO.ProductForList> GetProducts(Func<DO.Product, bool>? predict = null)
+    /// <summary>
+    /// get all products or by condition
+    /// </summary>
+    /// <param name="predict">condition</param>
+    /// <returns></returns>
+    public IEnumerable<BO.ProductForList> GetProducts(Func<DO.Product, bool>? predict = null)
  {
   IEnumerable<DO.Product?> productsListDal = Dal.Product.GetAll();
   List<BO.ProductForList> productsListBL = new List<BO.ProductForList>();

@@ -7,9 +7,9 @@ namespace BlTest
 {
  internal class Program
  {
-  private static readonly BL.BlApi.IBl bl = new BlImplementation.Bl();
+  private static readonly BL.BlApi.IBl bl = BlApi.Factory.Get();
 
-  static void Main(string[] args)
+        static void Main(string[] args)
   {
    //Console.WriteLine(p.ToStringProperty());
 
