@@ -49,7 +49,7 @@ internal class Product : BlApi.IProduct
    DO.Product productDal = new DO.Product();
    try
    {
-    productDal = Dal.Product.GetByCondition(product => product.ID == productID);
+    productDal = Dal?.Product.GetByCondition(product => product.ID == productID) ?? throw new BO.EntityNotFoundLogicException("order not found");
 
    }
    catch (DO.EntityNotFoundException e)
@@ -86,7 +86,7 @@ internal class Product : BlApi.IProduct
    DO.Product productDal = new DO.Product();
    try
    {
-    productDal = Dal.Product.GetByCondition(product => product.ID == productID);
+    productDal = Dal?.Product.GetByCondition(product => product.ID == productID) ?? throw new BO.EntityNotFoundLogicException("order not found");
    }
    catch (DO.EntityNotFoundException e)
    {
@@ -96,7 +96,7 @@ internal class Product : BlApi.IProduct
    int amountInCart = 0;
    foreach (BO.OrderItem oi in cart.ItemsList)
    {
-    if (oi.ProductID == productID)
+    if (oi?.ProductID == productID)
     {
      amountInCart = oi.Amount;
      break;
@@ -138,7 +138,7 @@ internal class Product : BlApi.IProduct
   //add
   try
   {
-   Dal.Product.Add(productDal);
+   Dal?.Product.Add(productDal);
   }
   catch (DO.EntityAlreadyExistsException e)
   {
@@ -194,7 +194,7 @@ internal class Product : BlApi.IProduct
 
   try
   {
-   Dal.Product.Update(productDal);
+   Dal?.Product.Update(productDal);
   }
   catch (DO.EntityNotFoundException e)
   {

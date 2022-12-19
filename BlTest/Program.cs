@@ -9,10 +9,8 @@ namespace BlTest
  {
   private static readonly BL.BlApi.IBl bl = BlApi.Factory.Get();
 
-        static void Main(string[] args)
+  static void Main(string[] args)
   {
-   //Console.WriteLine(p.ToStringProperty());
-
 
    Console.WriteLine("enter 1 to product, 2 to order, 3 to order item, 0 to exit");
    int choice;
@@ -55,7 +53,6 @@ namespace BlTest
    int choiceProduct;
    int.TryParse(Console.ReadLine(), out choiceProduct);
    int parse;
-   double parseDouble;
    BL.BO.Categories parseCategory;
    switch (choiceProduct)
    {
