@@ -2,6 +2,7 @@
 using static Dal.DataSource;
 using DalApi;
 
+
 namespace Dal;
 
 /// <summary>
@@ -17,11 +18,8 @@ internal class DalProduct : IProduct
     /// <exception cref="System.Exception"></exception>
     public int Add(Product p)
     {
-        foreach (var item in _productsList)
-        {
-            if (item?.ID == p.ID)
-                throw new EntityAlreadyExistsException("product already exist");
-        }
+        if (_productsList.Exists(item => item?.ID == p.ID))
+            throw new EntityAlreadyExistsException("product already exist");
         _productsList.Add(p);
         return p.ID;
     }
@@ -32,13 +30,8 @@ internal class DalProduct : IProduct
     /// <param name="productID">id of product to delete</param>
     public void Delete(int productID)
     {
-        foreach (var item in _productsList)
-            if (item?.ID == productID)
-            {
-                _productsList.Remove(item);
-                return;
-            }
-        throw new EntityNotFoundException("product not found");
+        _productsList.Remove((_productsList.FirstOrDefault(item => item?.ID == productID))
+            ?? throw new EntityNotFoundException("product not found"));
     }
 
     /// <summary>
@@ -64,24 +57,11 @@ internal class DalProduct : IProduct
     /// <returns>array of all products</returns>
     public IEnumerable<Product?> GetAll(Func<Product?, bool>? predict = null)
     {
-        List<Product?> orderItemsListCopy = new List<Product?>();
-        if (predict == null)
-        {
-            foreach (Product orderItem in _productsList)
-            {
-                orderItemsListCopy.Add(orderItem);
-            }
-        }
-        else
-        {
-            foreach (Product orderItem in _productsList)
-            {
-                if (predict(orderItem))
-                    orderItemsListCopy.Add(orderItem);
-            }
-        }
-        return orderItemsListCopy;
-
+        IEnumerable<Product?> productListCopy = new List<Product?>();
+        productListCopy = from Product? p in _productsList
+                          where (predict == null || predict(p))
+                          select p;
+        return productListCopy;
     }
 
     /// <summary>
@@ -90,14 +70,10 @@ internal class DalProduct : IProduct
     /// <param name="predict"></param>
     /// <returns></returns>
     /// <exception cref="EntityNotFoundException"></exception>
-    public Product GetByCondition(Func<Product, bool>? predict)
+    public Product GetByCondition(Func<Product?, bool> predict)
     {
-        foreach (Product product in _productsList)
-        {
-            if (predict(product))
-                return product;
-        }
-        throw new EntityNotFoundException("product not found");
+        return (_productsList.FirstOrDefault(item => predict(item)))
+             ?? throw new EntityNotFoundException("product not found");
     }
 
     /// <summary>

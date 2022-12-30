@@ -27,13 +27,8 @@ internal class DalOrder : IOrder
     /// <param name="orderID">id of order to delete</param>
     public void Delete(int orderID)
     {
-        foreach (Order item in _ordersList)
-            if (item.ID == orderID)
-            {
-                _ordersList.Remove(item);
-                return;
-            }
-        throw new EntityNotFoundException("order not found");
+        _ordersList.Remove((_ordersList.FirstOrDefault(item => item?.ID == orderID))
+            ?? throw new EntityNotFoundException("order not found"));
     }
 
     /// <summary>
@@ -59,22 +54,10 @@ internal class DalOrder : IOrder
     /// <returns>array of orders</returns>
     public IEnumerable<Order?> GetAll(Func<Order?, bool>? predict = null)
     {
-        List<Order?> ordersListCopy = new List<Order?>();
-        if (predict == null)
-        {
-            foreach (Order order in _ordersList)
-            {
-                ordersListCopy.Add(order);
-            }
-        }
-        else
-        {
-            foreach (Order order in _ordersList)
-            {
-                if (predict(order))
-                    ordersListCopy.Add(order);
-            }
-        }
+        IEnumerable<Order?> ordersListCopy = new List<Order?>();
+        ordersListCopy = from Order? order in _ordersList
+                         where (predict == null || predict(order))
+                         select order;
         return ordersListCopy;
     }
 
@@ -84,13 +67,9 @@ internal class DalOrder : IOrder
     /// <param name="predict"></param>
     /// <returns></returns>
     /// <exception cref="EntityNotFoundException"></exception>
-    public Order GetByCondition(Func<Order, bool>? predict)
+    public Order GetByCondition(Func<Order?, bool> predict)
     {
-        foreach (Order order in _ordersList)
-        {
-            if (predict(order))
-                return order;
-        }
-        throw new EntityNotFoundException("order not found");
+        return (_ordersList.FirstOrDefault(item => predict(item)))
+            ?? throw new EntityNotFoundException("order not found");
     }
 }

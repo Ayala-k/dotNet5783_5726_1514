@@ -27,13 +27,8 @@ internal class DalOrderItem : IOrderItem
     /// <param name="orderItemID">order item id to delete</param>
     public void Delete(int orderItemID)
     {
-        foreach (var item in _orderItemsList)
-            if (item?.ID == orderItemID)
-            {
-                _orderItemsList.Remove(item);
-                return;
-            }
-        throw new EntityNotFoundException("order item not found");
+        _orderItemsList.Remove((_orderItemsList.FirstOrDefault(item => item?.ID == orderItemID))
+            ?? throw new EntityNotFoundException("order item not found"));
     }
 
     /// <summary>
@@ -59,24 +54,10 @@ internal class DalOrderItem : IOrderItem
     /// <returns>array of order items</returns>
     public IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? predict = null)
     {
-        List<OrderItem?> orderItemsListCopy = new List<OrderItem?>();
-        if (predict == null)
-        {
-            //orderItemsListCopy = _orderItemsList;
-            foreach (OrderItem orderItem in _orderItemsList)
-            {
-                orderItemsListCopy.Add(orderItem);
-            }
-        }
-        else
-        {
-            foreach (OrderItem orderItem in _orderItemsList)
-            {
-                if (predict(orderItem))
-                    orderItemsListCopy.Add(orderItem);
-            }
-        }
-        //IEnumerable<OrderItem?> newrdOerItemsListCopy = new List<OrderItem?>(orderItemsListCopy);
+        IEnumerable<OrderItem?> orderItemsListCopy = new List<OrderItem?>();
+        orderItemsListCopy = from OrderItem? orderItem in _orderItemsList
+                             where (predict == null || predict(orderItem))
+                             select orderItem;
         return orderItemsListCopy;
     }
 
@@ -86,14 +67,10 @@ internal class DalOrderItem : IOrderItem
     /// <param name="predict"></param>
     /// <returns></returns>
     /// <exception cref="EntityNotFoundException"></exception>
-    public OrderItem GetByCondition(Func<OrderItem, bool>? predict)
+    public OrderItem GetByCondition(Func<OrderItem?, bool> predict)
     {
-        foreach (OrderItem orderItem in _orderItemsList)
-        {
-            if (predict(orderItem))
-                return orderItem;
-        }
-        throw new EntityNotFoundException("order item not found");
+        return (_orderItemsList.FirstOrDefault(item => predict(item)))
+     ?? throw new EntityNotFoundException("order item not found");
     }
 
 }

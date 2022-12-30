@@ -14,21 +14,16 @@ internal class Order : BlApi.IOrder
     public IEnumerable<BO.OrderForList> GetOrders()
     {
         IEnumerable<DO.Order?> ordersListDal = Dal.Order.GetAll();
-        List<BO.OrderForList?> orderListBL = new List<BO.OrderForList?>();
-
-        //cast all orders to logic objects
-        foreach (DO.Order orderDal in ordersListDal)
-        {
-            BO.OrderForList order = new BO.OrderForList()
-            {
-                ID = orderDal.ID,
-                CustomerName = orderDal.CustomerName,
-                Status = findStatus(orderDal),
-                AmountOfItems = findAmountOfItems(orderDal.ID),
-                TotalPrice = findTotalPrice(orderDal.ID),
-            };
-            orderListBL.Add(order);
-        }
+        IEnumerable<BO.OrderForList> orderListBL = from DO.Order orderDal in ordersListDal
+                                                   let o = new BO.OrderForList()
+                                                   {
+                                                       ID = orderDal.ID,
+                                                       CustomerName = orderDal.CustomerName,
+                                                       Status = findStatus(orderDal),
+                                                       AmountOfItems = findAmountOfItems(orderDal.ID),
+                                                       TotalPrice = findTotalPrice(orderDal.ID)
+                                                   }
+                                                   select o;
         return orderListBL;
     }
 
@@ -47,7 +42,7 @@ internal class Order : BlApi.IOrder
             DO.Order orderDal = new DO.Order();
             try
             {
-                orderDal = Dal?.Order.GetByCondition(order => order.ID == orderID) ?? throw new BO.EntityNotFoundLogicException("order not found");
+                orderDal = Dal?.Order.GetByCondition(order => order?.ID == orderID) ?? throw new BO.EntityNotFoundLogicException("order not found");
             }
             catch (DO.EntityNotFoundException e)
             {
@@ -89,7 +84,7 @@ internal class Order : BlApi.IOrder
         DO.Order orderDal = new DO.Order();
         try
         {
-            orderDal = Dal?.Order.GetByCondition(order => order.ID == orderID)?? throw new BO.EntityNotFoundLogicException("order not found");
+            orderDal = Dal?.Order.GetByCondition(order => order?.ID == orderID) ?? throw new BO.EntityNotFoundLogicException("order not found");
         }
         catch (DO.EntityNotFoundException e)
         {
@@ -152,7 +147,7 @@ internal class Order : BlApi.IOrder
         DO.Order orderDal = new DO.Order();
         try
         {
-            orderDal = Dal?.Order.GetByCondition(order => order.ID == orderID) ?? throw new BO.EntityNotFoundLogicException("order not found");
+            orderDal = Dal?.Order.GetByCondition(order => order?.ID == orderID) ?? throw new BO.EntityNotFoundLogicException("order not found");
         }
         catch (DO.EntityNotFoundException e)
         {
@@ -215,7 +210,7 @@ internal class Order : BlApi.IOrder
         DO.Order orderDal = new DO.Order();
         try
         {
-            orderDal = Dal?.Order.GetByCondition(order => order.ID == orderID) ?? throw new BO.EntityNotFoundLogicException("order not found");
+            orderDal = Dal?.Order.GetByCondition(order => order?.ID == orderID) ?? throw new BO.EntityNotFoundLogicException("order not found");
         }
         catch (DO.EntityNotFoundException e)
         {
@@ -272,7 +267,7 @@ internal class Order : BlApi.IOrder
         DO.Order orderDal = new DO.Order();
         try
         {
-            orderDal = Dal?.Order.GetByCondition(order => order.ID == orderID) ?? throw new BO.EntityNotFoundLogicException("order not found");
+            orderDal = Dal?.Order.GetByCondition(order => order?.ID == orderID) ?? throw new BO.EntityNotFoundLogicException("order not found");
         }
         catch (DO.EntityNotFoundException e)
         {
@@ -283,7 +278,7 @@ internal class Order : BlApi.IOrder
         DO.Product productDal = new DO.Product();
         try
         {
-            productDal = Dal.Product.GetByCondition(p => p.ID == productID);
+            productDal = Dal.Product.GetByCondition(p => p?.ID == productID);
         }
         catch (DO.EntityNotFoundException e)
         {
@@ -355,14 +350,9 @@ internal class Order : BlApi.IOrder
     private int findAmountOfItems(int orderID)
     {
         IEnumerable<DO.OrderItem?> orderItems = Dal.OrderItem.GetAll();
-        int amountOfItems = 0;
-        foreach (DO.OrderItem oi in orderItems)
-        {
-            if (oi.OrderID == orderID)
-            {
-                amountOfItems++;
-            }
-        }
+        int amountOfItems = orderItems
+                .Where(item => item.Value.OrderID == orderID)
+                .Count();
         return amountOfItems;
     }
 
@@ -374,14 +364,9 @@ internal class Order : BlApi.IOrder
     private double findTotalPrice(int orderID)
     {
         IEnumerable<DO.OrderItem?> orderItems = Dal.OrderItem.GetAll();
-        double totalPrice = 0;
-        foreach (DO.OrderItem oi in orderItems)
-        {
-            if (oi.OrderID == orderID)
-            {
-                totalPrice += oi.Price * oi.Amount;
-            }
-        }
+        double totalPrice = orderItems
+            .Where(item => item.Value.OrderID == orderID)
+            .Sum(item => item.Value.Price * item.Value.Amount);
         return totalPrice;
     }
 
@@ -399,7 +384,7 @@ internal class Order : BlApi.IOrder
         {
             try
             {
-                productDal = Dal?.Product.GetByCondition(product => product.ID == oi.ProductID)?? throw new BO.EntityNotFoundLogicException("order not found");
+                productDal = Dal?.Product.GetByCondition(product => product?.ID == oi.ProductID) ?? throw new BO.EntityNotFoundLogicException("order not found");
             }
             catch (DO.EntityNotFoundException e)
             {
