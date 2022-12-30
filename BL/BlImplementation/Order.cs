@@ -15,15 +15,14 @@ internal class Order : BlApi.IOrder
     {
         IEnumerable<DO.Order?> ordersListDal = Dal.Order.GetAll();
         IEnumerable<BO.OrderForList> orderListBL = from DO.Order orderDal in ordersListDal
-                                                   let o = new BO.OrderForList()
+                                                   select new BO.OrderForList()
                                                    {
                                                        ID = orderDal.ID,
                                                        CustomerName = orderDal.CustomerName,
                                                        Status = findStatus(orderDal),
                                                        AmountOfItems = findAmountOfItems(orderDal.ID),
                                                        TotalPrice = findTotalPrice(orderDal.ID)
-                                                   }
-                                                   select o;
+                                                   };
         return orderListBL;
     }
 
