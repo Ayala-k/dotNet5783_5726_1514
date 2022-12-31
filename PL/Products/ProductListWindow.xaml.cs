@@ -1,6 +1,8 @@
 ﻿using BL.BO;
 using PL.Products;
 using System;
+using System.Collections;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -11,11 +13,15 @@ namespace PL;
 public partial class ProductListWindow : Window
 {
     BL.BlApi.IBl? bl = BlApi.Factory.Get();
-    public ProductListWindow()
+  
+ public ProductListWindow()
  {
   InitializeComponent();
+ 
   ProductListview.ItemsSource = bl.Product.GetProducts();
   CategoriesSelector.ItemsSource = Enum.GetValues(typeof(Categories));
+  //ProductListview.RegisterName("ProductListview", a);///////////
+
  }
 
  /// <summary>
@@ -24,6 +30,11 @@ public partial class ProductListWindow : Window
  /// <param name="sender"></param>
  /// <param name="e"></param>
 
+ //private void INotifyPropertyChanged(object sender, SelectionChangedEventArgs e)
+ //{
+ // a.Content = "nnnnnnnnnnnnnnn";
+
+ //}
  private void CategoriesSelector_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
  {
   if (CategoriesSelector.Text != " ")

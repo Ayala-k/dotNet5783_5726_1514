@@ -42,3 +42,9 @@ public class NotEnoughInStockException : Exception
     public string NotEnoughInStock { get; set; }
     public NotEnoughInStockException(string str) : base(str) { }
 }
+
+public class DalIsNullException : Exception
+{
+ public string DalIsNull { get; set; }
+ public DalIsNullException(string str) : base(str) { }
+}

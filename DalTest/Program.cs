@@ -84,7 +84,7 @@ public class Program
     //try
     //{
     int.TryParse(Console.ReadLine(), out parse);
-    Console.WriteLine(IDalVariable?.Product.GetByCondition(product=>product?.ID==parse).ToStringProperty());
+    Console.WriteLine(IDalVariable?.Product.GetByCondition(product=>product.ID ==parse).ToStringProperty());
     //}
     //catch (Exception e)
     //{
@@ -116,7 +116,7 @@ public class Program
     //try
     //{
     int.TryParse(Console.ReadLine(), out parse);
-    p = IDalVariable.Product.GetByCondition(product => product?.ID == parse);
+    p = IDalVariable.Product.GetByCondition(product => product.ID == parse);
     //}
     //catch (Exception e)
     //{
@@ -170,7 +170,7 @@ public class Program
     //try
     //{
     int.TryParse(Console.ReadLine(), out parse);
-    Console.WriteLine(IDalVariable?.Order.GetByCondition(order => order?.ID == parse).ToStringProperty());
+    Console.WriteLine(IDalVariable?.Order.GetByCondition(order => order.ID == parse).ToStringProperty());
     //}
     //catch (Exception e)
     //{
@@ -202,7 +202,7 @@ public class Program
     //try
     //{
     int.TryParse(Console.ReadLine(), out parse);
-    o = IDalVariable.Order.GetByCondition(order => order?.ID == parse);
+    o = IDalVariable.Order.GetByCondition(order => order.ID == parse);
     //}
     //catch (Exception e)
     //{
@@ -259,7 +259,7 @@ public class Program
     //try
     //{
     int.TryParse(Console.ReadLine(), out parse);
-    Console.WriteLine(IDalVariable?.OrderItem.GetByCondition(orderItem => orderItem?.ID == parse).ToStringProperty());
+    Console.WriteLine(IDalVariable?.OrderItem.GetByCondition(orderItem => orderItem.ID == parse).ToStringProperty());
     //}
     //catch (Exception e)
     //{
@@ -291,7 +291,7 @@ public class Program
     //try
     //{
     int.TryParse(Console.ReadLine(), out parse);
-    oi = IDalVariable.OrderItem.GetByCondition(orderItem => orderItem?.ID == parse);
+    oi = IDalVariable.OrderItem.GetByCondition(orderItem => orderItem.ID == parse);
     //}
     //catch (Exception e)
     //{
@@ -318,7 +318,7 @@ public class Program
     int parse2;
     int.TryParse(Console.ReadLine(), out parse);
     int.TryParse(Console.ReadLine(), out parse2);
-    Console.WriteLine(IDalVariable?.OrderItem.GetByCondition(item=>item?.OrderID==parse&&item?.ProductID==parse2).ToStringProperty());
+    Console.WriteLine(IDalVariable?.OrderItem.GetByCondition(item=>item.OrderID ==parse&&item.ProductID ==parse2).ToStringProperty());
     break;
 
    case 7://View an order's items
