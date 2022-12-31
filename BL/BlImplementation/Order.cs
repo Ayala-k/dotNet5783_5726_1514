@@ -41,7 +41,7 @@ internal class Order : BlApi.IOrder
             DO.Order orderDal = new DO.Order();
             try
             {
-                orderDal = Dal?.Order.GetByCondition(order => order.ID == orderID) ?? throw new BO.EntityNotFoundLogicException("order not found");
+                orderDal = Dal?.Order.GetByCondition(order => order?.ID == orderID) ?? throw new BO.EntityNotFoundLogicException("order not found");
             }
             catch (DO.EntityNotFoundException e)
             {
@@ -83,7 +83,7 @@ internal class Order : BlApi.IOrder
         DO.Order orderDal = new DO.Order();
         try
         {
-            orderDal = Dal?.Order.GetByCondition(order => order.ID == orderID) ?? throw new BO.EntityNotFoundLogicException("order not found");
+            orderDal = Dal?.Order.GetByCondition(order => order?.ID == orderID) ?? throw new BO.EntityNotFoundLogicException("order not found");
         }
         catch (DO.EntityNotFoundException e)
         {
@@ -146,7 +146,7 @@ internal class Order : BlApi.IOrder
         DO.Order orderDal = new DO.Order();
         try
         {
-            orderDal = Dal?.Order.GetByCondition(order => order.ID == orderID) ?? throw new BO.EntityNotFoundLogicException("order not found");
+            orderDal = Dal?.Order.GetByCondition(order => order?.ID == orderID) ?? throw new BO.EntityNotFoundLogicException("order not found");
         }
         catch (DO.EntityNotFoundException e)
         {
@@ -209,7 +209,7 @@ internal class Order : BlApi.IOrder
         DO.Order orderDal = new DO.Order();
         try
         {
-            orderDal = Dal?.Order.GetByCondition(order => order.ID == orderID) ?? throw new BO.EntityNotFoundLogicException("order not found");
+            orderDal = Dal?.Order.GetByCondition(order => order?.ID == orderID) ?? throw new BO.EntityNotFoundLogicException("order not found");
         }
         catch (DO.EntityNotFoundException e)
         {
@@ -266,7 +266,7 @@ internal class Order : BlApi.IOrder
         DO.Order orderDal = new DO.Order();
         try
         {
-            orderDal = Dal?.Order.GetByCondition(order => order.ID == orderID) ?? throw new BO.EntityNotFoundLogicException("order not found");
+            orderDal = Dal?.Order.GetByCondition(order => order?.ID == orderID) ?? throw new BO.EntityNotFoundLogicException("order not found");
         }
         catch (DO.EntityNotFoundException e)
         {
@@ -277,7 +277,7 @@ internal class Order : BlApi.IOrder
         DO.Product productDal = new DO.Product();
         try
         {
-            productDal = Dal.Product.GetByCondition(p => p.ID == productID);
+            productDal = Dal.Product.GetByCondition(p => p?.ID == productID);
         }
         catch (DO.EntityNotFoundException e)
         {
@@ -381,7 +381,7 @@ internal class Order : BlApi.IOrder
   try
   {
    OrderItemsBL = from DO.OrderItem oi in OrderItemsDal
-                  let productDal = Dal?.Product.GetByCondition(product => product.ID == oi.ProductID) ?? throw new BO.DalIsNullException("Dal is NULL")
+                  let productDal = Dal?.Product.GetByCondition(product => product?.ID == oi.ProductID) ?? throw new BO.DalIsNullException("Dal is NULL")
                   select new BO.OrderItem()
                   {
                    Name = productDal.Name,

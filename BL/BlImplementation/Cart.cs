@@ -33,7 +33,7 @@ internal class Cart : ICart
         DO.Product productToAddToCart = new DO.Product();
         try
         {
-            productToAddToCart = Dal?.Product.GetByCondition(item => item.ID == productID) ?? throw new BO.EntityNotFoundLogicException("product to add not found"); ;
+            productToAddToCart = Dal?.Product.GetByCondition(item => item?.ID == productID) ?? throw new BO.EntityNotFoundLogicException("product to add not found"); ;
         }
         catch (DO.EntityNotFoundException e)
         {
@@ -128,7 +128,7 @@ internal class Cart : ICart
         {
             try
             {
-                product = Dal?.Product.GetByCondition(p => p.ID == item?.ProductID) ?? throw new BO.EntityNotFoundLogicException("one of the products not found");;
+                product = Dal?.Product.GetByCondition(p => p?.ID == item?.ProductID) ?? throw new BO.EntityNotFoundLogicException("one of the products not found");;
             }
             catch (DO.EntityNotFoundException e)
             {
@@ -195,7 +195,7 @@ internal class Cart : ICart
             //update stock
             try
             {
-                product = Dal.Product.GetByCondition(p => p.ID == item.ProductID);
+                product = Dal.Product.GetByCondition(p => p?.ID == item.ProductID);
             }
             catch (DO.EntityNotFoundException e)
             {

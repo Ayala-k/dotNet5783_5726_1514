@@ -39,7 +39,7 @@ internal class Product : BlApi.IProduct
             DO.Product productDal = new DO.Product();
             try
             {
-                productDal = Dal?.Product.GetByCondition(product => product.ID == productID) ?? throw new BO.EntityNotFoundLogicException("order not found");
+                productDal = Dal?.Product.GetByCondition(product => product?.ID == productID) ?? throw new BO.EntityNotFoundLogicException("order not found");
 
             }
             catch (DO.EntityNotFoundException e)
@@ -76,7 +76,7 @@ internal class Product : BlApi.IProduct
             DO.Product productDal = new DO.Product();
             try
             {
-                productDal = Dal?.Product.GetByCondition(product => product.ID == productID) ?? throw new BO.EntityNotFoundLogicException("order not found");
+                productDal = Dal?.Product.GetByCondition(product => product?.ID == productID) ?? throw new BO.EntityNotFoundLogicException("order not found");
             }
             catch (DO.EntityNotFoundException e)
             {
@@ -139,7 +139,7 @@ internal class Product : BlApi.IProduct
   //check that the product is not ordered by a customer now
   List<DO.OrderItem?> orderItemsList = Dal.OrderItem.GetAll().ToList();
   if (orderItemsList.Exists(oi => oi?.ProductID == productID &&
-          Dal.Order.GetByCondition(o => o.ID == oi?.OrderID).ShipDate == null))
+          Dal.Order.GetByCondition(o => o?.ID == oi?.OrderID).ShipDate == null))
    throw new BO.EntityInUseException("product exist in some orders, cannot be deleted");
 
   try
