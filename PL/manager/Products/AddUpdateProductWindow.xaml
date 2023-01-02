@@ -6,12 +6,13 @@
         xmlns:local="clr-namespace:PL.Products"
         mc:Ignorable="d"
         Title="ProductWindow" Height="450" Width="800"
-        DataContext="{Binding Source={x:Static local:ProductListWindow}}">
+        DataContext="{Binding Source={x:Static local:ProductListWindow.productsForListList}}">
  <Grid>
+        
 
   <Button x:Name="buttonAddUpdate" Content="Button" HorizontalAlignment="Left" Margin="332,340,0,0" VerticalAlignment="Top" Click="buttonAddUpdate_Click" Height="28" Width="80"/>
   <TextBox PreviewTextInput="PreviewTextInput" x:Name="id" HorizontalAlignment="Left" Margin="305,103,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Height="28"/>
-  <TextBox x:Name="name" HorizontalAlignment="Left" Margin="308,185,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="130" Height="28">
+        <!--<TextBox  x:Name="name" Text="{Binding Path=" local:bfz"}" HorizontalAlignment="Left" Margin="308,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="130" Height="28">
    <TextBox.RenderTransform>
     <TransformGroup>
      <ScaleTransform/>
@@ -20,8 +21,17 @@
      <TranslateTransform/>
     </TransformGroup>
    </TextBox.RenderTransform>
-  </TextBox>
-  <TextBox PreviewTextInput="PreviewTextInput" x:Name="price" HorizontalAlignment="Left" Margin="307,227,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"  Width="130" Height="28"/>
+  </TextBox>-->
+        <TextBox  x:Name="name" Text="" HorizontalAlignment="Left" Margin="308,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="130" Height="28"/>
+
+        <ItemsControl x:Name="aa" ItemsSource="{Binding Source={x:Static local:ProductListWindow.productsForListList}}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBox  x:Name="name" Text="{Binding Name}" HorizontalAlignment="Left" Margin="308,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="130" Height="28"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <TextBox PreviewTextInput="PreviewTextInput" x:Name="price" HorizontalAlignment="Left" Margin="307,227,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"  Width="130" Height="28"/>
   <TextBox PreviewTextInput="PreviewTextInput" x:Name="inStock" HorizontalAlignment="Left" Margin="307,273,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Height="28"/>
   <ComboBox x:Name="CategoriesSelector" HorizontalAlignment="Left" Margin="305,143,0,0" VerticalAlignment="Top" SelectionChanged="ComboBox_SelectionChanged"  Width="130" Height="28"/>
   <Label Content="category" HorizontalAlignment="Left" Margin="249,145,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.941,0.509"/>

@@ -14,62 +14,69 @@ namespace PL.Products;
 /// </summary>
 public partial class ProductListWindow : Window
 {
- BL.BlApi.IBl? bl = BlApi.Factory.Get();
+    
+    BL.BlApi.IBl? bl = BlApi.Factory.Get();
 
- public IEnumerable<ProductForList?> productsForListList { get; set; } = new List<ProductForList?>();
-
- public ProductListWindow()
- {
-  InitializeComponent();
-  productsForListList = bl.Product.GetProducts();
-
-  ProductListview.ItemsSource = productsForListList;
-  CategoriesSelector.ItemsSource = Enum.GetValues(typeof(Categories));
- }
-
- /// <summary>
- /// category selector
- /// </summary>
- /// <param name="sender"></param>
- /// <param name="e"></param>
+    public static ObservableCollection<ProductForList?> productsForListList { get; set; } = new ObservableCollection<ProductForList?>();
 
 
- private void CategoriesSelector_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
- {
-  if (CategoriesSelector.Text != " ")
-   ProductListview.ItemsSource = bl.Product.GetProducts
- (p => p.Category == (DO.Categories)CategoriesSelector.SelectedItem);
- }
+    public ObservableCollection<T> Convert<T>(IEnumerable<T> original)
+    {
+        return new ObservableCollection<T>(original);
+    }
+
+    public ProductListWindow()
+    {
+        InitializeComponent();
+        productsForListList = Convert(bl.Product.GetProducts());
+
+        ProductListview.ItemsSource = productsForListList;
+        CategoriesSelector.ItemsSource = Enum.GetValues(typeof(Categories));
+    }
+
+    /// <summary>
+    /// category selector
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
 
 
- /// <summary>
- /// when a product is clicked- upadte it
- /// </summary>
- /// <param name="sender"></param>
- /// <param name="e"></param>
+    private void CategoriesSelector_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+    {
+        if (CategoriesSelector.Text != " ")
+            ProductListview.ItemsSource = bl.Product.GetProducts
+          (p => p.Category == (DO.Categories)CategoriesSelector.SelectedItem);
+    }
 
 
- private void ProductListview_SelectionChanged(object sender, SelectionChangedEventArgs e)
- {
-  int id = 0;
-  if (ProductListview.SelectedItem is BL.BO.ProductForList)
-   id = ((BL.BO.ProductForList)ProductListview.SelectedItem).ID;
-  new ProductWindow("update", id).ShowDialog();
- }
+    /// <summary>
+    /// when a product is clicked- upadte it
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
 
- /// <summary>
- /// when "add product" is clicked- open add window
- /// </summary>
- /// <param name="sender"></param>
- /// <param name="e"></param>
 
- private void Button_Click(object sender, RoutedEventArgs e)
- {
-  new ProductWindow("add").ShowDialog();
- }
- private void Button_Click_1(object sender, RoutedEventArgs e)
- {
-  ProductListview.ItemsSource = productsForListList;
-  CategoriesSelector.Text = " ";
- }
+    private void ProductListview_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        int id = 0;
+        if (ProductListview.SelectedItem is BL.BO.ProductForList)
+            id = ((BL.BO.ProductForList)ProductListview.SelectedItem).ID;
+        new ProductWindow("update", id).ShowDialog();
+    }
+
+    /// <summary>
+    /// when "add product" is clicked- open add window
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+        new ProductWindow("add").ShowDialog();
+    }
+    private void Button_Click_1(object sender, RoutedEventArgs e)
+    {
+        ProductListview.ItemsSource = productsForListList;
+        CategoriesSelector.Text = " ";
+    }
 }
