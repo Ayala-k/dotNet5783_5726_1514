@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Products"
         mc:Ignorable="d"
-        Title="ProductWindow" Height="450" Width="800">
+        Title="ProductWindow" Height="450" Width="800"
+        DataContext="{Binding Source={x:Static local:ProductListWindow}}">
  <Grid>
 
   <Button x:Name="buttonAddUpdate" Content="Button" HorizontalAlignment="Left" Margin="332,340,0,0" VerticalAlignment="Top" Click="buttonAddUpdate_Click" Height="28" Width="80"/>

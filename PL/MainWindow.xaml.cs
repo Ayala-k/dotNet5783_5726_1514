@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BL.BlImplementation;
+using PL.manager;
 //using PL.Orders;
 
 namespace PL
@@ -30,5 +31,8 @@ namespace PL
   }
         private IBl bl =BlApi.Factory.Get();
   void ProductButton_Click(object sender, RoutedEventArgs e) => new ProductListWindow().Show();
+
+  void moveToManager_Click(object sender, RoutedEventArgs e)=>new managerMainWindow().Show();
+ 
  }
 }

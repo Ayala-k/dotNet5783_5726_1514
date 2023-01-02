@@ -2,26 +2,29 @@
 using PL.Products;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace PL;
+namespace PL.Products;
 /// <summary>
 /// Interaction logic for OrderListWindow.xaml
 /// </summary>
 public partial class ProductListWindow : Window
 {
-    BL.BlApi.IBl? bl = BlApi.Factory.Get();
-  
+ BL.BlApi.IBl? bl = BlApi.Factory.Get();
+
+ public IEnumerable<ProductForList?> productsForListList { get; set; } = new List<ProductForList?>();
+
  public ProductListWindow()
  {
   InitializeComponent();
- 
-  ProductListview.ItemsSource = bl.Product.GetProducts();
-  CategoriesSelector.ItemsSource = Enum.GetValues(typeof(Categories));
-  //ProductListview.RegisterName("ProductListview", a);///////////
+  productsForListList = bl.Product.GetProducts();
 
+  ProductListview.ItemsSource = productsForListList;
+  CategoriesSelector.ItemsSource = Enum.GetValues(typeof(Categories));
  }
 
  /// <summary>
@@ -30,11 +33,7 @@ public partial class ProductListWindow : Window
  /// <param name="sender"></param>
  /// <param name="e"></param>
 
- //private void INotifyPropertyChanged(object sender, SelectionChangedEventArgs e)
- //{
- // a.Content = "nnnnnnnnnnnnnnn";
 
- //}
  private void CategoriesSelector_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
  {
   if (CategoriesSelector.Text != " ")
@@ -70,7 +69,7 @@ public partial class ProductListWindow : Window
  }
  private void Button_Click_1(object sender, RoutedEventArgs e)
  {
-  ProductListview.ItemsSource = bl.Product.GetProducts();
+  ProductListview.ItemsSource = productsForListList;
   CategoriesSelector.Text = " ";
  }
 }
