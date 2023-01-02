@@ -1,8 +1,6 @@
 ﻿
 using BL.BlApi;
-using Dal;
 using DalApi;
-using System.Runtime.InteropServices;
 
 namespace BL.BlImplementation;
 

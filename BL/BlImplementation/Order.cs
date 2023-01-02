@@ -326,6 +326,8 @@ internal class Order : BlApi.IOrder
 
     }
 
+    #region private methods
+
     /// <summary>
     /// find status of an order
     /// </summary>
@@ -369,32 +371,34 @@ internal class Order : BlApi.IOrder
         return totalPrice;
     }
 
- /// <summary>
- /// cast DO order items list to BO 
- /// </summary>
- /// <param name="OrderItemsDal"></param>
- /// <returns></returns>
- /// <exception cref="BO.EntityNotFoundLogicException"></exception>
- private List<BO.OrderItem?> getOrderItem(IEnumerable<DO.OrderItem?> OrderItemsDal)
- {
-  IEnumerable<BO.OrderItem?> OrderItemsBL = new List<BO.OrderItem?>();
-  try
-  {
-   OrderItemsBL = from DO.OrderItem oi in OrderItemsDal
-                  let productDal = Dal?.Product.GetByCondition(product => product?.ID == oi.ProductID) ?? throw new BO.DalIsNullException("Dal is NULL")
-                  select new BO.OrderItem()
-                  {
-                   Name = productDal.Name,
-                   ProductID = oi.ProductID,
-                   Price = oi.Price,
-                   Amount = oi.Amount,
-                   TotalPrice = oi.Price * oi.Amount
-                  };
-  }
-  catch (DO.EntityNotFoundException e)
-  {
-   throw new BO.EntityNotFoundLogicException("one of the products not found", e);
-  }
-  return OrderItemsBL.ToList();
- }
+    /// <summary>
+    /// cast DO order items list to BO 
+    /// </summary>
+    /// <param name="OrderItemsDal"></param>
+    /// <returns></returns>
+    /// <exception cref="BO.EntityNotFoundLogicException"></exception>
+    private List<BO.OrderItem?> getOrderItem(IEnumerable<DO.OrderItem?> OrderItemsDal)
+    {
+        IEnumerable<BO.OrderItem?> OrderItemsBL = new List<BO.OrderItem?>();
+        try
+        {
+            OrderItemsBL = from DO.OrderItem oi in OrderItemsDal
+                           let productDal = Dal?.Product.GetByCondition(product => product?.ID == oi.ProductID) ?? throw new BO.DalIsNullException("Dal is NULL")
+                           select new BO.OrderItem()
+                           {
+                               Name = productDal.Name,
+                               ProductID = oi.ProductID,
+                               Price = oi.Price,
+                               Amount = oi.Amount,
+                               TotalPrice = oi.Price * oi.Amount
+                           };
+        }
+        catch (DO.EntityNotFoundException e)
+        {
+            throw new BO.EntityNotFoundLogicException("one of the products not found", e);
+        }
+        return OrderItemsBL.ToList();
+    }
+
+    #endregion
 }

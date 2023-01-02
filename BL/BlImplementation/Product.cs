@@ -1,7 +1,5 @@
-﻿using BL.BO;
-using BlImplementation;
+﻿using BlImplementation;
 using DalApi;
-using DO;
 
 namespace BL.BlImplementation;
 
@@ -19,7 +17,7 @@ internal class Product : BlApi.IProduct
         IEnumerable<DO.Product?> productsListDal = Dal.Product.GetAll();
         IEnumerable<BO.ProductForList> productsListBL = from DO.Product productDal in productsListDal
                                                         where predict == null || predict(productDal)
-                                                        let product = new BO.ProductForList() {Category = (BO.Categories)productDal.Category }
+                                                        let product = new BO.ProductForList() { Category = (BO.Categories)productDal.Category }
                                                         select productDal!.copy(product);
         return productsListBL;
     }
@@ -83,7 +81,7 @@ internal class Product : BlApi.IProduct
                 throw new BO.EntityNotFoundLogicException("product not found", e);
             }
 
-            int amountInCart = cart.ItemsList.FirstOrDefault(item => item?.ProductID == productID)?.Amount??0;
+            int amountInCart = cart.ItemsList.FirstOrDefault(item => item?.ProductID == productID)?.Amount ?? 0;
             if (amountInCart == 0)
                 throw new BO.NotEnoughInStockException("not enaugh in stock");
 
@@ -127,38 +125,38 @@ internal class Product : BlApi.IProduct
             throw new BO.EntityAlreadyExistsLogicException("product already exist", e);
         }
     }
- /// <summary>
- /// delete product
- /// </summary>
- /// <param name="productID"></param>
- /// <exception cref="BO.EntityInUseException"></exception>
- /// <exception cref="BO.EntityNotFoundLogicException"></exception>
+    /// <summary>
+    /// delete product
+    /// </summary>
+    /// <param name="productID"></param>
+    /// <exception cref="BO.EntityInUseException"></exception>
+    /// <exception cref="BO.EntityNotFoundLogicException"></exception>
 
- public void DeleteProduct(int productID)
- {
-  //check that the product is not ordered by a customer now
-  List<DO.OrderItem?> orderItemsList = Dal.OrderItem.GetAll().ToList();
-  if (orderItemsList.Exists(oi => oi?.ProductID == productID &&
-          Dal.Order.GetByCondition(o => o?.ID == oi?.OrderID).ShipDate == null))
-   throw new BO.EntityInUseException("product exist in some orders, cannot be deleted");
+    public void DeleteProduct(int productID)
+    {
+        //check that the product is not ordered by a customer now
+        List<DO.OrderItem?> orderItemsList = Dal.OrderItem.GetAll().ToList();
+        if (orderItemsList.Exists(oi => oi?.ProductID == productID &&
+                Dal.Order.GetByCondition(o => o?.ID == oi?.OrderID).ShipDate == null))
+            throw new BO.EntityInUseException("product exist in some orders, cannot be deleted");
 
-  try
-  {
-   Dal.Product.Delete(productID);
-  }
-  catch (DO.EntityNotFoundException e)
-  {
-   throw new BO.EntityNotFoundLogicException("product not found", e);
-  }
- }
+        try
+        {
+            Dal.Product.Delete(productID);
+        }
+        catch (DO.EntityNotFoundException e)
+        {
+            throw new BO.EntityNotFoundLogicException("product not found", e);
+        }
+    }
 
- /// <summary>
- /// update product
- /// </summary>
- /// <param name="productBL"></param>
- /// <exception cref="BO.InvalidDetailsException"></exception>
- /// <exception cref="BO.EntityNotFoundLogicException"></exception>
- public void UpdateProduct(BO.Product productBL)
+    /// <summary>
+    /// update product
+    /// </summary>
+    /// <param name="productBL"></param>
+    /// <exception cref="BO.InvalidDetailsException"></exception>
+    /// <exception cref="BO.EntityNotFoundLogicException"></exception>
+    public void UpdateProduct(BO.Product productBL)
     {
         //check the details
         if (productBL.ID <= 0 || productBL.Name == "" || productBL.Price <= 0 || productBL.InStock < 0)
