@@ -1,4 +1,5 @@
-﻿using PL.Products;
+﻿using PL.manager.Orders;
+using PL.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,20 +16,25 @@ using System.Windows.Shapes;
 
 namespace PL.manager
 {
-    /// <summary>
-    /// Interaction logic for managerMainWindow.xaml
-    /// </summary>
-    public partial class managerMainWindow : Window
-    {
-        public managerMainWindow()
-        {
-            InitializeComponent();
-        }
+ /// <summary>
+ /// Interaction logic for managerMainWindow.xaml
+ /// </summary>
+ public partial class managerMainWindow : Window
+ {
+  public managerMainWindow()
+  {
+   InitializeComponent();
+  }
 
   private void moveToProductList_Click(object sender, RoutedEventArgs e)
   {
    new ProductListWindow().Show();
 
+  }
+
+  private void moveToOrdersList_Click(object sender, RoutedEventArgs e)
+  {
+   new OrdersListWindow().Show();
   }
  }
 }

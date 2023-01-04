@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -16,40 +17,45 @@ public partial class ProductListWindow : Window
 {
 
  BL.BlApi.IBl? bl = BlApi.Factory.Get();
-
- //public static IEnumerable<ProductForList?> productsForListList { get; set; } = new List<ProductForList?>();
+ public static IEnumerable<int> X1 = new List<int>();
+ 
  public static readonly DependencyProperty productsForListListProperty =
-    DependencyProperty.Register(name:"productsForListList", propertyType:typeof(IEnumerable<ProductForList?>),ownerType:typeof(ProductListWindow));
+  DependencyProperty.Register(nameof(productsForListList), typeof(IEnumerable<ProductForList?>), typeof(ProductListWindow));
+
  public IEnumerable<ProductForList?> productsForListList
  {
   get { return (IEnumerable<ProductForList?>)GetValue(productsForListListProperty); }
   set { SetValue(productsForListListProperty, value); }
  }
 
+ public BL.BO.ProductForList selectedItem
+ {
+  get { return (BL.BO.ProductForList)GetValue(selectedItemProperty); }
+  set { SetValue(selectedItemProperty, value); }
+ }
 
+ public static readonly DependencyProperty selectedItemProperty =
+     DependencyProperty.Register("selectedItem", typeof(BL.BO.ProductForList), typeof(ProductListWindow));
 
- //public int MyProperty//דוגמא
- //{
- // get { return (int)GetValue(MyPropertyProperty); }
- // set { SetValue(MyPropertyProperty, value); }
- //}
+ public DO.Categories? selectedCategory
+ {
+  get { return (DO.Categories?)GetValue(selectedCategoryProperty); }
+  set { SetValue(selectedCategoryProperty, value); }
+ }
 
- // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+ public static readonly DependencyProperty selectedCategoryProperty =
+     DependencyProperty.Register("selectedCategory", typeof(DO.Categories?), typeof(ProductListWindow));
 
-
- public static System.Array categories { get; set; } = Enum.GetValues(typeof(Categories));
-
-
- //public ObservableCollection<T> Convert<T>(IEnumerable<T> original)
- //{
- // return new ObservableCollection<T>(original);
- //}
-
+ public static Array categories { get; set; } = (Enum.GetValues(typeof(DO.Categories)));
+ 
+ public static ObservableCollection<T> Convert<T>(IEnumerable<T> original)
+ {
+  return new ObservableCollection<T>(original);
+ }
  public ProductListWindow()
  {
-  productsForListList =(bl.Product.GetProducts());
-  SetValue(productsForListListProperty, new List<ProductForList?>());
-  SetValue(productsForListListProperty, bl.Product.GetProducts());
+  productsForListList = (bl.Product.GetProducts());
+  selectedCategory = null;
   InitializeComponent();
  }
 
@@ -59,27 +65,23 @@ public partial class ProductListWindow : Window
  /// <param name="sender"></param>
  /// <param name="e"></param>
 
-
  private void CategoriesSelector_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
  {
-  if (CategoriesSelector.Text != " ")
-   productsForListList = bl.Product.GetProducts
- (p => p.Category == (DO.Categories)CategoriesSelector.SelectedItem);
+  //if (CategoriesSelectorText != " ")
+  /*productsForList*/
+  productsForListList = Convert(bl.Product.GetProducts(p => p.Category == selectedCategory));
  }
-
 
  /// <summary>
  /// when a product is clicked- upadte it
  /// </summary>
  /// <param name="sender"></param>
  /// <param name="e"></param>
-
-
  private void ProductListview_SelectionChanged(object sender, SelectionChangedEventArgs e)
  {
-  int id = 0;//bindingלשנות ל
-  if (ProductListview.SelectedItem is BL.BO.ProductForList)
-   id = ((BL.BO.ProductForList)ProductListview.SelectedItem).ID;
+  int id = 0;
+  if (selectedItem is BL.BO.ProductForList)
+   id = selectedItem.ID;
   new ProductWindow("update", id).ShowDialog();
  }
 
@@ -88,14 +90,13 @@ public partial class ProductListWindow : Window
  /// </summary>
  /// <param name="sender"></param>
  /// <param name="e"></param>
-
  private void Button_Click(object sender, RoutedEventArgs e)
  {
   new ProductWindow("add").ShowDialog();
  }
- private void Button_Click_1(object sender, RoutedEventArgs e)
- {
-  ProductListview.ItemsSource = productsForListList;
-  CategoriesSelector.Text = " ";
- }
+ //private void Button_Click_1(object sender, RoutedEventArgs e)
+ //{
+ // ProductListview.ItemsSource = productsForListList;
+ // CategoriesSelectorText = " ";
+ //}
 }

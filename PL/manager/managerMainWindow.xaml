@@ -8,7 +8,7 @@
         Title="managerMainWindow" Height="450" Width="800">
  <Grid>
   <Button x:Name="moveToProductList" Content="products list" HorizontalAlignment="Left" Margin="153,135,0,0" VerticalAlignment="Top" Height="64" Width="130" Click="moveToProductList_Click"/>
-  <Button x:Name="moveToOrdersList" Content="orders list" HorizontalAlignment="Left" Margin="376,110,0,0" VerticalAlignment="Top" Height="57" Width="102"/>
+  <Button x:Name="moveToOrdersList" Content="orders list" HorizontalAlignment="Left" Margin="376,110,0,0" VerticalAlignment="Top" Height="57" Width="102" Click="moveToOrdersList_Click"/>
 
  </Grid>
 </Window>

@@ -1,12 +1,13 @@
-﻿<Window 
+﻿<Window x:Class="PL.Products.ProductListWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Products"
-        xmlns:DO="clr-namespace:DO;assembly=DalFacade" x:Class="PL.Products.ProductListWindow"
+        xmlns:DO="clr-namespace:DO;assembly=DalFacade" 
         mc:Ignorable="d"
-        Title="ProductListWindow" Height="640" Width="800">
+        Title="ProductListWindow" Height="640" Width="800"
+        DataContext="{Binding RelativeSource={RelativeSource self}}">
  <!--DataContext="{Binding Source={x:Static local:ProductListWindow.productsForListList}}">-->
 
  <!--DataContext="{Binding Source={x:Static local:}}"-->
@@ -24,14 +25,13 @@ VerticalAlignment="Stretch" Width="auto">
     <ColumnDefinition Width="*"/>
    </Grid.ColumnDefinitions>
    <Label Grid.Column="0" Content="Category:" Margin="315,8,10,10"/>
-   <ComboBox x:Name="CategoriesSelector" ItemsSource="{Binding Source={x:Static local:ProductListWindow.categories}}"
+   <ComboBox x:Name="CategoriesSelector" ItemsSource="{Binding Source={x:Static local:ProductListWindow.categories}}" SelectedItem="{Binding selectedCategory}"
     HorizontalAlignment= "Left"  
     Grid.Column="1" Width="400" SelectionChanged="CategoriesSelector_SelectionChanged_1"/>
-   <Button x:Name="viewAllProducts" Content="View all Products" HorizontalAlignment="Left" Margin="27,10,0,10" Padding="1" Click="Button_Click_1" Width="102"/>
+   <!--<Button x:Name="viewAllProducts" Content="View all Products" HorizontalAlignment="Left" Margin="27,10,0,10" Padding="1" Click="Button_Click_1" Width="102"/>-->
    <!--<Button x:Name="a" Content="Button" HorizontalAlignment="Left" Margin="280,8,0,0" VerticalAlignment="Top"/>-->
-
   </Grid>
-  <ListView x:Name="ProductListview" ItemsSource="{Binding Source={x:Static local:ProductListWindow.productsForListListProperty},UpdateSourceTrigger=PropertyChanged}" SelectionChanged="ProductListview_SelectionChanged" Margin="0,46,0,85" Grid.RowSpan="2">
+  <ListView x:Name="ProductListview" SelectedItem="{Binding selectedItem, Mode=TwoWay}" ItemsSource="{Binding productsForListList}" SelectionChanged="ProductListview_SelectionChanged" Margin="0,46,0,85" Grid.RowSpan="2">
    <ListView.View>
     <GridView>
      <GridViewColumn/>

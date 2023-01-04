@@ -5,26 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Products"
         mc:Ignorable="d"
-        Title="ProductWindow" Height="450" Width="800">
- <!--DataContext="{Binding Source={x:Static local:ProductWindow.product}}">-->
+        Title="ProductWindow" Height="450" Width="800"
+ DataContext="{Binding RelativeSource={RelativeSource self}}">
 
  <!--DataContext="{Binding Source={x:Static local:ProductListWindow.productsForListList}}">-->
 
  <Grid >
   <Button x:Name="buttonAddUpdate" Content="{Binding UpdateSourceTrigger=PropertyChanged, Source={x:Static local:ProductWindow.pageName}}" HorizontalAlignment="Left" Margin="332,340,0,0" VerticalAlignment="Top" Click="buttonAddUpdate_Click" Height="28" Width="80"/>
   <Grid DataContext="{Binding Source={x:Static local:ProductWindow.product}}">
-   <TextBox IsReadOnly="True" PreviewTextInput="PreviewTextInput" x:Name="id" Text="{Binding ID,Mode=TwoWay}" HorizontalAlignment="Left" Margin="305,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="28"/>
-  <TextBox  x:Name="name" Text="{Binding Name,Mode=TwoWay}" HorizontalAlignment="Left" Margin="308,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="130" Height="28"/>
-  <TextBox PreviewTextInput="PreviewTextInput" x:Name="price" Text="{Binding Price,Mode=TwoWay}" HorizontalAlignment="Left" Margin="307,227,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"  Width="130" Height="28"/>
-  <TextBox PreviewTextInput="PreviewTextInput" x:Name="inStock" Text="{Binding InStock,Mode=TwoWay}" HorizontalAlignment="Left" Margin="307,273,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="130" Height="28"/>
+   <TextBox IsReadOnly="{Binding Source={x:Static local:ProductWindow.isReadOnly}}" PreviewTextInput="PreviewTextInput" x:Name="id" Text="{Binding ID,Mode=TwoWay}" HorizontalAlignment="Left" Margin="305,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="28"/>
+   <TextBox  x:Name="name" Text="{Binding Name,Mode=TwoWay}" HorizontalAlignment="Left" Margin="308,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="130" Height="28"/>
+   <TextBox PreviewTextInput="PreviewTextInput" x:Name="price" Text="{Binding Price,Mode=TwoWay}" HorizontalAlignment="Left" Margin="307,227,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"  Width="130" Height="28"/>
+   <TextBox PreviewTextInput="PreviewTextInput" x:Name="inStock" Text="{Binding InStock,Mode=TwoWay}" HorizontalAlignment="Left" Margin="307,273,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="130" Height="28"/>
    <ComboBox x:Name="CategoriesSelector" ItemsSource="{Binding Source={x:Static local:ProductWindow.categories}}" Text="{Binding Category,Mode=TwoWay}" HorizontalAlignment="Left" Margin="305,143,0,0" VerticalAlignment="Top" SelectionChanged="ComboBox_SelectionChanged"  Width="130" Height="28"/>
-  <Label Content="category" HorizontalAlignment="Left" Margin="249,145,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.941,0.509"/>
-  <Label Content="name" HorizontalAlignment="Left" Margin="249,191,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.469,0.375"/>
-  <Label Content="id" HorizontalAlignment="Left" Margin="251,104,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.676,0.654"/>
-  <Label Content="price" HorizontalAlignment="Left" Margin="251,229,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.021,0.531"/>
-  <Label Content="in stock" HorizontalAlignment="Left" Margin="251,271,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.477,-0.669"/>
-  <Label Foreground="Red" x:Name="errorMessage" Content="" HorizontalAlignment="Left" Margin="307,309,0,0" VerticalAlignment="Top"/>
-  <Label x:Name="page" Content="" HorizontalAlignment="Left" Margin="319,47,0,0" VerticalAlignment="Top" Height="31" Width="106" RenderTransformOrigin="0.806,0.632"/>
+   <Label Content="category" HorizontalAlignment="Left" Margin="249,145,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.941,0.509"/>
+   <Label Content="name" HorizontalAlignment="Left" Margin="249,191,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.469,0.375"/>
+   <Label Content="id" HorizontalAlignment="Left" Margin="251,104,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.676,0.654"/>
+   <Label Content="price" HorizontalAlignment="Left" Margin="251,229,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.021,0.531"/>
+   <Label Content="in stock" HorizontalAlignment="Left" Margin="251,271,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.477,-0.669"/>
+   <Label x:Name="page" Content="" HorizontalAlignment="Left" Margin="319,47,0,0" VerticalAlignment="Top" Height="31" Width="106" RenderTransformOrigin="0.806,0.632"/>
   </Grid>
+  <Label Foreground="Red" x:Name="errorMessage" Content="{Binding errorMessageText}" HorizontalAlignment="Left" Margin="307,309,0,0" VerticalAlignment="Top"/>
+
  </Grid>
 </Window>

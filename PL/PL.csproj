@@ -16,4 +16,10 @@
     <ProjectReference Include="..\BL\BL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Page Update="manager\Products\ProductListWindow.xaml">
+      <Generator>PublicMSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
 </Project>
