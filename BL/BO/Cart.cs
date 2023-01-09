@@ -6,7 +6,7 @@ public class Cart
  public string? CustomerName { get; set; }
  public string? CustomerEmail { get; set; }
  public string? CustomerAddress { get; set; }
- public List<OrderItem?>? ItemsList { get; set; }
+ public List<OrderItem?>? ItemsList { get; set; } = new List<OrderItem?>();
  public double TotalPrice { get; set; }
 
  public override string ToString()

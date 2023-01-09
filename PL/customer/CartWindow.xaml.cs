@@ -21,10 +21,20 @@ namespace PL.customer
  public partial class CartWindow : Window
  {
 
+  BL.BlApi.IBl? bl = BlApi.Factory.Get();
 
-
-  public CartWindow()
+  public Cart cart2
   {
+   get { return (Cart)GetValue(cart2Property); }
+   set { SetValue(cart2Property, value); }
+  }
+  public static readonly DependencyProperty cart2Property =
+      DependencyProperty.Register(nameof(cart2), typeof(Cart), typeof(ProudctItemWindow));
+
+  public CartWindow(Cart c)
+  {
+   cart2 = c;
+   MessageBox.Show(cart2.ToString());
    InitializeComponent();
   }
  }

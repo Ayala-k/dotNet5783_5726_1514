@@ -48,6 +48,7 @@ public partial class ProudctItemWindow : Window
  private void AddToCartButton_Click(object sender, RoutedEventArgs e)
  {
   bl.Cart.AddOrderItem(cart, productItem.ID);
+  MessageBox.Show(cart.ToString());
   productItem.AmountInCart++;
   //upadte list;
  }

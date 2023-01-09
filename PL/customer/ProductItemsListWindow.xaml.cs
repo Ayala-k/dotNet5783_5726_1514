@@ -66,10 +66,11 @@ public partial class ProductItemsListWindow : Window
   productItemsList = PL.PLfunctions.Convert(bl.Product.GetProductIItems());
   ProductItem? p = new ProductItem();
   productItemsList.Add(p);
+  cart = new Cart();
   InitializeComponent();
  }
 
- private void Button_Click(object sender, RoutedEventArgs e) => new CartWindow().ShowDialog();
+ private void Button_Click(object sender, RoutedEventArgs e) => new CartWindow(cart).ShowDialog();
 
  private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
  {
@@ -83,6 +84,7 @@ public partial class ProductItemsListWindow : Window
 
  private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
  {
+  
   new ProudctItemWindow(selectedProductItem, cart).Show();
  }
 }
