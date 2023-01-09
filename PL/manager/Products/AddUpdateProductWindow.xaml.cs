@@ -2,6 +2,7 @@
 using BlImplementation;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -11,9 +12,9 @@ using System.Windows.Input;
 
 namespace PL.Products
 {
- /// <summary>
- /// Interaction logic for ProductWindow.xaml
- /// </summary>
+    /// <summary>
+    /// Interaction logic for ProductWindow.xaml
+    /// </summary>
 
  public partial class ProductWindow : Window
  {
@@ -37,10 +38,10 @@ namespace PL.Products
    InitializeComponent();
   }
 
-  /// <summary>
-  /// product window ctor for add
-  /// </summary>
-  /// <param name="str">str=add to make sure the action to be done is adding</param>
+        /// <summary>
+        /// product window ctor for add
+        /// </summary>
+        /// <param name="str">str=add to make sure the action to be done is adding</param>
 
   public ProductWindow(Action<ProductForList?> action)
   {
@@ -52,11 +53,11 @@ namespace PL.Products
    this.action = action;
   }
 
-  /// <summary>
-  /// product window ctor for update
-  /// </summary>
-  /// <param name="str">str=update to make sure the action to be done is updating</param>
-  /// <param name="productId">product to be updated</param>
+        /// <summary>
+        /// product window ctor for update
+        /// </summary>
+        /// <param name="str">str=update to make sure the action to be done is updating</param>
+        /// <param name="productId">product to be updated</param>
 
   public ProductWindow( int productId, Action<ProductForList?> action)
   {
@@ -69,13 +70,13 @@ namespace PL.Products
 
   }
 
-  private void inStock_TextChanged(object sender, TextChangedEventArgs e) { }
+        private void inStock_TextChanged(object sender, TextChangedEventArgs e) { }
 
-  /// <summary>
-  /// add or update
-  /// </summary>
-  /// <param name="sender"></param>
-  /// <param name="e"></param>
+        /// <summary>
+        /// add or update
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
   private void buttonAddUpdate_Click(object sender, RoutedEventArgs e)
   {
@@ -126,15 +127,15 @@ namespace PL.Products
   }
   private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) { }
 
-  /// <summary>
-  /// prevent letters in numeric input fields
-  /// </summary>
-  /// <param name="sender"></param>
-  /// <param name="e"></param>
-  private void PreviewTextInput(object sender, TextCompositionEventArgs e)
-  {
-   Regex regex = new Regex("[^0-9]+");
-   e.Handled = regex.IsMatch(e.Text);
-  }
- }
+        /// <summary>
+        /// prevent letters in numeric input fields
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+    }
 }
