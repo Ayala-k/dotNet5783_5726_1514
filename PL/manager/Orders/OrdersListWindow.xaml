@@ -5,8 +5,55 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.manager.Orders"
         mc:Ignorable="d"
-        Title="OrdersListWindow" Height="450" Width="800">
+        Title="OrdersListWindow" Height="450" Width="800"
+        DataContext="{Binding RelativeSource={RelativeSource self}}">
+ 
     <Grid>
-        
-    </Grid>
+  <ListView x:Name="tmp" ItemsSource="{Binding orderForListList}" SelectionChanged="orderListview_SelectionChanged">
+   <ListView.View>
+    <GridView>
+     <GridViewColumn Width="Auto" Header="ID">
+      <GridViewColumn.CellTemplate>
+       <DataTemplate >
+        <TextBlock Margin="-5,-1" Text="{Binding ID}" TextAlignment="Right" Padding="2"/>
+       </DataTemplate>
+      </GridViewColumn.CellTemplate>
+     </GridViewColumn>
+     <GridViewColumn Width="Auto" Header="CustomerName">
+      <GridViewColumn.CellTemplate>
+       <DataTemplate>
+        <TextBlock Margin="-5,-1" Text="{Binding CustomerName}" Padding="2"/>
+       </DataTemplate>
+      </GridViewColumn.CellTemplate>
+     </GridViewColumn>
+     <GridViewColumn Width="Auto" Header="Status">
+      <GridViewColumn.CellTemplate>
+       <DataTemplate>
+        <TextBlock Margin="-5,-1" Text="{Binding Status}" TextAlignment="Center" Padding="2"/>
+       </DataTemplate>
+      </GridViewColumn.CellTemplate>
+     </GridViewColumn>
+     <GridViewColumn Width="Auto" Header="AmountOfItems">
+      <GridViewColumn.CellTemplate>
+       <DataTemplate>
+        <TextBlock Margin="-5,-1" Text="{Binding AmountOfItems}" TextAlignment="Center" Padding="2"/>
+       </DataTemplate>
+      </GridViewColumn.CellTemplate>
+     </GridViewColumn>
+     <GridViewColumn Width="Auto" Header="TotalPrice">
+      <GridViewColumn.CellTemplate>
+       <DataTemplate>
+        <TextBlock Margin="-5,-1" Text="{Binding TotalPrice}" TextAlignment="Center" Padding="2"/>
+       </DataTemplate>
+      </GridViewColumn.CellTemplate>
+     </GridViewColumn>
+
+
+    </GridView>
+   </ListView.View>
+
+  </ListView>
+
+
+ </Grid>
 </Window>

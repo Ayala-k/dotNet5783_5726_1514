@@ -12,16 +12,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PL.OrderItems
+namespace PL.customer
 {
  /// <summary>
- /// Interaction logic for OrderItemWindow.xaml
+ /// Interaction logic for CustomerMainWindow.xaml
  /// </summary>
- public partial class OrderItemWindow : Window
+ public partial class CustomerMainWindow : Window
  {
-  public OrderItemWindow()
+  public CustomerMainWindow()
   {
    InitializeComponent();
   }
+
+  private void Button_Click(object sender, RoutedEventArgs e) => new ProductItemsListWindow().ShowDialog();
+
+  private void Button_Click_1(object sender, RoutedEventArgs e) => new OrderTrackingWindow().ShowDialog();
+
  }
 }

@@ -1,2 +1,2 @@
 ﻿namespace DO;
-public enum Categories { guitars, keyboards, percussions, WindInstruments, bowTool }
+public enum Categories { guitars, keyboards, percussions, WindInstruments, bowTool,all }

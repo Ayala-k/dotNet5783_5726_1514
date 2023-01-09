@@ -1,5 +1,4 @@
-﻿using BL.BlApi;
-using BL.BO;
+﻿using BL.BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,26 +11,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BL.BlImplementation;
-using PL.manager;
-using PL.customer;
-//using PL.Orders;
 
-namespace PL
+namespace PL.customer
 {
  /// <summary>
- /// Interaction logic for MainWindow.xaml
+ /// Interaction logic for OrderTrackingWindow.xaml
  /// </summary>
- public partial class MainWindow : Window
+ public partial class OrderTrackingWindow : Window
  {
-  public MainWindow()
+  BL.BlApi.IBl? bl = BlApi.Factory.Get();
+  public OrderTrackingWindow()
   {
    InitializeComponent();
   }
-  private IBl bl = BlApi.Factory.Get();
-  void moveToManager_Click(object sender, RoutedEventArgs e) => new CustomerMainWindow().Show();
-
  }
 }

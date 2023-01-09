@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BL.BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,14 +13,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PL.OrderItems
+namespace PL.customer
 {
  /// <summary>
- /// Interaction logic for OrderItemListWindow.xaml
+ /// Interaction logic for CartWindow.xaml
  /// </summary>
- public partial class OrderItemListWindow : Window
+ public partial class CartWindow : Window
  {
-  public OrderItemListWindow()
+
+
+
+  public CartWindow()
   {
    InitializeComponent();
   }

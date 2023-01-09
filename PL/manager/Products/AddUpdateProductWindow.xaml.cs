@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
+
 namespace PL.Products
 {
  /// <summary>
@@ -17,6 +18,8 @@ namespace PL.Products
  public partial class ProductWindow : Window
  {
   BL.BlApi.IBl? bl = BlApi.Factory.Get();
+
+  private Action<ProductForList> action;
   public static Product product { get; set; } = new Product();
   public static string pageName { get; set; }
   public string errorMessageText
@@ -28,8 +31,7 @@ namespace PL.Products
       DependencyProperty.Register("errorMessageText", typeof(string), typeof(ProductWindow));
 
   public static bool isReadOnly { get; set; }
-  public static System.Array categories { get; set; } = Enum.GetValues(typeof(Categories));
-
+  public static Array categories { get; set; } = Enum.GetValues(typeof(Categories));  
   public ProductWindow()
   {
    InitializeComponent();
@@ -40,16 +42,14 @@ namespace PL.Products
   /// </summary>
   /// <param name="str">str=add to make sure the action to be done is adding</param>
 
-  public ProductWindow(string str)
+  public ProductWindow(Action<ProductForList?> action)
   {
-   if (str == "add")
-   {
     pageName = "add";
     product = new Product();//אם כפתור העדכון נלחץ קודם 
     isReadOnly = false;
     errorMessageText = "";
-   }
    InitializeComponent();
+   this.action = action;
   }
 
   /// <summary>
@@ -58,17 +58,15 @@ namespace PL.Products
   /// <param name="str">str=update to make sure the action to be done is updating</param>
   /// <param name="productId">product to be updated</param>
 
-  public ProductWindow(string str, int productId)
+  public ProductWindow( int productId, Action<ProductForList?> action)
   {
-   if (str == "update")
-   {
     pageName = "update";
     product = bl.Product.GetProductDetailsManager(productId);
     isReadOnly = true;
     errorMessageText = "";
-
-   }
    InitializeComponent();
+   this.action = action;
+
   }
 
   private void inStock_TextChanged(object sender, TextChangedEventArgs e) { }
@@ -108,7 +106,6 @@ namespace PL.Products
      try
      {
       bl.Product.UpdateProduct(product);
-      //SetValue(ProductListWindow.productsForListListProperty, ProductListWindow.Convert(bl.Product.GetProducts()));
      }
      catch (InvalidDetailsException exp)
      {
@@ -120,28 +117,11 @@ namespace PL.Products
 
      }
    }
-
+   action(bl.Product.GetProductForList(product.ID));
    //if the action has been done
    if (errorMessageText == "")
    {
     this.Close();
-    foreach (Window w in Application.Current.Windows)
-    {
-     if (w is ProductListWindow)
-     {
-      //w.Close();
-      ProductListWindow w1= (ProductListWindow)w;
-      //לא יכול לעשות השמה לליסט!
-      //w1.selectedCategory = null; work
-
-      IEnumerable<BL.BO.ProductForList?> tmp= (bl.Product.GetProducts()).ToList();
-      //w1.X1();
-      w1.productsForListList = tmp;
-      w1.productsForListList = null;//jump to throw
-      w1.productsForListList = (bl.Product.GetProducts());
-     }
-    }
-    //new ProductListWindow().Show();
    }
   }
   private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) { }
