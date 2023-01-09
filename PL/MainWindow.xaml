@@ -9,7 +9,7 @@
  <Grid>
   <Button x:Name="moveToManager" Content="manager" HorizontalAlignment="Left" Margin="302,101,0,0" VerticalAlignment="Top" Click="moveToManager_Click" Height="67" Width="163"/>
   <Button Content="new order" HorizontalAlignment="Left" Margin="302,0,0,0" VerticalAlignment="Center" Click="moveToManager_Click" Height="67" Width="163"/>
-  <Button Content="order tracking" HorizontalAlignment="Left" Margin="302,271,0,0" VerticalAlignment="Top" Click="moveToManager_Click" Height="67" Width="163"/>
+  <Button Content="order tracking" HorizontalAlignment="Left" Margin="302,271,0,0" VerticalAlignment="Top" Click="moveToTrackOrder_Click" Height="67" Width="163"/>
 
  </Grid>
 </Window>

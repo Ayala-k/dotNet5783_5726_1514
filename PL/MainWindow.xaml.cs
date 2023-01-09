@@ -21,17 +21,18 @@ using PL.customer;
 
 namespace PL
 {
- /// <summary>
- /// Interaction logic for MainWindow.xaml
- /// </summary>
- public partial class MainWindow : Window
- {
-  public MainWindow()
-  {
-   InitializeComponent();
-  }
-  private IBl bl = BlApi.Factory.Get();
-  void moveToManager_Click(object sender, RoutedEventArgs e) => new CustomerMainWindow().Show();
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+        private IBl bl = BlApi.Factory.Get();
+        void moveToManager_Click(object sender, RoutedEventArgs e) => new CustomerMainWindow().Show();
 
- }
+        void moveToTrackOrder_Click(object sender, RoutedEventArgs e) => new OrderTrackingWindow().Show();
+    }
 }

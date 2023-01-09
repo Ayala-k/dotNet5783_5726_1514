@@ -21,12 +21,13 @@ public class OrderTracking
         string descriptionStr = "";
         foreach (DateAndProgressDescription description in DateAndProgressDescriptionsList)
         {
-            descriptionStr += (description.ProgressDate.ToString() + " " + description.ProgressDescription);
+            descriptionStr += (description.ProgressDate.ToString() + " " + description.ProgressDescription + "\n");
         }
         return (
         $@"
         Order tracking ID={ID},
         Status: {Status},
-        Date And Progres sDescriptions List: {descriptionStr}");
+        Progress:
+        {descriptionStr}");
     }
 }
