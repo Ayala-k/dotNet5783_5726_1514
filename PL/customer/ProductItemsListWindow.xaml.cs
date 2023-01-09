@@ -1,4 +1,5 @@
 ﻿using BL.BO;
+using PL.Products;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -81,10 +82,16 @@ public partial class ProductItemsListWindow : Window
  {
 
  }
-
+ private void updateProductToList(ProductItem? productItem)
+ {
+  var item = productItemsList.FirstOrDefault(item => item.ID == productItem.ID);
+  if (item != null)
+   productItemsList[productItemsList.IndexOf(item)] = productItem;
+ }
  private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
  {
-  
-  new ProudctItemWindow(selectedProductItem, cart).Show();
+
+  if (selectedProductItem is BL.BO.ProductItem)
+   new ProudctItemWindow(selectedProductItem, cart, updateProductToList).Show();
  }
 }

@@ -23,6 +23,7 @@ public partial class ProudctItemWindow : Window
 {
  BL.BlApi.IBl? bl = BlApi.Factory.Get();
 
+ Action<ProductItem> action;
  public ProductItem productItem
  {
   get { return (ProductItem)GetValue(productItemProperty); }
@@ -38,11 +39,12 @@ public partial class ProudctItemWindow : Window
  }
  public static readonly DependencyProperty cartProperty =
      DependencyProperty.Register(nameof(cart), typeof(Cart), typeof(ProudctItemWindow));
- public ProudctItemWindow(ProductItem pi,Cart c)
+ public ProudctItemWindow(ProductItem pi,Cart c, Action<ProductItem> action)
  {
   cart = c;
   productItem= pi;
   InitializeComponent();
+  this.action = action;
  }
 
  private void AddToCartButton_Click(object sender, RoutedEventArgs e)
@@ -50,6 +52,8 @@ public partial class ProudctItemWindow : Window
   bl.Cart.AddOrderItem(cart, productItem.ID);
   MessageBox.Show(cart.ToString());
   productItem.AmountInCart++;
+  action(productItem);
+  this.Close(); 
   //upadte list;
  }
 }
