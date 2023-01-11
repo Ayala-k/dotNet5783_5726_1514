@@ -39,10 +39,11 @@ public partial class ProudctItemWindow : Window
  }
  public static readonly DependencyProperty cartProperty =
      DependencyProperty.Register(nameof(cart), typeof(Cart), typeof(ProudctItemWindow));
- public ProudctItemWindow(ProductItem pi,Cart c, Action<ProductItem> action)
+
+ public ProudctItemWindow(ProductItem pi, Cart c, Action<ProductItem> action)
  {
   cart = c;
-  productItem= pi;
+  productItem = pi;
   InitializeComponent();
   this.action = action;
  }
@@ -50,10 +51,16 @@ public partial class ProudctItemWindow : Window
  private void AddToCartButton_Click(object sender, RoutedEventArgs e)
  {
   bl.Cart.AddOrderItem(cart, productItem.ID);
-  MessageBox.Show(cart.ToString());
-  productItem.AmountInCart++;
+  productItem = new ProductItem()
+  {
+   ID = productItem.ID,
+   Name = productItem.Name,
+   Price = productItem.Price,
+   AmountInCart = productItem.AmountInCart + 1,
+   InStock = productItem.InStock,
+   Category = productItem.Category,
+  };
   action(productItem);
-  this.Close(); 
-  //upadte list;
+  this.Close();
  }
 }

@@ -8,7 +8,6 @@
         Title="CustomerMainWindow" Height="450" Width="800">
  <Grid>
   <Button Content="show catalog" HorizontalAlignment="Left" Margin="290,75,0,0" VerticalAlignment="Top" Height="76" Width="176" Click="Button_Click"/>
-  <Button Content="order tracking" HorizontalAlignment="Left" Margin="290,197,0,0" VerticalAlignment="Top" Height="76" Width="176" Click="Button_Click_1"/>
 
  </Grid>
 </Window>

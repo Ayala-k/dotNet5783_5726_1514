@@ -1,4 +1,5 @@
-﻿using PL.Products;
+﻿using PL.customer;
+using PL.Products;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,6 +14,13 @@ namespace PL;
 
 internal class PLfunctions:DependencyObject
 {
+ public string errorMessageText
+ {
+  get { return (string)GetValue(errorMessageTextProperty); }
+  set { SetValue(errorMessageTextProperty, value); }
+ }
+ public static readonly DependencyProperty errorMessageTextProperty =
+     DependencyProperty.Register("errorMessageText", typeof(string), typeof(PLfunctions));
 
  //public string errorMessageText
  //{

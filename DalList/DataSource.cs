@@ -64,7 +64,7 @@ internal static class DataSource
             Categories.bowTool, Categories.WindInstruments, Categories.WindInstruments,
             Categories.percussions, Categories.percussions };
   double[] prices = new double[] { 30000, 4000, 2605, 900, 2083, 2129, 58, 2188, 1559, 2385 };
-  int[] inStock = new int[] { 500, 200, 10, 69, 32, 14, 48, 0, 321, 53 };
+  int[] inStock = new int[] { 2, 200, 10, 69, 32, 14, 48, 0, 321, 53 };
 
   for (int i = 0; i < 10; i++)
   {

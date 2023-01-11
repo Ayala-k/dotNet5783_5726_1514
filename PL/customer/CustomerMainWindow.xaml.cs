@@ -25,8 +25,5 @@ namespace PL.customer
   }
 
   private void Button_Click(object sender, RoutedEventArgs e) => new ProductItemsListWindow().ShowDialog();
-
-  private void Button_Click_1(object sender, RoutedEventArgs e) => new OrderTrackingWindow().ShowDialog();
-
  }
 }

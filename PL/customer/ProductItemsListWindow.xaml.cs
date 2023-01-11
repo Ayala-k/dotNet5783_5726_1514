@@ -33,7 +33,6 @@ public partial class ProductItemsListWindow : Window
  public static readonly DependencyProperty productItemsListProperty =
      DependencyProperty.Register(nameof(productItemsList), typeof(ObservableCollection<ProductItem?>), typeof(ProductItemsListWindow));
  public static Array categories { get; set; } = ((Enum.GetValues(typeof(BL.BO.Categories))));
-
  public BL.BO.Categories? selectedCategory
  {
   get { return (BL.BO.Categories?)GetValue(selectedCategoryProperty); }
@@ -41,9 +40,6 @@ public partial class ProductItemsListWindow : Window
  }
  public static readonly DependencyProperty selectedCategoryProperty =
      DependencyProperty.Register("selectedCategory", typeof(BL.BO.Categories?), typeof(ProductItemsListWindow));
-
-
-
  public ProductItem selectedProductItem
  {
   get { return (ProductItem)GetValue(selectedProductItemProperty); }
@@ -59,9 +55,6 @@ public partial class ProductItemsListWindow : Window
  }
  public static readonly DependencyProperty cartProperty =
      DependencyProperty.Register(nameof(cart), typeof(Cart), typeof(ProductItemsListWindow));
-
-
-
  public ProductItemsListWindow()
  {
   productItemsList = PL.PLfunctions.Convert(bl.Product.GetProductIItems());
@@ -71,27 +64,60 @@ public partial class ProductItemsListWindow : Window
   InitializeComponent();
  }
 
- private void Button_Click(object sender, RoutedEventArgs e) => new CartWindow(cart).ShowDialog();
+ private void Button_Click(object sender, RoutedEventArgs e) => new CartWindow(cart, updateProductToList, updateProductToListAmountInCart).ShowDialog();
 
  private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
  {
   productItemsList = PL.PLfunctions.Convert(bl.Product.GetProductIItems(p => p.Category == selectedCategory));
+  //productItemsList = (ObservableCollection<ProductItem?>)(from g in groupByCategory()
+  //                                                        where g.Key == selectedCategory
+  //                                                        select g);
+
  }
 
  private void ButtonGroupingByCategory_Click(object sender, RoutedEventArgs e)
  {
-
+  //productItemsList = (ObservableCollection<ProductItem?>)(from g in groupByCategory()
+  //                                                        from a in g
+  //                                                        select a);
+  //var x = (from pi in productItemsList
+  //         group pi by pi.Category into categoryList
+  //         from sndjns in categoryList
+  //         select sndjns);
+  //MessageBox.Show(x.GetType().ToString());
  }
- private void updateProductToList(ProductItem? productItem)
+ private void updateProductToList(ProductItem productItem)
  {
   var item = productItemsList.FirstOrDefault(item => item.ID == productItem.ID);
   if (item != null)
    productItemsList[productItemsList.IndexOf(item)] = productItem;
  }
+
+ private void updateProductToListAmountInCart(int productID, int amount)
+ {
+  var item = productItemsList.FirstOrDefault(item => item.ID == productID);
+  if (item != null)
+   item.AmountInCart = amount;
+  productItemsList[productItemsList.IndexOf(item)] = new ProductItem()
+  {
+   AmountInCart = amount,
+   ID = item.ID,
+   Name = item.Name,
+   Category = item.Category,
+   InStock = item.InStock,
+   Price = item.Price
+  };
+ }
  private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
  {
-
   if (selectedProductItem is BL.BO.ProductItem)
    new ProudctItemWindow(selectedProductItem, cart, updateProductToList).Show();
+ }
+ private IEnumerable<IGrouping<Categories?, ProductItem>> groupByCategory()
+ {
+  IEnumerable<IGrouping<Categories?, ProductItem?>> result = from pi in productItemsList
+                                                             group pi by pi.Category into categoryList
+                                                             select categoryList;
+  return result;
  }
 }

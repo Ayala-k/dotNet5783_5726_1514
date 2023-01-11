@@ -3,6 +3,15 @@ namespace BL.BO;
 
 public class OrderItem
 {
+ public OrderItem(){ }
+ public OrderItem(OrderItem oi)
+ {
+  Name = oi.Name;
+  ProductID = oi.ProductID;
+  Price = oi.Price;
+  Amount = oi.Amount;
+  TotalPrice = oi.TotalPrice;
+ }
  //public int ID { get; set; }
  public string? Name { get; set; }
  public int ProductID { get; set; }

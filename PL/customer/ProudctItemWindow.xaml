@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="ProudctItemWindow" Height="450" Width="800"
         DataContext="{Binding RelativeSource={RelativeSource self}}">
-    <Grid DataContext="{Binding productItem}">
+    <Grid DataContext="{Binding productItem,Mode=TwoWay}">
      
-  <TextBlock Text="{Binding ID}" HorizontalAlignment="Left" Margin="305,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="28"/>
+  <TextBlock Text="{Binding ID,Mode=TwoWay}" HorizontalAlignment="Left" Margin="305,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="28"/>
   <TextBlock x:Name="name" Text="{Binding Name}" HorizontalAlignment="Left" Margin="305,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="130" Height="28"/>
   <TextBlock Text="{Binding Price}" HorizontalAlignment="Left" Margin="307,227,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"  Width="130" Height="28"/>
   <TextBlock Text="{Binding Category}" HorizontalAlignment="Left" Margin="322,189,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"  Width="130" Height="28"/>
@@ -20,7 +20,7 @@
   <Label Content="price" HorizontalAlignment="Left" Margin="251,229,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.021,0.531"/>
   <Label Content="in stock" HorizontalAlignment="Left" Margin="244,269,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.477,-0.669"/>
   <Label Content="amount in cart" HorizontalAlignment="Left" Margin="207,313,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.477,-0.669"/>
-  <TextBlock Text="{Binding AmountInCart}" HorizontalAlignment="Left" Margin="322,311,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"  Width="130" Height="28"/>
+  <TextBlock Text="{Binding AmountInCart,Mode=TwoWay}" HorizontalAlignment="Left" Margin="322,311,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"  Width="130" Height="28"/>
   <Button Content="add to cart" HorizontalAlignment="Left" Margin="400,356,0,0" VerticalAlignment="Top" Click="AddToCartButton_Click"/>
 
  </Grid>

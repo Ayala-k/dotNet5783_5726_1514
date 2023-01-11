@@ -52,7 +52,7 @@ namespace PL.manager.Orders
    if (tmp.SelectedItem is BL.BO.OrderForList)
    {
     id = ((BL.BO.OrderForList)tmp.SelectedItem).ID;
-    new UpdateOrderWindow(id, updateOrder,"manager").ShowDialog();
+    new UpdateOrderWindow(id,"manager", updateOrder).ShowDialog();
    }
   }
  }

@@ -61,14 +61,14 @@ internal class Cart : ICart
   //if product already in cart
   else
   {
-   if (productToAddToCart.InStock <= productInCart.Amount)
+   if (productToAddToCart.InStock < productInCart.Amount + 1)
     throw new BO.NotEnoughInStockException("not enough in stock");
 
    //update cart
    cart.ItemsList.Remove(productInCart);
    productInCart.Amount++;
-   productInCart.Price += productToAddToCart.Price;
-   cart.TotalPrice += productToAddToCart.Price;
+   productInCart.TotalPrice += productInCart.Price;
+   cart.TotalPrice += productInCart.Price;
    cart.ItemsList.Add(productInCart);
   }
   return cart;
@@ -84,22 +84,36 @@ internal class Cart : ICart
  public BO.Cart UpdateOrderItemAmountInCart(BO.Cart cart, int productID, int updatedAmount)
  {
   BO.OrderItem productInCart = cart.ItemsList.FirstOrDefault(item => item.ProductID == productID);
+  int numOfProductInCart = productInCart.Amount;
   //if updated amount is bigger than before
-  if (productInCart.Amount < updatedAmount)
+  if (productInCart.Amount < updatedAmount && updatedAmount != 0)
   {
-   for (int i = 0; i < (updatedAmount - productInCart.Amount); i++)
    {
-    AddOrderItem(cart, productID);
+    for (int i = 0; i < (updatedAmount - numOfProductInCart); i++)
+     try
+     {
+      AddOrderItem(cart, productID);
+     }
+     catch (BO.EntityNotFoundLogicException e)
+     {
+      throw new BO.EntityNotFoundLogicException("product to add not found");
+     }
+     catch (BO.NotEnoughInStockException e)
+     {
+      throw new BO.NotEnoughInStockException("not enough in stock");
+     }
    }
   }
   //if updated amount is amaller than before- update the cart
-  else if (productInCart.Amount > updatedAmount)
+  else if (productInCart.Amount > updatedAmount && updatedAmount != 0)
   {
    cart.ItemsList.Remove(productInCart);
    int oldAmount = productInCart.Amount;
    productInCart.Amount = updatedAmount;
-   productInCart.Price -= productInCart.Price * (oldAmount - updatedAmount);
-   cart.TotalPrice -= productInCart.Price * (oldAmount - updatedAmount);
+   //productInCart.TotalPrice = productInCart.Price * productInCart.Amount;
+
+   productInCart.TotalPrice -= productInCart.Price * (oldAmount - updatedAmount);
+   cart.TotalPrice -= productInCart.TotalPrice * (oldAmount - updatedAmount);
    cart.ItemsList.Add(productInCart);
   }
   //if updated ampunt is 0- upadte the cart
@@ -119,7 +133,7 @@ internal class Cart : ICart
  /// <exception cref="BO.InvalidDetailsException"></exception>
  /// <exception cref="BO.NotEnoughInStockException"></exception>
  /// <exception cref="BO.EntityAlreadyExistsLogicException"></exception>
- public void CommitOrder(BO.Cart cart)
+ public int CommitOrder(BO.Cart cart)
  {
   //verify products in cart details
   DO.Product product;
@@ -144,7 +158,7 @@ internal class Cart : ICart
   }
 
   //verify customer details
-  if (cart.CustomerName == " " || cart.CustomerAddress == " " || cart.CustomerEmail == " ")
+  if (cart.CustomerName == "" || cart.CustomerAddress == "" || cart.CustomerEmail == "")
    throw new BO.InvalidDetailsException("invalid customer details");
 
   //create an order
@@ -211,5 +225,6 @@ internal class Cart : ICart
     throw new BO.EntityNotFoundLogicException("product not found", e);
    }
   }
+  return orderDalID;
  }
 }

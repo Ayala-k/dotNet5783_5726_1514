@@ -67,7 +67,7 @@ namespace PL.manager.Orders
   public static readonly DependencyProperty deliveryDateProperty =
       DependencyProperty.Register(nameof(deliveryDate), typeof(bool), typeof(UpdateOrderWindow));
 
-  public UpdateOrderWindow(int id, Action<OrderForList> action,string permission)
+  public UpdateOrderWindow(int id,string permission, Action<OrderForList> action=null)
   {
    if (permission == "customer")
    {
