@@ -46,7 +46,7 @@ public partial class ProductWindow : Window
  public ProductWindow(Action<ProductForList?> action)
  {
    pageName = "add";
-   product = new Product();//אם כפתור העדכון נלחץ קודם 
+   product = new Product(); 
    isReadOnly = false;
    errorMessageText = "";
   InitializeComponent();
@@ -84,7 +84,7 @@ public partial class ProductWindow : Window
   if (product.ID == 0 || product.Name == "" || product.Category == null
    || product.Price == 0)
   {
-   errorMessageText = "please fill in all fields";//לשנות לdependecy property
+   errorMessageText = "please fill in all fields";
   }
   else
   {

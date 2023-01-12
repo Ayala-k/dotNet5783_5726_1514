@@ -44,33 +44,12 @@ public partial class ProductListWindow : Window
 
 
  public static Array categories { get; set; } = ((Enum.GetValues(typeof(BL.BO.Categories))));
- //static Array categories = (Enum.GetValues(typeof(DO.Categories)));
-
- //static int size = categories.Length;
- //static Array[] newCategories { get; set; } = new Array[size];
- //string all { get; set; } = "all";
 
  public ProductListWindow()
  {
   productsForListList = PL.PLfunctions.Convert(bl.Product.GetProducts());
   selectedCategory = null;
   InitializeComponent();
-  //ComboBoxItem newItem = new ComboBoxItem();
-  //newItem.Content = "all";
-  //CategoriesSelector.ItemsSource.Add(newItem);
-  //CategoriesSelector.ItemsSource = (IEnumerable<ComboBoxItem>)CategoriesSelector.ItemsSource;
-  //ComboBoxItem newItem = new ComboBoxItem();
-  //newItem.Content = "all";
-  //CategoriesSelector.ItemsSource = CategoriesSelector.ItemsSource.ToList().AddRange(newItem);
-  //CategoriesSelector.DataContext = this;
-
-  //CategoriesSelector.ItemsSource.Add(all);
-
-  // for (int i = 0; i < size; i++)
-  // {
-  //  newCategories[i] = categories[i];
-  // }
-  // newCategories[newCategories.Length] =
  }
 
 
@@ -81,11 +60,14 @@ public partial class ProductListWindow : Window
  /// <param name="e"></param>
  private void CategoriesSelector_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
  {
-  //if (CategoriesSelectorText != " ")
-  /*productsForList*/
-
-  productsForListList = PL.PLfunctions.Convert(bl.Product.GetProducts(p => p.Category == selectedCategory));
- }
+        //productsForListList = PL.PLfunctions.Convert(bl.Product.GetProducts(p => p.Category == selectedCategory));
+        var GropupingProducts = (from p in productsForListList
+                                 group p by p.Category into categoryGroup
+                                 from pr in categoryGroup
+                                 where categoryGroup.Key==selectedCategory
+                                 select pr).ToList();
+        productsForListList = PL.PLfunctions.Convert(GropupingProducts);
+    }
 
  private void updateProductToList(ProductForList? product)
  {
@@ -121,9 +103,3 @@ public partial class ProductListWindow : Window
   new ProductWindow(addProductToList).ShowDialog();
  }
 }
-
- //private void Button_Click_1(object sender, RoutedEventArgs e)
- //{
- // ProductListview.ItemsSource = productsForListList;
- // CategoriesSelectorText = " ";
- //}

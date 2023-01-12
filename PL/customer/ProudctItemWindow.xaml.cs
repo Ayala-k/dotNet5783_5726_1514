@@ -59,7 +59,7 @@ public partial class ProudctItemWindow : Window
 
  private void AddToCartButton_Click(object sender, RoutedEventArgs e)
  {
-  if (bl.Cart.getUserCart().CustomerName != null)//in login
+  if (bl.Cart.getUserCart().CustomerName != null)
   {
    bl.Cart.addOrderItemUserCart(productItem.ID);
    cart = bl.Cart.getUserCart();
@@ -68,7 +68,7 @@ public partial class ProudctItemWindow : Window
   else
   {
    bl.Cart.AddOrderItem(cart, productItem.ID);
-  }//////////
+  }
   productItem = new ProductItem()
   {
    ID = productItem.ID,

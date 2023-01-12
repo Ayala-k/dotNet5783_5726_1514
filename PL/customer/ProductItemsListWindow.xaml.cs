@@ -72,24 +72,24 @@ public partial class ProductItemsListWindow : Window
 
  private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
  {
-  productItemsList = PL.PLfunctions.Convert(bl.Product.GetProductIItems(p => p.Category == selectedCategory));
-  //productItemsList = (ObservableCollection<ProductItem?>)(from g in groupByCategory()
-  //                                                        where g.Key == selectedCategory
-  //                                                        select g);
+        var GropupingProducts = (from p in productItemsList
+                                 group p by p.Category into categoryGroup
+                                 from pr in categoryGroup
+                                 where categoryGroup.Key == selectedCategory
+                                 select pr).ToList();
+        productItemsList = PL.PLfunctions.Convert(GropupingProducts);
+    }
 
- }
-
- private void ButtonGroupingByCategory_Click(object sender, RoutedEventArgs e)
+    private void ButtonGroupingByCategory_Click(object sender, RoutedEventArgs e)
  {
-  //productItemsList = (ObservableCollection<ProductItem?>)(from g in groupByCategory()
-  //                                                        from a in g
-  //                                                        select a);
-  //var x = (from pi in productItemsList
-  //         group pi by pi.Category into categoryList
-  //         from sndjns in categoryList
-  //         select sndjns);
-  //MessageBox.Show(x.GetType().ToString());
- }
+        selectedCategory = null;
+        var GropupingProducts = (from p in productItemsList
+                                 group p by p.Category into categoryGroup
+                                 from pr in categoryGroup
+                                 select pr).ToList();
+
+        productItemsList = PL.PLfunctions.Convert(GropupingProducts);
+    }
  private void updateProductToList(ProductItem productItem)
  {
   var item = productItemsList.FirstOrDefault(item => item.ID == productItem.ID);

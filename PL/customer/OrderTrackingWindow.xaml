@@ -7,13 +7,13 @@
         mc:Ignorable="d"
         Title="OrderTrackingWindow" Height="450" Width="800"
         DataContext="{Binding RelativeSource={RelativeSource self}}">
- <Grid>
-  <TextBox Text="{Binding orderID, Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="384,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
-  <Label Content="order id" HorizontalAlignment="Left" Margin="321,165,0,0" VerticalAlignment="Top"/>
-  <Button Content="track order" HorizontalAlignment="Left" Margin="400,217,0,0" VerticalAlignment="Top" Click="TrackOrderButton_Click"/>
-  <TextBlock Text="{Binding trackDetails}" HorizontalAlignment="Left" Margin="303,282,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="142" Width="259"/>
-  <Label Foreground="Red" x:Name="errorMessage" Content="{Binding errorMessageText}" HorizontalAlignment="Left" Margin="190,312,0,0" VerticalAlignment="Top"/>
-  <Button Content="view order details" Visibility="{Binding visible}" HorizontalAlignment="Left" Margin="431,295,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+    <Grid Margin="0,0,-260,-177">
+        <TextBox Text="{Binding orderID, Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="384,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+        <Label Content="order id" HorizontalAlignment="Left" Margin="321,165,0,0" VerticalAlignment="Top"/>
+        <Button Content="track order" HorizontalAlignment="Left" Margin="413,197,0,0" VerticalAlignment="Top" Click="TrackOrderButton_Click"/>
+        <TextBlock Text="{Binding trackDetails}" HorizontalAlignment="Left" Margin="315,232,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="161" Width="258"/>
+        <Label Foreground="Red" x:Name="errorMessage" Content="{Binding errorMessageText}" HorizontalAlignment="Left" Margin="520,217,0,0" VerticalAlignment="Top"/>
+        <Button Content="view order details" Visibility="{Binding visible}" HorizontalAlignment="Left" Margin="395,379,0,0" VerticalAlignment="Top" Click="Button_Click"/>
 
- </Grid>
+    </Grid>
 </Window>

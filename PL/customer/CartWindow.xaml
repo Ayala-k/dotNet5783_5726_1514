@@ -66,9 +66,8 @@
   </ListView>
   <Label Content="Total Price:" HorizontalAlignment="Left" Margin="552,206,0,0" VerticalAlignment="Top"/>
   <Grid DataContext="{Binding cart2, UpdateSourceTrigger=PropertyChanged}">
-   <TextBlock HorizontalAlignment="Left" Margin="319,299,0,0" TextWrapping="Wrap" Text="{Binding TotalPrice}" VerticalAlignment="Top" RenderTransformOrigin="-0.372,0.483"/>
-   <!--=binus:oneWay-->
-   <TextBox Text="{Binding CustomerName, Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="820,122,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="319,299,0,0" TextWrapping="Wrap" Text="{Binding TotalPrice}" VerticalAlignment="Top" RenderTransformOrigin="-0.372,0.483"/>
+            <TextBox Text="{Binding CustomerName, Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="820,122,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"/>
    <TextBox Text="{Binding CustomerEmail, Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="826,161,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"/>
    <TextBox Text="{Binding CustomerAddress, Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="829,198,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"/>
   </Grid>

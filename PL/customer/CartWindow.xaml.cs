@@ -81,7 +81,7 @@ public partial class CartWindow : Window
  {
   orderItemsList = new ObservableCollection<BL.BO.OrderItem?>(from BL.BO.OrderItem oi in (bl.Cart.UpdateOrderItemAmountInCart(cart2, ((int)(((Button)sender).Tag)), 0)).ItemsList
                                                               select new BL.BO.OrderItem(oi));
-  cart2 = new BL.BO.Cart()//לשנות לקופי
+  cart2 = new BL.BO.Cart()
   {
    CustomerName = cart2.CustomerName,
    CustomerAddress = cart2.CustomerAddress,
@@ -93,9 +93,6 @@ public partial class CartWindow : Window
  }
  private void updateAmountButton_Click(object sender, RoutedEventArgs e)
  {
-  //cart2.ItemsList = orderItemsList;
-  //BL.BO.OrderItem oiToUpdate = cart2.ItemsList.FirstOrDefault(oi => oi.ProductID == (int)(((Button)sender).Tag));
-  //if (oiToUpdate != null)
   try
   {
    int newAmount = orderItemsList.FirstOrDefault(o => o.ProductID == (int)((Button)sender).Tag).Amount;
@@ -138,7 +135,7 @@ public partial class CartWindow : Window
   {
    errorMessageText2 = exp.Message.ToString();
   }
-  catch (BL.BO.NotEnoughInStockException exp)//אפשר להוריד
+  catch (BL.BO.NotEnoughInStockException exp)
   {
    errorMessageText2 = exp.Message.ToString();
   }

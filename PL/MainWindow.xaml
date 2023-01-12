@@ -7,17 +7,18 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
                 DataContext="{Binding RelativeSource={RelativeSource self}}">
- <Grid DataContext="{Binding cart}">
+    <Grid DataContext="{Binding cart}">
 
-  <Button x:Name="moveToManager" Content="manager" HorizontalAlignment="Left" Margin="76,137,0,0" VerticalAlignment="Top" Click="moveToManager_Click" Height="67" Width="163"/>
-  <Button Content="login" HorizontalAlignment="Left" Margin="413,251,0,0" VerticalAlignment="Top" Click="loginButton_Click"/>
-  <Button Content="continue as a guest" HorizontalAlignment="Left" Margin="375,293,0,0" VerticalAlignment="Top" Click="guestButton_Click"/>
-  <TextBox Text="{Binding CustomerName,Mode=TwoWay}" HorizontalAlignment="Left" Margin="444,137,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-  <TextBox Text="{Binding CustomerAddress}" HorizontalAlignment="Left" Margin="444,170,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-  <TextBox Text="{Binding CustomerEmail}" HorizontalAlignment="Left" Margin="444,199,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-  <Label Content="name" HorizontalAlignment="Left" Margin="400,137,0,0" VerticalAlignment="Top"/>
-  <Label Content="address" HorizontalAlignment="Left" Margin="377,170,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.153,0.41"/>
-  <Label Content="email" HorizontalAlignment="Left" Margin="400,195,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="moveToManager" Content="manager" HorizontalAlignment="Left" Margin="52,61,0,0" VerticalAlignment="Top" Click="moveToManager_Click" Height="26" Width="113"/>
+        <Button Content="login" HorizontalAlignment="Center" VerticalAlignment="Center" Click="loginButton_Click" RenderTransformOrigin="-0.261,-1.23"/>
+        <Button Content="continue as a guest" HorizontalAlignment="Center" Margin="0,272,0,0" VerticalAlignment="Top" Click="guestButton_Click" RenderTransformOrigin="0.244,0.032"/>
+        <TextBox Text="{Binding CustomerName,Mode=TwoWay}" HorizontalAlignment="Left" Margin="342,102,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox Text="{Binding CustomerAddress}" HorizontalAlignment="Left" Margin="342,133,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox Text="{Binding CustomerEmail}" HorizontalAlignment="Left" Margin="342,168,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <Label Content="name" HorizontalAlignment="Left" Margin="288,98,0,0" VerticalAlignment="Top"/>
+        <Label Content="address" HorizontalAlignment="Left" Margin="277,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.153,0.41"/>
+        <Label Content="email" HorizontalAlignment="Left" Margin="288,160,0,0" VerticalAlignment="Top"/>
+        <Label Content="or" HorizontalAlignment="Center" Margin="0,241,0,0" VerticalAlignment="Top"/>
 
- </Grid>
+    </Grid>
 </Window>
