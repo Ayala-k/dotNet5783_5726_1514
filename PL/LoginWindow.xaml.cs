@@ -15,23 +15,20 @@ using System.Windows.Shapes;
 namespace PL;
 
 /// <summary>
-/// Interaction logic for managerMainWindow.xaml
+/// Interaction logic for LoginWindow.xaml
 /// </summary>
-public partial class managerMainWindow : Window
+public partial class LoginWindow : Window
 {
- public managerMainWindow()
+ BL.BlApi.IBl? bl = BlApi.Factory.Get();
+
+ public LoginWindow()
  {
   InitializeComponent();
  }
 
- private void moveToProductList_Click(object sender, RoutedEventArgs e)
- {
-  new ProductListWindow().Show();
 
- }
+ void moveToTrackOrder_Click(object sender, RoutedEventArgs e) => new OrderTrackingWindow().Show();
 
- private void moveToOrdersList_Click(object sender, RoutedEventArgs e)
- {
-  new OrdersListWindow().Show();
- }
+ private void moveToCustomer_Click(object sender, RoutedEventArgs e) => new CustomerMainWindow().Show();
+
 }

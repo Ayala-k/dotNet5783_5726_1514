@@ -1,10 +1,11 @@
 ﻿
 using BL.BlApi;
+using BlImplementation;
 using DalApi;
 
 namespace BL.BlImplementation;
 
-internal class Cart : ICart
+internal class Cart : BlApi.ICart
 {
  IDal? Dal = Factory.Get();
  BO.Cart cart = new BO.Cart();
@@ -227,4 +228,78 @@ internal class Cart : ICart
   }
   return orderDalID;
  }
+
+
+
+ public void updateUserCart(BO.Cart cart)//just user details and total price
+ {
+  DO.Cart cartDal = new DO.Cart()
+  {
+   CustomerName = cart.CustomerName,
+   CustomerAddress = cart.CustomerAddress,
+   CustomerEmail = cart.CustomerEmail,
+   TotalPrice = cart.TotalPrice,
+  };
+  //cartDal.copy(cart);
+  Dal.Cart.Update(cartDal);
+ }
+ public BO.Cart getUserCart()
+ {
+  //{
+  // CustomerName=
+  //}
+  DO.Cart cartDal = Dal.Cart.getCart();
+  BO.Cart cart = new BO.Cart()
+  {
+   CustomerName = cartDal.CustomerName,
+   CustomerAddress = cartDal.CustomerAddress,
+   CustomerEmail = cartDal.CustomerEmail,
+   TotalPrice = cartDal.TotalPrice,
+   //ItemsList=(BO.OrderItem)cartDal.ItemsList
+  };
+  foreach(DO.OrderItem oiDal in cartDal.ItemsList)
+  {
+   BL.BO.OrderItem oiBL = new BL.BO.OrderItem()
+   {
+    //Name = oiDal.Name,
+    Price = oiDal.Price,
+    ProductID = oiDal.ProductID,
+    Amount = oiDal.Amount,
+    TotalPrice = oiDal.Price * oiDal.Price,
+   };
+   cart.ItemsList.Add(oiBL);
+  }
+  return cart;
+ }
+
+ public void addOrderItemUserCart(int productID)
+ {
+  DO.Product productToAddToCart = new DO.Product();
+  try
+  {
+   productToAddToCart = Dal?.Product.GetByCondition(item => item?.ID == productID) ?? throw new BO.EntityNotFoundLogicException("product to add not found"); ;
+  }
+  catch (DO.EntityNotFoundException e)
+  {
+   throw new BO.EntityNotFoundLogicException("product to add not found", e);
+  }
+  DO.OrderItem oi = new DO.OrderItem()
+  {
+   ProductID = productToAddToCart!.ID,
+   //Name = productToAddToCart.Name,
+   Price = productToAddToCart.Price,
+   Amount = 1,
+   //TotalPrice = productToAddToCart.Price
+  };
+  Dal.Cart.AddOrderItemToCart(oi);
+  BL.BO.Cart cart = getUserCart();
+ }
+
+
+
+
+
+
+
+
 }

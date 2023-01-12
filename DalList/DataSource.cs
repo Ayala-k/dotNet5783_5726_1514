@@ -29,6 +29,8 @@ internal static class DataSource
  internal static List<Product?> _productsList = new List<Product?>();
  internal static List<Order?> _ordersList = new List<Order?>();
  internal static List<OrderItem?> _orderItemsList = new List<OrderItem?>();
+ internal static Cart userCart=new Cart();
+ internal static List<Order?> userOrdersList = new List<Order?>();
  #endregion
 
  #region add functions

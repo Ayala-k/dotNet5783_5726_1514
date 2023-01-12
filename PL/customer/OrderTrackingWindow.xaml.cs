@@ -1,7 +1,6 @@
-﻿using PL.manager.Orders;
-using System.Windows;
+﻿using System.Windows;
 
-namespace PL.customer;
+namespace PL;
 
 /// <summary>
 /// Interaction logic for OrderTrackingWindow.xaml
@@ -44,6 +43,7 @@ public partial class OrderTrackingWindow : Window
 
  public OrderTrackingWindow()
  {
+  orderID= 0; 
   visible = Visibility.Hidden;
   InitializeComponent();
  }
@@ -67,7 +67,6 @@ public partial class OrderTrackingWindow : Window
  private void TextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
  {
   visible = Visibility.Hidden;
-
   errorMessageText = "";
   trackDetails = "";
  }

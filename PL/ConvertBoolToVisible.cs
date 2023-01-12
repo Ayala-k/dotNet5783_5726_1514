@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace PL.manager.Orders;
+namespace PL;
 
 internal class ConvertBoolToVisible: IValueConverter
 {

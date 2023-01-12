@@ -1,14 +1,17 @@
-﻿<Window x:Class="PL.customer.ProudctItemWindow"
+﻿<Window x:Class="PL.ProudctItemWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PL.customer"
+        xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="ProudctItemWindow" Height="450" Width="800"
         DataContext="{Binding RelativeSource={RelativeSource self}}">
-    <Grid DataContext="{Binding productItem,Mode=TwoWay}">
-     
+ <Window.Resources>
+  <local:ConvertBoolToVisible x:Key="myCnvrtr"/>
+ </Window.Resources>
+ <Grid >
+  <Grid DataContext="{Binding productItem,Mode=TwoWay}">
   <TextBlock Text="{Binding ID,Mode=TwoWay}" HorizontalAlignment="Left" Margin="305,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="28"/>
   <TextBlock x:Name="name" Text="{Binding Name}" HorizontalAlignment="Left" Margin="305,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="130" Height="28"/>
   <TextBlock Text="{Binding Price}" HorizontalAlignment="Left" Margin="307,227,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"  Width="130" Height="28"/>
@@ -21,7 +24,11 @@
   <Label Content="in stock" HorizontalAlignment="Left" Margin="244,269,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.477,-0.669"/>
   <Label Content="amount in cart" HorizontalAlignment="Left" Margin="207,313,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.477,-0.669"/>
   <TextBlock Text="{Binding AmountInCart,Mode=TwoWay}" HorizontalAlignment="Left" Margin="322,311,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"  Width="130" Height="28"/>
-  <Button Content="add to cart" HorizontalAlignment="Left" Margin="400,356,0,0" VerticalAlignment="Top" Click="AddToCartButton_Click"/>
+   <Button Visibility="{Binding InStock,Converter={StaticResource myCnvrtr}}" Content="add to cart" HorizontalAlignment="Left" Margin="400,356,0,0" VerticalAlignment="Top" Click="AddToCartButton_Click"/>
+
+  </Grid>
+  <Label x:Name="errorMessage" Content="{Binding errorMessageText3,Mode=TwoWay}" HorizontalAlignment="Left" Margin="478,307,0,0" VerticalAlignment="Top" RenderTransformOrigin="45.88,1.264" Height="42" Width="464"/>
+
 
  </Grid>
 </Window>

@@ -15,27 +15,50 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BL.BlImplementation;
-using PL.manager;
-using PL.customer;
-//using PL.Orders;
+using DO;
 
-namespace PL
+namespace PL;
+
+/// <summary>
+/// Interaction logic for MainWindow.xaml
+/// </summary>
+public partial class MainWindow : Window
 {
- /// <summary>
- /// Interaction logic for MainWindow.xaml
- /// </summary>
- public partial class MainWindow : Window
+ private IBl bl = BlApi.Factory.Get();
+
+ //BL.BO.Cart? cart = new BL.BO.Cart();
+
+
+
+ public BL.BO.Cart? cart
  {
-  public MainWindow()
-  {
-   InitializeComponent();
-  }
-  private IBl bl = BlApi.Factory.Get();
-  void moveToManager_Click(object sender, RoutedEventArgs e) => new managerMainWindow().ShowDialog();
+  get { return (BL.BO.Cart?)GetValue(cartProperty); }
+  set { SetValue(cartProperty, value); }
+ }
+ public static readonly DependencyProperty cartProperty =
+     DependencyProperty.Register("cart", typeof(BL.BO.Cart), typeof(MainWindow));
 
-  void moveToTrackOrder_Click(object sender, RoutedEventArgs e) => new OrderTrackingWindow().Show();
 
-  private void moveToCustomer_Click(object sender, RoutedEventArgs e) => new CustomerMainWindow().Show();
 
+
+ public MainWindow()
+ {
+  cart = new BL.BO.Cart();
+  InitializeComponent();
+ }
+ void moveToManager_Click(object sender, RoutedEventArgs e) => new managerMainWindow().ShowDialog();
+
+ private void loginButton_Click(object sender, RoutedEventArgs e)
+ {
+  MessageBox.Show(cart.ToString());
+
+  bl.Cart.updateUserCart(cart);
+  new LoginWindow().Show();
+  MessageBox.Show(bl.Cart.getUserCart().ToString());
+ }
+
+ private void guestButton_Click(object sender, RoutedEventArgs e)
+ {
+  new LoginWindow().Show();
  }
 }

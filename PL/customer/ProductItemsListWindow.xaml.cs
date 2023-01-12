@@ -1,5 +1,4 @@
 ﻿using BL.BO;
-using PL.Products;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,7 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PL.customer;
+namespace PL;
 
 /// <summary>
 /// Interaction logic for ProductItemsListWindow.xaml
@@ -60,7 +59,12 @@ public partial class ProductItemsListWindow : Window
   productItemsList = PL.PLfunctions.Convert(bl.Product.GetProductIItems());
   ProductItem? p = new ProductItem();
   productItemsList.Add(p);
-  cart = new Cart();
+  if (bl.Cart.getUserCart().CustomerName != null)
+  {
+   cart = bl.Cart.getUserCart();
+  }
+  else
+   cart = new Cart();
   InitializeComponent();
  }
 

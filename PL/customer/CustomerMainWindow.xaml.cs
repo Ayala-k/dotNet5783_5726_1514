@@ -12,8 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PL.customer
-{
+namespace PL;
+
  /// <summary>
  /// Interaction logic for CustomerMainWindow.xaml
  /// </summary>
@@ -26,4 +26,4 @@ namespace PL.customer
 
   private void Button_Click(object sender, RoutedEventArgs e) => new ProductItemsListWindow().ShowDialog();
  }
-}
+

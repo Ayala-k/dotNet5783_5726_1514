@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PL.customer;
+namespace PL;
 
 /// <summary>
 /// Interaction logic for ProudctItemWindow.xaml
@@ -39,6 +39,13 @@ public partial class ProudctItemWindow : Window
  }
  public static readonly DependencyProperty cartProperty =
      DependencyProperty.Register(nameof(cart), typeof(Cart), typeof(ProudctItemWindow));
+ public string errorMessageText3
+ {
+  get { return (string)GetValue(errorMessageText2Property); }
+  set { SetValue(errorMessageText2Property, value); }
+ }
+ public static readonly DependencyProperty errorMessageText2Property =
+     DependencyProperty.Register("errorMessageText3", typeof(string), typeof(ProudctItemWindow));
 
  public ProudctItemWindow(ProductItem pi, Cart c, Action<ProductItem> action)
  {
@@ -46,11 +53,22 @@ public partial class ProudctItemWindow : Window
   productItem = pi;
   InitializeComponent();
   this.action = action;
+  if (productItem.InStock == false)
+   errorMessageText3 = "product is out of stock";
  }
 
  private void AddToCartButton_Click(object sender, RoutedEventArgs e)
  {
-  bl.Cart.AddOrderItem(cart, productItem.ID);
+  if (bl.Cart.getUserCart().CustomerName != null)//in login
+  {
+   bl.Cart.addOrderItemUserCart(productItem.ID);
+   cart = bl.Cart.getUserCart();
+   MessageBox.Show(cart.ItemsList.ToString());
+  }
+  else
+  {
+   bl.Cart.AddOrderItem(cart, productItem.ID);
+  }//////////
   productItem = new ProductItem()
   {
    ID = productItem.ID,

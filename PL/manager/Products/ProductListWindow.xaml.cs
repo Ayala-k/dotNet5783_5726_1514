@@ -1,5 +1,4 @@
 ﻿using BL.BO;
-using PL.Products;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +9,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace PL.Products;
+namespace PL;
 /// <summary>
 /// Interaction logic for OrderListWindow.xaml
 /// </summary>
