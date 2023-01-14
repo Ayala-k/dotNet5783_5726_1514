@@ -8,7 +8,7 @@
         Title="OrderTrackingWindow" Height="450" Width="800"
         DataContext="{Binding RelativeSource={RelativeSource self}}">
  <Grid Margin="0,0,-260,-177">
-  <TextBox Text="{Binding orderID, Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="347,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+  <TextBox Text="{Binding orderID, Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="347,28,0,0" PreviewTextInput="PreviewTextInput" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
   <Label Content="order id" HorizontalAlignment="Left" Margin="273,20,0,0" VerticalAlignment="Top"/>
   <Button Content="track order" HorizontalAlignment="Left" Margin="347,98,0,0" VerticalAlignment="Top" Click="TrackOrderButton_Click"/>
   <TextBlock Text="{Binding trackDetails}" HorizontalAlignment="Left" Margin="322,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="161" Width="258"/>
