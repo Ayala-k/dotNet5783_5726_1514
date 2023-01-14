@@ -71,6 +71,14 @@ internal class Product : BlApi.IProduct
   else
    throw new BO.InvalidDetailsException("invalid ID");
  }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="productID"></param>
+    /// <returns></returns>
+    /// <exception cref="BO.EntityNotFoundLogicException"></exception>
+    /// <exception cref="BO.InvalidDetailsException"></exception>
  public BO.ProductForList GetProductForList(int productID)//was product
  {
   if (productID > 0)
@@ -92,7 +100,7 @@ internal class Product : BlApi.IProduct
     Name = productDal.Name,
     Price = productDal.Price,
     Category = (BO.Categories)productDal.Category,
-    //InStock = productDal.InStock
+    //InStock = productDal.InStockS
    };
    return productBL;
   }

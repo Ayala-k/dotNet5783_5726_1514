@@ -26,9 +26,9 @@ VerticalAlignment="Stretch" Width="auto">
    <!--ItemsControl.-->
    <ComboBox x:Name="CategoriesSelector" ItemsSource="{Binding Source={x:Static local:ProductItemsListWindow.categories}}" SelectedItem="{Binding selectedCategory}"
     HorizontalAlignment= "Left"  
-    Grid.Column="1" Width="400" SelectionChanged="CategoriesSelector_SelectionChanged_1"/>
+    Grid.Column="1" Width="319" SelectionChanged="CategoriesSelector_SelectionChanged_1"/>
   </Grid>
- <ListView x:Name="ProductListview" SelectedItem="{Binding selectedItem, Mode=TwoWay}" ItemsSource="{Binding productsForListList}" SelectionChanged="ProductListview_SelectionChanged" Margin="0,46,0,85" Grid.RowSpan="2">
+        <ListView x:Name="ProductListview" SelectedItem="{Binding selectedItem, Mode=TwoWay}" ItemsSource="{Binding productsForListListToView}" SelectionChanged="ProductListview_SelectionChanged" Margin="0,46,0,85" Grid.RowSpan="2">
    <ListView.View>
     <GridView>
      <GridViewColumn Width="Auto" Header="ID">
@@ -66,6 +66,8 @@ VerticalAlignment="Stretch" Width="auto">
 
   </ListView>
   <Button Content="Add new Product" HorizontalAlignment="Left" Margin="586,511,0,0" Grid.Row="1" Padding="5" Click="Button_Click" Height="57" VerticalAlignment="Top" Width="158"/>
+        <Button Content="view all" HorizontalAlignment="Left" Margin="737,16,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.613,-1.825" Click="Button_Click_1"/>
 
- </Grid>
+
+    </Grid>
 </Window>

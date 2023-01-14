@@ -5,8 +5,10 @@ using DO;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace PL;
 
@@ -140,4 +142,10 @@ public partial class CartWindow : Window
    errorMessageText2 = exp.Message.ToString();
   }
  }
+
+    private void PreviewTextInput(object sender, TextCompositionEventArgs e)
+    {
+        Regex regex = new Regex("[^0-9]+");
+        e.Handled = regex.IsMatch(e.Text);
+    }
 }

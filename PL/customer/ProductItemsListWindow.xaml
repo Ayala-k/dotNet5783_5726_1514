@@ -8,8 +8,8 @@
         Title="ProductItemsListWindow" Height="450" Width="800"
         DataContext="{Binding RelativeSource={RelativeSource self}}">
     <Grid>
-  <Button Content="go to cart" HorizontalAlignment="Left" Margin="712,53,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.444,9.962" Click="Button_Click"/>
-  <ListView ItemsSource="{Binding productItemsList, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" SelectedItem="{Binding selectedProductItem, Mode=OneWayToSource}" Margin="0,68,381,77" SelectionChanged="ListView_SelectionChanged">
+  <Button Content="go to cart" HorizontalAlignment="Left" Margin="734,53,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.444,9.962" Click="Button_Click"/>
+        <ListView ItemsSource="{Binding productItemsListToView, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" SelectedItem="{Binding selectedProductItem, Mode=OneWayToSource}" Margin="0,68,381,77" SelectionChanged="ListView_SelectionChanged">
    <ListView.View>
     <GridView>
      <GridViewColumn/>
@@ -18,6 +18,7 @@
   </ListView>
   <ComboBox ItemsSource="{Binding categories}" SelectedItem="{Binding selectedCategory}" HorizontalAlignment="Left" Margin="545,52,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged"/>
   <Button Content="order by categories" HorizontalAlignment="Left" Margin="424,53,0,0" VerticalAlignment="Top" Click="ButtonGroupingByCategory_Click"/>
+        <Button Content="view all" HorizontalAlignment="Left" Margin="678,54,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
 
- </Grid>
+    </Grid>
 </Window>

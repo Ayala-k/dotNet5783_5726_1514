@@ -69,6 +69,14 @@ internal class Order : BlApi.IOrder
   else
    throw new BO.InvalidDetailsException("invalid ID");
  }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="orderID"></param>
+    /// <returns></returns>
+    /// <exception cref="BO.EntityNotFoundLogicException"></exception>
+    /// <exception cref="BO.InvalidDetailsException"></exception>
  public BO.OrderForList GetOrderForListDetails(int orderID)
  {
   if (orderID > 0)
