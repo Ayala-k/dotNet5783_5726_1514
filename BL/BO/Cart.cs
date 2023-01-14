@@ -21,6 +21,7 @@ public class Cart
         Customer name: {CustomerName},
         Customer Email: {CustomerEmail},
         Customer Address: {CustomerAddress},
+        Total Price: {TotalPrice},
         Items List: {itemsList}");
  }
 

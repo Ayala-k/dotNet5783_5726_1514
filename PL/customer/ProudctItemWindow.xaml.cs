@@ -63,7 +63,6 @@ public partial class ProudctItemWindow : Window
   {
    bl.Cart.addOrderItemUserCart(productItem.ID);
    cart = bl.Cart.getUserCart();
-   MessageBox.Show(cart.ItemsList.ToString());
   }
   else
   {

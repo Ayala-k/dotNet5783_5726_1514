@@ -122,10 +122,17 @@ public partial class CartWindow : Window
  }
  private void CommitOrderButton_Click(object sender, RoutedEventArgs e)
  {
+
   try
   {
    int orderID = bl.Cart.CommitOrder(cart2);
    errorMessageText2 = "order commited succesfully. your order ID: " + orderID;
+   //if (bl.Cart.getUserCart().CustomerName != null)
+   //{
+   // //
+   //}
+
+       
   }
   catch (BL.BO.EntityNotFoundLogicException exp)
   {

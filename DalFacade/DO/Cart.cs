@@ -15,6 +15,7 @@ public struct Cart
  public string? CustomerAddress { get; set; }
  public List<OrderItem?>? ItemsList { get; set; } = new List<OrderItem?>();
  public double TotalPrice { get; set; }
+ public IEnumerable<int> OrdersIdList { get; set; }=new List<int>();
 
  public override string ToString()
  {
@@ -28,6 +29,7 @@ public struct Cart
         Customer name: {CustomerName},
         Customer Email: {CustomerEmail},
         Customer Address: {CustomerAddress},
+        Total Price: {TotalPrice},
         Items List: {itemsList}");
  }
 }

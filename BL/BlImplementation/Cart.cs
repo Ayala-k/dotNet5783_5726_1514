@@ -265,9 +265,10 @@ internal class Cart : BlApi.ICart
     Price = oiDal.Price,
     ProductID = oiDal.ProductID,
     Amount = oiDal.Amount,
-    TotalPrice = oiDal.Price * oiDal.Price,
+    TotalPrice = oiDal.Price * oiDal.Amount,
    };
    cart.ItemsList.Add(oiBL);
+   cart.TotalPrice += oiBL.TotalPrice;
   }
   return cart;
  }
