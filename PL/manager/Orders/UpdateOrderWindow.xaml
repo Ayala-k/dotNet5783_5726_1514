@@ -7,79 +7,80 @@
         mc:Ignorable="d"
         Title="UpdateOrderWindow" Height="450" Width="800"
  DataContext="{Binding RelativeSource={RelativeSource self}}">
-    <Window.Resources>
-        <local:ConvertBoolToVisible x:Key="myCnvrtr"/>
-    </Window.Resources>
-    <Grid>
-        <Label Content="id:" HorizontalAlignment="Left" Margin="104,28,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.676,0.654"/>
-        <Label Content="customer name:" HorizontalAlignment="Left" Margin="32,54,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.469,0.375"/>
-        <Label Content="customer Email:" HorizontalAlignment="Left" Margin="33,85,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.021,0.531"/>
-        <Label Content="customer address:" HorizontalAlignment="Left" Margin="20,116,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.477,-0.669"/>
-        <Label x:Name="page" Content="" HorizontalAlignment="Left" Margin="142,25,0,0" VerticalAlignment="Top" Height="31" Width="106" RenderTransformOrigin="0.806,0.632"/>
-        <Label Content="status:" HorizontalAlignment="Left" Margin="75,147,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.469,0.375"/>
-        <Label Content="payment: date&#xD;&#xA;" HorizontalAlignment="Left" Margin="33,178,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.469,0.375" Height="28"/>
-        <Label Content="ship date:&#xD;&#xA;" HorizontalAlignment="Left" Margin="58,206,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.469,0.375" Height="28"/>
-        <Label Content="delivery date:&#xD;&#xA;" HorizontalAlignment="Left" Margin="39,234,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.469,0.375" Height="25"/>
-        <Label Content="total price:" HorizontalAlignment="Left" Margin="47,264,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.469,0.375"/>
+ <Window.Resources>
+  <local:ConvertBoolToVisible x:Key="myCnvrtr"/>
+ </Window.Resources>
+ <Grid>
+  <Label Content="id:" HorizontalAlignment="Left" Margin="104,28,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.676,0.654"/>
+  <Label Content="customer name:" HorizontalAlignment="Left" Margin="32,54,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.469,0.375"/>
+  <Label Content="customer Email:" HorizontalAlignment="Left" Margin="33,85,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.021,0.531"/>
+  <Label Content="customer address:" HorizontalAlignment="Left" Margin="20,116,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.477,-0.669"/>
+  <Label Content="" HorizontalAlignment="Left" Margin="142,25,0,0" VerticalAlignment="Top" Height="31" Width="106" RenderTransformOrigin="0.806,0.632"/>
+  <Label Content="status:" HorizontalAlignment="Left" Margin="75,147,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.469,0.375"/>
+  <Label Content="payment: date&#xD;&#xA;" HorizontalAlignment="Left" Margin="33,178,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.469,0.375" Height="28"/>
+  <Label Content="ship date:&#xD;&#xA;" HorizontalAlignment="Left" Margin="58,206,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.469,0.375" Height="28"/>
+  <Label Content="delivery date:&#xD;&#xA;" HorizontalAlignment="Left" Margin="39,234,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.469,0.375" Height="25"/>
+  <Label Content="total price:" HorizontalAlignment="Left" Margin="47,264,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.469,0.375"/>
 
-        <Label Foreground="Red" Background="green" Content="{Binding errorMessageText}" HorizontalAlignment="Left" Margin="307,309,0,0" VerticalAlignment="Top"/>
-        <Button IsEnabled="{Binding shipDate}" Visibility="{Binding buttonPermission,Converter={StaticResource myCnvrtr}}" Content="update" Click="buttonUpdateShipping_Click" HorizontalAlignment="Center" Margin="0,206,0,0" VerticalAlignment="Top" Height="28" Width="80" RenderTransformOrigin="-1.562,0.616" />
-        <Button IsEnabled="{Binding deliveryDate}" Visibility="{Binding buttonPermission,Converter={StaticResource myCnvrtr}}" Content="update" Click="buttonUpdateDelivery_Click" HorizontalAlignment="Center" Margin="0,240,0,0" VerticalAlignment="Top" Height="28" Width="80" />
-        <Grid DataContext="{Binding order}" Margin="-166,-129,0,109" HorizontalAlignment="Left" Width="510">
-            <ListView ItemsSource="{Binding ItemsList}" Margin="643,118,-445,174">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Width="Auto" Header="Name">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate >
-                                    <TextBlock Margin="-5,-1" Text="{Binding Name}" TextAlignment="Right" Padding="2"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Width="Auto" Header="ProductID">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Margin="-5,-1" Text="{Binding ProductID}" Padding="2"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Width="Auto" Header="Price">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Margin="-5,-1" Text="{Binding Price}" TextAlignment="Center" Padding="2"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Width="Auto" Header="Amount">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Margin="-5,-1" Text="{Binding Amount}" TextAlignment="Center" Padding="2"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
+  <Label Foreground="Red" Content="{Binding errorMessageText}" HorizontalAlignment="Right" Margin="0,354,537,0" VerticalAlignment="Top" Height="22" Width="121"/>
+  <Button IsEnabled="{Binding shipDate}" Visibility="{Binding buttonPermission,Converter={StaticResource myCnvrtr}}" Content="update" Click="buttonUpdateShipping_Click" HorizontalAlignment="Center" Margin="0,206,0,0" VerticalAlignment="Top" Height="28" Width="80" RenderTransformOrigin="-1.562,0.616" />
+  <Button IsEnabled="{Binding deliveryDate}" Visibility="{Binding buttonPermission,Converter={StaticResource myCnvrtr}}" Content="update" Click="buttonUpdateDelivery_Click" HorizontalAlignment="Center" Margin="0,240,0,0" VerticalAlignment="Top" Height="28" Width="80" />
+  <Grid DataContext="{Binding order}" Margin="-166,-129,0,109" HorizontalAlignment="Left" Width="510">
+   <ListView ItemsSource="{Binding ItemsList}" Margin="644,233,-446,59">
+    <ListView.View>
+     <GridView>
+      <GridViewColumn Width="Auto" Header="Name">
+       <GridViewColumn.CellTemplate>
+        <DataTemplate >
+         <TextBlock Margin="-5,-1" Text="{Binding Name}" TextAlignment="Right" Padding="2"/>
+        </DataTemplate>
+       </GridViewColumn.CellTemplate>
+      </GridViewColumn>
+      <GridViewColumn Width="Auto" Header="ProductID">
+       <GridViewColumn.CellTemplate>
+        <DataTemplate>
+         <TextBlock Margin="-5,-1" Text="{Binding ProductID}" Padding="2"/>
+        </DataTemplate>
+       </GridViewColumn.CellTemplate>
+      </GridViewColumn>
+      <GridViewColumn Width="Auto" Header="Price">
+       <GridViewColumn.CellTemplate>
+        <DataTemplate>
+         <TextBlock Margin="-5,-1" Text="{Binding Price}" TextAlignment="Center" Padding="2"/>
+        </DataTemplate>
+       </GridViewColumn.CellTemplate>
+      </GridViewColumn>
+      <GridViewColumn Width="Auto" Header="Amount">
+       <GridViewColumn.CellTemplate>
+        <DataTemplate>
+         <TextBlock Margin="-5,-1" Text="{Binding Amount}" TextAlignment="Center" Padding="2"/>
+        </DataTemplate>
+       </GridViewColumn.CellTemplate>
+      </GridViewColumn>
 
-                        <GridViewColumn Width="Auto" Header="TotalPrice">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Margin="-5,-1" Text="{Binding TotalPrice}" Padding="2"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+      <GridViewColumn Width="Auto" Header="TotalPrice">
+       <GridViewColumn.CellTemplate>
+        <DataTemplate>
+         <TextBlock Margin="-5,-1" Text="{Binding TotalPrice}" Padding="2"/>
+        </DataTemplate>
+       </GridViewColumn.CellTemplate>
+      </GridViewColumn>
+     </GridView>
+    </ListView.View>
+   </ListView>
 
-            <TextBlock Text="{Binding ID}" HorizontalAlignment="Left" Margin="321,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="27" RenderTransformOrigin="0.685,0.694"/>
-            <TextBlock Text="{Binding CustomerName}" HorizontalAlignment="Left" Margin="307,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="130" Height="22" />
-            <TextBlock x:Name="price" Text="{Binding CustomerEmail}" HorizontalAlignment="Left" Margin="307,0,0,0" TextWrapping="Wrap"  VerticalAlignment="Center"  Width="130" Height="19"/>
-            <TextBlock Text="{Binding CustomerAddress}" HorizontalAlignment="Left" Margin="307,249,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="130" Height="22"/>
-            <TextBlock Text="{Binding Status,Mode=TwoWay}" HorizontalAlignment="Left" Margin="307,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="23"/>
-            <!--<TextBox IsReadOnly="True"  Text="{Binding PaymentDate}" HorizontalAlignment="Left" Margin="46,236,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="28"/>-->
-            <TextBlock Text="{Binding PaymentDate, Mode=OneWay}" HorizontalAlignment="Left" Margin="295,314,0,0" VerticalAlignment="Top" />
-            <TextBlock Text="{Binding ShipDate,Mode=TwoWay}" HorizontalAlignment="Left" Margin="321,344,0,0" VerticalAlignment="Top" />
-            <TextBlock Text="{Binding DeliveryDate,Mode=TwoWay}" HorizontalAlignment="Left" Margin="307,365,0,0" VerticalAlignment="Top" />
+   <TextBlock Text="{Binding ID}" HorizontalAlignment="Left" Margin="321,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="27" RenderTransformOrigin="0.685,0.694"/>
+   <TextBlock Text="{Binding CustomerName}" HorizontalAlignment="Left" Margin="307,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="130" Height="22" />
+   <TextBlock x:Name="price" Text="{Binding CustomerEmail}" HorizontalAlignment="Left" Margin="307,0,0,0" TextWrapping="Wrap"  VerticalAlignment="Center"  Width="130" Height="19"/>
+   <TextBlock Text="{Binding CustomerAddress}" HorizontalAlignment="Left" Margin="307,249,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="130" Height="22"/>
+   <TextBlock Text="{Binding Status,Mode=TwoWay}" HorizontalAlignment="Left" Margin="307,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="23"/>
+   <!--<TextBox IsReadOnly="True"  Text="{Binding PaymentDate}" HorizontalAlignment="Left" Margin="46,236,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="28"/>-->
+   <TextBlock Text="{Binding PaymentDate, Mode=OneWay}" HorizontalAlignment="Left" Margin="295,314,0,0" VerticalAlignment="Top" />
+   <TextBlock Text="{Binding ShipDate,Mode=TwoWay}" HorizontalAlignment="Left" Margin="321,344,0,0" VerticalAlignment="Top" />
+   <TextBlock Text="{Binding DeliveryDate,Mode=TwoWay}" HorizontalAlignment="Left" Margin="307,365,0,0" VerticalAlignment="Top" />
 
-            <TextBlock Text="{Binding TotalPrice}" HorizontalAlignment="Left" Margin="307,396,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="19"/>
-        </Grid>
-    </Grid>
+   <TextBlock Text="{Binding TotalPrice}" HorizontalAlignment="Left" Margin="307,396,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="19"/>
+  </Grid>
+  <Label Content="items list:" HorizontalAlignment="Left" Margin="479,62,0,0" VerticalAlignment="Top"/>
+ </Grid>
 </Window>

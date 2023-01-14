@@ -50,11 +50,8 @@ public partial class MainWindow : Window
 
  private void loginButton_Click(object sender, RoutedEventArgs e)
  {
-  MessageBox.Show(cart.ToString());
-
   bl.Cart.updateUserCart(cart);
   new LoginWindow().Show();
-  MessageBox.Show(bl.Cart.getUserCart().ToString());
  }
 
  private void guestButton_Click(object sender, RoutedEventArgs e)
