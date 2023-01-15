@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<OrdersList xmlns="">
+	<Order>
+		<ID>101</ID>
+		<CustomerName>'kluftale'</CustomerName>
+		<CustomerEmail>''bfjdf</CustomerEmail>
+		<CustomerAddress>'dasfs'</CustomerAddress>
+		<OrderDate>'15.01.2023'</OrderDate>
+		<ShipDate></ShipDate>
+		<DeliveryDate></DeliveryDate>
+	</Order>
+</OrdersList>

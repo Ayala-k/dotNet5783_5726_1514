@@ -130,7 +130,7 @@ public partial class ProductWindow : Window
         }
         try
         {
-            action(bl.Product.GetProductForList(product.ID));
+            action(bl!.Product.GetProductForList(product.ID));
         }
         catch (BL.BO.EntityNotFoundLogicException exp)
         {
