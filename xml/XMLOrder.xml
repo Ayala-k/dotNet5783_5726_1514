@@ -1,12 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<OrdersList>
-	<Order>
-		<ID>'100000'</ID>
-		<CustomerName>'Ayala'</CustomerName>
-		<CustomerEmail>'ayalaBallerina@gmail.com'</CustomerEmail>
-		<CustomerAddress>'bait vagan'</CustomerAddress>
-		<OrderDate>'15.01.2023'</OrderDate>
-		<ShipDate></ShipDate>
-		<DeliveryDate></DeliveryDate>
-	</Order>
-</OrdersList>
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfOrder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Order>
+    <ID>101</ID>
+    <Status xsi:nil="true" />
+    <PaymentDate xsi:nil="true" />
+    <ShipDate xsi:nil="true" />
+    <DeliveryDate xsi:nil="true" />
+    <TotalPrice>0</TotalPrice>
+  </Order>
+</ArrayOfOrder>
