@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace Dal;
@@ -28,10 +25,8 @@ internal class XMLTools
         {
             //throw new DO.XMLFileLoadCreateException(filePath, $"fail to create xml file: {filePath}", ex);
             throw new Exception();
-
         }
     }
-
     public static XElement LoadListFromXMLElement(string filePath)
     {
         try
@@ -78,22 +73,20 @@ internal class XMLTools
         {
             if (File.Exists(dir + filePath))
             {
-                List<T> list;
-                XmlSerializer x = new XmlSerializer(typeof(List<T>));
+                List<T?> list;
+                XmlSerializer x = new XmlSerializer(typeof(List<T?>));
                 FileStream file = new FileStream(dir + filePath, FileMode.Open);
-                list = (List<T>)x.Deserialize(file);
+                list = (List<T?>)x.Deserialize(file);
                 file.Close();
                 return list;
             }
             else
-                return new List<T>();
+                return new List<T?>();
         }
         catch (Exception ex)
         {
-            //
             //throw new DO.XMLFileLoadCreateException(filePath, $"fail to load xml file: {filePath}", ex);
             throw new Exception();
-
         }
     }
     #endregion

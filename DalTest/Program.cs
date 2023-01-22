@@ -17,7 +17,7 @@ public class Program
 
     public static void Main()
  {
-  IDalVariable.Product.initializeDataSource();
+  //IDalVariable.Product.initializeDataSource();
   Console.WriteLine("enter 1 to product, 2 to order, 3 to order item, 0 to exit");
   int choice;
   int.TryParse(Console.ReadLine(), out choice);//ממיר ומחזיר אמת או שקר אם ההמרה הצליחה או לא
