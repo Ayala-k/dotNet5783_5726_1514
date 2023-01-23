@@ -1,1 +1,73 @@
-﻿<?xml version="1.0" encoding="utf-8"?><ArrayOfProduct xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><Product><ID>100000</ID><Name>classic guitar</Name><Category>guitars</Category><Price>30000</Price><InStock>2</InStock></Product><Product><ID>100001</ID><Name>Grand piano</Name><Category>keyboards</Category><Price>4000</Price><InStock>200</InStock></Product><Product><ID>100002</ID><Name>Electric piano</Name><Category>keyboards</Category><Price>2605</Price><InStock>10</InStock></Product><Product><ID>100003</ID><Name>Electric Guitar</Name><Category>guitars</Category><Price>900</Price><InStock>69</InStock></Product><Product><ID>100004</ID><Name> violin</Name><Category>bowTool</Category><Price>2083</Price><InStock>32</InStock></Product><Product><ID>100005</ID><Name>cello</Name><Category>bowTool</Category><Price>2129</Price><InStock>14</InStock></Product><Product><ID>100006</ID><Name>recorder</Name><Category>WindInstruments</Category><Price>58</Price><InStock>48</InStock></Product><Product><ID>100007</ID><Name>Saxophone</Name><Category>WindInstruments</Category><Price>2188</Price><InStock>0</InStock></Product><Product><ID>100008</ID><Name>Single drum</Name><Category>percussions</Category><Price>1559</Price><InStock>321</InStock></Product><Product><ID>100009</ID><Name>Electronic drums</Name><Category>percussions</Category><Price>2385</Price><InStock>53</InStock></Product></ArrayOfProduct>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<products>
+  <Product>
+    <ID>100000</ID>
+    <Name>classic guitar</Name>
+    <Category>guitars</Category>
+    <Price>30000</Price>
+    <InStock>2</InStock>
+  </Product>
+  <Product>
+    <ID>100001</ID>
+    <Name>Grand piano</Name>
+    <Category>keyboards</Category>
+    <Price>4000</Price>
+    <InStock>200</InStock>
+  </Product>
+  <Product>
+    <ID>100002</ID>
+    <Name>Electric piano</Name>
+    <Category>keyboards</Category>
+    <Price>2605</Price>
+    <InStock>10</InStock>
+  </Product>
+  <Product>
+    <ID>100003</ID>
+    <Name>Electric Guitar</Name>
+    <Category>guitars</Category>
+    <Price>900</Price>
+    <InStock>69</InStock>
+  </Product>
+  <Product>
+    <ID>100004</ID>
+    <Name> violin</Name>
+    <Category>bowTool</Category>
+    <Price>2083</Price>
+    <InStock>32</InStock>
+  </Product>
+  <Product>
+    <ID>100005</ID>
+    <Name>cello</Name>
+    <Category>bowTool</Category>
+    <Price>2129</Price>
+    <InStock>14</InStock>
+  </Product>
+  <Product>
+    <ID>100006</ID>
+    <Name>recorder</Name>
+    <Category>WindInstruments</Category>
+    <Price>58</Price>
+    <InStock>48</InStock>
+  </Product>
+  <Product>
+    <ID>100007</ID>
+    <Name>Saxophone</Name>
+    <Category>WindInstruments</Category>
+    <Price>2188</Price>
+    <InStock>0</InStock>
+  </Product>
+  <Product>
+    <ID>100008</ID>
+    <Name>Single drum</Name>
+    <Category>percussions</Category>
+    <Price>1559</Price>
+    <InStock>321</InStock>
+  </Product>
+  <Product>
+    <ID>100009</ID>
+    <Name>Electronic drums</Name>
+    <Category>percussions</Category>
+    <Price>2385</Price>
+    <InStock>53</InStock>
+  </Product>
+</products>

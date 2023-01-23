@@ -245,32 +245,33 @@ internal class Cart : BlApi.ICart
  }
  public BO.Cart getUserCart()
  {
+  return new BO.Cart() { };
   //{
   // CustomerName=
   //}
-  DO.Cart cartDal = Dal.Cart.getCart();
-  BO.Cart cart = new BO.Cart()
-  {
-   CustomerName = cartDal.CustomerName,
-   CustomerAddress = cartDal.CustomerAddress,
-   CustomerEmail = cartDal.CustomerEmail,
-   TotalPrice = cartDal.TotalPrice,
-   //ItemsList=(BO.OrderItem)cartDal.ItemsList
-  };
-  foreach(DO.OrderItem oiDal in cartDal.ItemsList)
-  {
-   BL.BO.OrderItem oiBL = new BL.BO.OrderItem()
-   {
-    //Name = oiDal.Name,
-    Price = oiDal.Price,
-    ProductID = oiDal.ProductID,
-    Amount = oiDal.Amount,
-    TotalPrice = oiDal.Price * oiDal.Amount,
-   };
-   cart.ItemsList.Add(oiBL);
-   cart.TotalPrice += oiBL.TotalPrice;
-  }
-  return cart;
+  //DO.Cart cartDal = Dal.Cart.getCart();
+  //BO.Cart cart = new BO.Cart()
+  //{
+  // CustomerName = cartDal.CustomerName,
+  // CustomerAddress = cartDal.CustomerAddress,
+  // CustomerEmail = cartDal.CustomerEmail,
+  // TotalPrice = cartDal.TotalPrice,
+  // //ItemsList=(BO.OrderItem)cartDal.ItemsList
+  //};
+  //foreach(DO.OrderItem oiDal in cartDal.ItemsList)
+  //{
+  // BL.BO.OrderItem oiBL = new BL.BO.OrderItem()
+  // {
+  //  //Name = oiDal.Name,
+  //  Price = oiDal.Price,
+  //  ProductID = oiDal.ProductID,
+  //  Amount = oiDal.Amount,
+  //  TotalPrice = oiDal.Price * oiDal.Amount,
+  // };
+  // cart.ItemsList.Add(oiBL);
+  // cart.TotalPrice += oiBL.TotalPrice;
+  //}
+  //return cart;
  }
 
     public void addOrderItemUserCart(int productID)
