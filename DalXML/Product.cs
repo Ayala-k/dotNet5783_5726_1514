@@ -11,12 +11,11 @@ internal class Product : IProduct
     string rootName = "ProductsList";
     string productPath = @"XMLProduct.xml";
 
-
-
     public int Add(DO.Product product)
     {
         List<DO.Product?> productsList = XMLTools.LoadListFromXMLSerializer<DO.Product?>(productPath);
-        //check not exist! 
+        if (productsList.FirstOrDefault(item => item.Value.ID == product.ID) != null)
+            throw new DO.EntityAlreadyExistsException("product to add already exist");
         productsList.Add(product);
         XMLTools.SaveListToXMLSerializer(productsList, productPath);
         return product.ID;
@@ -60,7 +59,6 @@ internal class Product : IProduct
                where predicate == null || predicate(product)
                select product;
     }
-
 
     /// <summary>
     /// Gets a condition and returns an order with this condition

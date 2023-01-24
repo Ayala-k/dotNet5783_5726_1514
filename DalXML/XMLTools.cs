@@ -7,7 +7,6 @@ internal class XMLTools
 {
     static string dir = @"..\xml\";
     public static string configPath = dir + @"XMLConfig.xml";
-
     static XMLTools()
     {
         if (!Directory.Exists(dir))
@@ -23,8 +22,7 @@ internal class XMLTools
         }
         catch (Exception ex)
         {
-            //throw new DO.XMLFileLoadCreateException(filePath, $"fail to create xml file: {filePath}", ex);
-            throw new Exception();
+            throw new XMLSaveException(ex.Message);
         }
     }
     public static XElement LoadListFromXMLElement(string filePath)
@@ -44,8 +42,7 @@ internal class XMLTools
         }
         catch (Exception ex)
         {
-            //throw new DO.XMLFileLoadCreateException(filePath, $"fail to load xml file: {filePath}", ex);
-            throw new Exception();
+            throw new XMLLoadException(ex.Message);
         }
     }
     #endregion
@@ -62,9 +59,7 @@ internal class XMLTools
         }
         catch (Exception ex)
         {
-            //throw new DO.XMLFileLoadCreateException(filePath, $"fail to create xml file: {filePath}", ex);
-            throw new Exception();
-
+            throw new XMLSaveException(ex.Message);
         }
     }
     public static List<T> LoadListFromXMLSerializer<T>(string filePath)
@@ -73,10 +68,10 @@ internal class XMLTools
         {
             if (File.Exists(dir + filePath))
             {
-                List<T?> list;
-                XmlSerializer x = new XmlSerializer(typeof(List<T?>));
+                List<T> list;
+                XmlSerializer x = new XmlSerializer(typeof(List<T>)); 
                 FileStream file = new FileStream(dir + filePath, FileMode.Open);
-                list = (List<T?>)x.Deserialize(file);
+                list = (List<T>)x.Deserialize(file);
                 file.Close();
                 return list;
             }
@@ -85,8 +80,7 @@ internal class XMLTools
         }
         catch (Exception ex)
         {
-            //throw new DO.XMLFileLoadCreateException(filePath, $"fail to load xml file: {filePath}", ex);
-            throw new Exception();
+            throw new XMLLoadException(ex.Message);
         }
     }
     #endregion

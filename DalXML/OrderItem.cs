@@ -8,10 +8,7 @@ namespace Dal;
 
 internal class OrderItem : IOrderItem
 {
-    //string rootName = "OrdersList";
     string orderItemPath = @"XMLOrderItem.xml";
-
-
 
     public int Add(DO.OrderItem orderItem)
     {
@@ -38,7 +35,6 @@ internal class OrderItem : IOrderItem
         orderItemsList.Remove((orderItemsList.FirstOrDefault(item => item?.ID == orderItemID))
             ?? throw new EntityNotFoundException("order item not found"));
         XMLTools.SaveListToXMLSerializer(orderItemsList, orderItemPath);
-
     }
 
     /// <summary>
@@ -61,7 +57,7 @@ internal class OrderItem : IOrderItem
     /// <returns>IEnumerable<DO.Order?></returns>
     public IEnumerable<DO.OrderItem?> GetAll(Func<DO.OrderItem?, bool>? predicate = null)
     {
-        List<DO.Order?> orderItemsList = XMLTools.LoadListFromXMLSerializer<DO.Order?>(orderItemPath);
+        List<DO.OrderItem?> orderItemsList = XMLTools.LoadListFromXMLSerializer<DO.OrderItem?>(orderItemPath);
         return from DO.OrderItem? orderItem in orderItemsList
                where predicate == null || predicate(orderItem)
                select orderItem;

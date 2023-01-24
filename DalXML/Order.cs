@@ -1,20 +1,7 @@
-﻿//using System;
-//using DalApi;
-//using DO;
-//namespace Dal;
-
-//internal class Order:IOrder
-//{
-//	public Order()
-//	{
-//	}
-
-//}
+﻿
 using DalApi;
 using DO;
-using System.IO;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace Dal;
 
@@ -22,8 +9,6 @@ internal class Order : IOrder
 {
     string rootName = "OrdersList";
     string orderPath = @"XMLOrder.xml";
-
-
 
     public int Add(DO.Order order)
     {
@@ -50,7 +35,6 @@ internal class Order : IOrder
         ordersList.Remove((ordersList.FirstOrDefault(item => item?.ID == orderID))
             ?? throw new EntityNotFoundException("order not found"));
         XMLTools.SaveListToXMLSerializer(ordersList, orderPath);
-
     }
 
     /// <summary>
@@ -78,7 +62,6 @@ internal class Order : IOrder
                where predicate == null || predicate(order)
                select order;
     }
-
 
     /// <summary>
     /// Gets a condition and returns an order with this condition
