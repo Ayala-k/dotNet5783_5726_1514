@@ -17,7 +17,7 @@ internal class Order : IOrder
         int serialNumber = (int)config.Element("OrderID");
         order.ID = serialNumber;
         serialNumber++;
-        config.Element("orderID")!.SetValue(serialNumber);
+        config.Element("OrderID")!.SetValue(serialNumber);
         config.Save(XMLTools.configPath);
         ordersList.Add(order);
         XMLTools.SaveListToXMLSerializer(ordersList, orderPath);

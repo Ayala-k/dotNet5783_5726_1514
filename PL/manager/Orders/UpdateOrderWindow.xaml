@@ -22,7 +22,7 @@
   <Label Content="delivery date:&#xD;&#xA;" HorizontalAlignment="Left" Margin="39,234,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.469,0.375" Height="25"/>
   <Label Content="total price:" HorizontalAlignment="Left" Margin="47,264,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.469,0.375"/>
 
-  <Label Foreground="Red" Content="{Binding errorMessageText}" HorizontalAlignment="Right" Margin="0,354,537,0" VerticalAlignment="Top" Height="22" Width="121"/>
+  <Label Foreground="Red" Content="{Binding errorMessageTextOrder}" HorizontalAlignment="Right" Margin="0,354,537,0" VerticalAlignment="Top" Height="22" Width="121"/>
   <Button IsEnabled="{Binding shipDate}" Visibility="{Binding buttonPermission,Converter={StaticResource myCnvrtr}}" Content="update" Click="buttonUpdateShipping_Click" HorizontalAlignment="Center" Margin="0,206,0,0" VerticalAlignment="Top" Height="28" Width="80" RenderTransformOrigin="-1.562,0.616" />
   <Button IsEnabled="{Binding deliveryDate}" Visibility="{Binding buttonPermission,Converter={StaticResource myCnvrtr}}" Content="update" Click="buttonUpdateDelivery_Click" HorizontalAlignment="Center" Margin="0,240,0,0" VerticalAlignment="Top" Height="28" Width="80" />
   <Grid DataContext="{Binding order}" Margin="-166,-129,0,109" HorizontalAlignment="Left" Width="510">

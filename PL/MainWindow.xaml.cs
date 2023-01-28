@@ -43,7 +43,12 @@ public partial class MainWindow : Window
 
  public MainWindow()
  {
-  cart = new BL.BO.Cart();
+  cart = new BL.BO.Cart()
+  {
+   CustomerName=" ",
+   CustomerEmail=" ",
+   CustomerAddress=" "
+  };
   InitializeComponent();
  }
  void moveToManager_Click(object sender, RoutedEventArgs e) => new managerMainWindow().ShowDialog();
@@ -56,6 +61,7 @@ public partial class MainWindow : Window
 
  private void guestButton_Click(object sender, RoutedEventArgs e)
  {
+  bl.Cart.updateUserCart(cart);
   new LoginWindow().Show();
  }
 }

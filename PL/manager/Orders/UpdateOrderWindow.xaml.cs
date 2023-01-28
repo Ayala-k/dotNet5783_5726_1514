@@ -24,7 +24,7 @@ namespace PL;
 public partial class UpdateOrderWindow : Window
 {
     BL.BlApi.IBl? bl = BlApi.Factory.Get();
-    public string errorMessageText
+    public string errorMessageTextOrder
     {
         get { return (string)GetValue(errorMessageTextProperty); }
         set { SetValue(errorMessageTextProperty, value); }
@@ -74,11 +74,11 @@ public partial class UpdateOrderWindow : Window
         }
         catch(BL.BO.EntityNotFoundLogicException exp)
         {
-            errorMessageText=exp.Message.ToString();
+   errorMessageTextOrder = exp.Message.ToString();
         }
         catch (BL.BO.InvalidDetailsException exp)
         {
-            errorMessageText = exp.Message.ToString();
+   errorMessageTextOrder = exp.Message.ToString();
         }
 
         if (order.DeliveryDate != null)
@@ -96,7 +96,7 @@ public partial class UpdateOrderWindow : Window
 
     private void buttonUpdateShipping_Click(object sender, RoutedEventArgs e)
     {
-        errorMessageText = "";
+  errorMessageTextOrder = "";
         //update
         try
         {
@@ -104,11 +104,11 @@ public partial class UpdateOrderWindow : Window
         }
         catch (ProgressAlreadyDoneException exp)
         {
-            errorMessageText = exp.Message.ToString();
+   errorMessageTextOrder = exp.Message.ToString();
         }
         catch (EntityNotFoundLogicException exp)
         {
-            errorMessageText = exp.Message.ToString();
+   errorMessageTextOrder = exp.Message.ToString();
         }
         try
         {
@@ -116,25 +116,25 @@ public partial class UpdateOrderWindow : Window
         }
         catch (BL.BO.EntityNotFoundLogicException exp)
         {
-            errorMessageText = exp.Message.ToString();
+   errorMessageTextOrder = exp.Message.ToString();
         }
         catch (BL.BO.InvalidDetailsException exp)
         {
-            errorMessageText = exp.Message.ToString();
+   errorMessageTextOrder = exp.Message.ToString();
         }
         shipDate = false;
     }
 
     private void buttonUpdateDelivery_Click(object sender, RoutedEventArgs e)
     {
-        errorMessageText = "";
+  errorMessageTextOrder = "";
         try
         {
             order = bl.Order.UpdateOrderDelivering(order.ID);
         }
         catch (ProgressAlreadyDoneException exp)
         {
-            errorMessageText = exp.Message.ToString();
+   errorMessageTextOrder = exp.Message.ToString();
         }
         try
         {
@@ -142,11 +142,11 @@ public partial class UpdateOrderWindow : Window
         }
         catch (BL.BO.EntityNotFoundLogicException exp)
         {
-            errorMessageText = exp.Message.ToString();
+   errorMessageTextOrder = exp.Message.ToString();
         }
         catch (BL.BO.InvalidDetailsException exp)
         {
-            errorMessageText = exp.Message.ToString();
+   errorMessageTextOrder = exp.Message.ToString();
         }
         deliveryDate = false;
     }

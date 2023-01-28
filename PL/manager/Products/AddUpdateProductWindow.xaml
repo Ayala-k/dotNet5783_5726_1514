@@ -24,7 +24,8 @@
   <Label Content="price" HorizontalAlignment="Left" Margin="251,229,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.021,0.531"/>
   <Label Content="in stock" HorizontalAlignment="Left" Margin="251,271,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.477,-0.669"/>
   <Label x:Name="page" Content="" HorizontalAlignment="Left" Margin="319,47,0,0" VerticalAlignment="Top" Height="31" Width="106" RenderTransformOrigin="0.806,0.632"/>
-  <Label Foreground="Red" x:Name="errorMessage" Content="{Binding errorMessageText}" HorizontalAlignment="Left" Margin="307,309,0,0" VerticalAlignment="Top"/>
    </Grid>
+  <Label Foreground="Red" x:Name="errorMessage" Content="{Binding errorMessageTextProduct}" HorizontalAlignment="Left" Margin="307,309,0,0" VerticalAlignment="Top"/>
+
  </Grid>
 </Window>

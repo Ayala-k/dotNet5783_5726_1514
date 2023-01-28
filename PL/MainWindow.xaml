@@ -7,9 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
                 DataContext="{Binding RelativeSource={RelativeSource self}}">
-    <Grid DataContext="{Binding cart}">
+ <Grid DataContext="{Binding cart}">
+  <Image Source="/images/background.jpg" />
 
-        <Button x:Name="moveToManager" Content="manager" HorizontalAlignment="Left" Margin="52,61,0,0" VerticalAlignment="Top" Click="moveToManager_Click" Height="26" Width="113"/>
+  <Button x:Name="moveToManager" Content="manager" HorizontalAlignment="Left" Margin="52,61,0,0" VerticalAlignment="Top" Click="moveToManager_Click" Height="26" Width="113"/>
         <Button Content="login" HorizontalAlignment="Center" VerticalAlignment="Center" Click="loginButton_Click" RenderTransformOrigin="-0.261,-1.23"/>
         <Button Content="continue as a guest" HorizontalAlignment="Center" Margin="0,272,0,0" VerticalAlignment="Top" Click="guestButton_Click" RenderTransformOrigin="0.244,0.032"/>
         <TextBox Text="{Binding CustomerName,Mode=TwoWay}" HorizontalAlignment="Left" Margin="342,102,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>

@@ -52,7 +52,6 @@ internal class Product : BlApi.IProduct
    try
    {
     productDal = Dal?.Product.GetByCondition(product => product?.ID == productID) ?? throw new BO.EntityNotFoundLogicException("order not found");
-
    }
    catch (DO.EntityNotFoundException e)
    {

@@ -6,7 +6,7 @@ namespace Dal;
 internal class XMLTools
 {
     static string dir = @"..\xml\";
-    public static string configPath = dir + @"XMLConfig.xml";
+    public static string configPath = dir + @"Config.xml";
     static XMLTools()
     {
         if (!Directory.Exists(dir))

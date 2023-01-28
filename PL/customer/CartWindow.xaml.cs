@@ -72,8 +72,8 @@ public partial class CartWindow : Window
 
   }
   else
-  orderItemsList = new ObservableCollection<BL.BO.OrderItem?>(from BL.BO.OrderItem oi in cart2.ItemsList
-                                                              select new BL.BO.OrderItem(oi));
+   orderItemsList = new ObservableCollection<BL.BO.OrderItem?>(from BL.BO.OrderItem oi in cart2.ItemsList
+                                                               select new BL.BO.OrderItem(oi));
 
   InitializeComponent();
   this.action = action;
@@ -129,12 +129,20 @@ public partial class CartWindow : Window
   {
    int orderID = bl.Cart.CommitOrder(cart2);
    errorMessageText2 = "order commited succesfully. your order ID: " + orderID;
+   cart2.ItemsList.ForEach(o => action2(o.ProductID, 0));
+   cart2 = new BL.BO.Cart();
+   orderItemsList = orderItemsList = new ObservableCollection<BL.BO.OrderItem?>();
+   //foreach oi in cart2.ItemsList
+   // action2()
+
+
+
    //if (bl.Cart.getUserCart().CustomerName != null)
    //{
    // //
    //}
 
-       
+
   }
   catch (BL.BO.EntityNotFoundLogicException exp)
   {
@@ -150,9 +158,9 @@ public partial class CartWindow : Window
   }
  }
 
-    private void PreviewTextInput(object sender, TextCompositionEventArgs e)
-    {
-        Regex regex = new Regex("[^0-9]+");
-        e.Handled = regex.IsMatch(e.Text);
-    }
+ private void PreviewTextInput(object sender, TextCompositionEventArgs e)
+ {
+  Regex regex = new Regex("[^0-9]+");
+  e.Handled = regex.IsMatch(e.Text);
+ }
 }

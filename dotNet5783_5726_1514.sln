@@ -28,7 +28,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PL", "PL\PL.csproj", "{4470
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{84A2D302-A7DC-4AD6-B2DF-FF2C9B6ABA18}"
 	ProjectSection(SolutionItems) = preProject
+		xml\Config.xml = xml\Config.xml
 		xml\dal-config.xml = xml\dal-config.xml
+		xml\XMLOrder.xml = xml\XMLOrder.xml
+		xml\XMLOrderItem.xml = xml\XMLOrderItem.xml
+		xml\XMLProduct.xml = xml\XMLProduct.xml
+		xml\XMLUser.xml = xml\XMLUser.xml
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalXML", "DalXML\DalXML.csproj", "{0FE39139-95B8-407E-80A1-0AC6D94964CD}"
