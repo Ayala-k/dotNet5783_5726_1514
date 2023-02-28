@@ -14,16 +14,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj" />
+    <ProjectReference Include="..\Simulator\Simulator.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Page Update="manager\Products\ProductListWindow.xaml">
       <Generator>PublicMSBuild:Compile</Generator>
     </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="images\" />
   </ItemGroup>
 
 </Project>

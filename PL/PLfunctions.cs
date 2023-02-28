@@ -7,7 +7,6 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-
 namespace PL;
 
 internal class PLfunctions:DependencyObject
@@ -20,18 +19,8 @@ internal class PLfunctions:DependencyObject
  public static readonly DependencyProperty errorMessageTextProperty =
      DependencyProperty.Register("errorMessageText", typeof(string), typeof(PLfunctions));
 
- //public string errorMessageText
- //{
- // get { return (string)GetValue(errorMessageTextProperty); }
- // set { SetValue(errorMessageTextProperty, value); }
- //}
- //public static readonly DependencyProperty errorMessageTextProperty =
- //    DependencyProperty.Register("errorMessageText", typeof(string), typeof(ProductWindow));
  public static ObservableCollection<T> Convert<T>(IEnumerable<T> original)//convert Ienumerable to ObservableCollection
  {
   return new ObservableCollection<T>(original);
  }
-
-
-
 }

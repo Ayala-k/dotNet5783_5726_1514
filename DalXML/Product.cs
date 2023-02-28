@@ -1,15 +1,11 @@
 ﻿using DalApi;
 using DO;
-using System;
-using System.IO;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace Dal;
 
 internal class Product : IProduct
 {
- string rootName = "ProductsList";
  string productPath = @"XMLProduct.xml";
 
  public int Add(DO.Product product)
@@ -44,7 +40,6 @@ internal class Product : IProduct
    (from product in ProductRoot.Elements()
     where (int)product.Element("ID")! == productID
     select product).FirstOrDefault()?.Remove();
-
   }
   catch
   {
@@ -66,7 +61,6 @@ internal class Product : IProduct
               new XElement("Category", product.Category),
               new XElement("Price", product.Price),
               new XElement("InStock", product.InStock));
-
   XElement ProductRoot = XMLTools.LoadListFromXMLElement(productPath);
   try
   {
@@ -124,5 +118,4 @@ internal class Product : IProduct
                                          };
   return productsList.Cast<DO.Product?>().FirstOrDefault(predicate) ?? throw new EntityNotFoundException("product not found");
  }
-
 }

@@ -1,5 +1,4 @@
-﻿
-namespace Dal;
+﻿namespace Dal;
 
 public class XMLLoadException : Exception
 {

@@ -1,5 +1,4 @@
-﻿
-namespace BL.BO;
+﻿namespace BL.BO;
 
 public class ProductForList
 {
@@ -13,5 +12,4 @@ public class ProductForList
         name: {Name},
         price: {Price},
         category: {Category},";
-
 }

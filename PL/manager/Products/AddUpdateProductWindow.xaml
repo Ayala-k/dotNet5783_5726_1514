@@ -7,8 +7,15 @@
         mc:Ignorable="d"
         Title="ProductWindow" Height="450" Width="800"
  DataContext="{Binding RelativeSource={RelativeSource self}}">
-
-
+ <Window.Background>
+  <ImageBrush ImageSource="C:\Users\WIN-10\source\repos\dotNet5783_5726_1514\PL\images\gitar.jpg"/>
+ </Window.Background>
+ <Window.Resources>
+  <Style TargetType="Button">
+   <Setter Property="Background" Value="DarkGray" />
+   <Setter Property="Foreground" Value="White" />
+  </Style>
+ </Window.Resources>
  <Grid>
   <Button x:Name="buttonAddUpdate" Content="{Binding UpdateSourceTrigger=PropertyChanged, Source={x:Static local:ProductWindow.pageName}}" HorizontalAlignment="Left" Margin="332,340,0,0" VerticalAlignment="Top" Click="buttonAddUpdate_Click" Height="28" Width="80"/>
   <Grid DataContext="{Binding Source={x:Static local:ProductWindow.product}}">

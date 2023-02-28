@@ -1,16 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace PL;
 
@@ -26,9 +16,21 @@ public partial class LoginWindow : Window
   InitializeComponent();
  }
 
+ void moveToTrackOrder_Click(object sender, RoutedEventArgs e)
+ {
+  new OrderTrackingWindow().Show();
+  this.Close();
+ }
 
- void moveToTrackOrder_Click(object sender, RoutedEventArgs e) => new OrderTrackingWindow().Show();
+ private void moveToCustomer_Click(object sender, RoutedEventArgs e)
+ {
+  new ProductItemsListWindow().Show();
+  this.Close();
+ }
 
- private void moveToCustomer_Click(object sender, RoutedEventArgs e) => new CustomerMainWindow().Show();
-
+ private void goBackButton_Click(object sender, RoutedEventArgs e)
+ {
+  new MainWindow().Show();
+  this.Close();
+ }
 }

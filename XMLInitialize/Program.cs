@@ -60,8 +60,6 @@ public class Sample
         new Random().Next(0, 24), new Random().Next(0, 60));
    if (i < 12)
     o.DeliveryDate = null;
-   //o.DeliveryDate = o.ShipDate + new TimeSpan(new Random().Next(10, 30),
-   //    new Random().Next(0, 24), new Random().Next(0, 60));
    _ordersList.Add(o);
   }
 
@@ -88,59 +86,36 @@ public class Sample
            from product in _productsList
            select new XElement
            ("Product",
-       new XElement("ID", product?.ID),
-       new XElement("Name", product?.Name),
-       new XElement("Category", product?.Category),
-       new XElement("Price", product?.Price),
-       new XElement("InStock", product?.InStock)));
+              new XElement("ID", product?.ID),
+              new XElement("Name", product?.Name),
+              new XElement("Category", product?.Category),
+              new XElement("Price", product?.Price),
+              new XElement("InStock", product?.InStock)));
   initialize.Save(@"C:\Users\WIN-10\source\repos\dotNet5783_5726_1514\xml\XMLProduct.xml");
-
-  //XElement initialize2 = new XElement("orderItems",
-  //       from orderItem in _orderItemsList
-  //       select new XElement
-  //       ("OrderItem",
-  //   new XElement("ID", orderItem?.ID),
-  //   new XElement("ProductID", orderItem?.ProductID),
-  //   new XElement("OrderID", orderItem?.OrderID),
-  //   new XElement("Price", orderItem?.Price),
-  //   new XElement("Amount", orderItem?.Amount)));
-  //initialize2.Save(@"C:\Users\Kluft\source\repos\Ayala-k\dotNet5783_5726_1514\xml\XMLOrderItem.xml");
 
   FileStream fs = new FileStream(@"C:\Users\WIN-10\source\repos\dotNet5783_5726_1514\xml\XMLOrder.xml", FileMode.OpenOrCreate);
   XmlSerializer xs1 = new XmlSerializer(typeof(List<Order?>));
   xs1.Serialize(fs, _ordersList);
   fs.Close();
 
-  //FileStream fs2 = new FileStream(@"C:\Users\WIN-10\source\repos\dotNet5783_5726_1514\xml\XMLProduct.xml", FileMode.OpenOrCreate);
-  //XmlSerializer xs2 = new XmlSerializer(typeof(List<Product?>));
-  //xs2.Serialize(fs2, _productsList);
-  //fs2.Close();
-
   FileStream fs3 = new FileStream(@"C:\Users\WIN-10\source\repos\dotNet5783_5726_1514\xml\XMLOrderItem.xml", FileMode.OpenOrCreate);
   XmlSerializer xs3 = new XmlSerializer(typeof(List<OrderItem?>));
   xs3.Serialize(fs3, _orderItemsList);
   fs3.Close();
-
 
   XElement initialize2 = new XElement("Config",
      new XElement("OrderID", "121"),
      new XElement("OrderItemID", "141"));
   initialize2.Save(@"C:\Users\WIN-10\source\repos\dotNet5783_5726_1514\xml\Config.xml");
 
-
-
-
   XElement initialize3 = new XElement("User",
                new XElement("Cart",
-       new XElement("CustomerName"),
-       new XElement("CustomerEmail"),
-       new XElement("CustomerAddress"),
-        new XElement("itemsList")),
-               new XElement("productsID"));
-
+                   new XElement("CustomerName"),
+                   new XElement("CustomerEmail"),
+                   new XElement("CustomerAddress"),
+                   new XElement("TotalPrice"),
+                   new XElement("ItemsList")));
   initialize3.Save(@"C:\Users\WIN-10\source\repos\dotNet5783_5726_1514\xml\XMLUser.xml");
-
-
  }
 }
 

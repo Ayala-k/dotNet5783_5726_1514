@@ -6,15 +6,22 @@
         xmlns:local="clr-namespace:PL"
         xmlns:DO="clr-namespace:DO;assembly=DalFacade" 
         mc:Ignorable="d"
-        Title="ProductListWindow" Height="640" Width="800"
+        Title="ProductListWindow" Height="508" Width="819"
         DataContext="{Binding RelativeSource={RelativeSource self}}">
+ <Window.Background>
+  <ImageBrush ImageSource="C:\Users\WIN-10\source\repos\dotNet5783_5726_1514\PL\images\gitar.jpg"/>
+ </Window.Background>
+ <Window.Resources>
+  <Style TargetType="Button">
+   <Setter Property="Background" Value="DarkGray" />
+   <Setter Property="Foreground" Value="White" />
+  </Style>
+ </Window.Resources>
 
- 
-    <Grid x:Name="MainGrid">
+ <Grid x:Name="MainGrid" Margin="0,0,0,-81">
   <Grid.RowDefinitions>
    <RowDefinition Height="40*"/>
    <RowDefinition Height="500*"/>
-   <RowDefinition Height="Auto"/>
   </Grid.RowDefinitions>
   <Grid x:Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
 VerticalAlignment="Stretch" Width="auto">
@@ -22,13 +29,15 @@ VerticalAlignment="Stretch" Width="auto">
     <ColumnDefinition Width="*"/>
     <ColumnDefinition Width="*"/>
    </Grid.ColumnDefinitions>
+   <Button Content="back" HorizontalAlignment="Left" Margin="27,18,0,0" VerticalAlignment="Top" Click="goBackButton_Click"/>
+
    <Label Grid.Column="0" Content="Category:" Margin="315,8,10,10"/>
    <!--ItemsControl.-->
    <ComboBox x:Name="CategoriesSelector" ItemsSource="{Binding Source={x:Static local:ProductItemsListWindow.categories}}" SelectedItem="{Binding selectedCategory}"
     HorizontalAlignment= "Left"  
     Grid.Column="1" Width="319" SelectionChanged="CategoriesSelector_SelectionChanged_1"/>
   </Grid>
-        <ListView x:Name="ProductListview" SelectedItem="{Binding selectedItem, Mode=TwoWay}" ItemsSource="{Binding productsForListListToView}" SelectionChanged="ProductListview_SelectionChanged" Margin="0,46,0,85" Grid.RowSpan="2">
+        <ListView x:Name="ProductListview" SelectedItem="{Binding selectedItem, Mode=TwoWay}" ItemsSource="{Binding productsForListListToView}" SelectionChanged="ProductListview_SelectionChanged" Margin="0,46,124,206" Grid.RowSpan="2">
    <ListView.View>
     <GridView>
      <GridViewColumn Width="Auto" Header="ID">
@@ -65,7 +74,7 @@ VerticalAlignment="Stretch" Width="auto">
    </ListView.View>
 
   </ListView>
-  <Button Content="Add new Product" HorizontalAlignment="Left" Margin="586,511,0,0" Grid.Row="1" Padding="5" Click="Button_Click" Height="57" VerticalAlignment="Top" Width="158"/>
+  <Button Content="Add new Product" HorizontalAlignment="Left" Margin="537,340,0,0" Grid.Row="1" Padding="5" Click="Button_Click" Height="57" VerticalAlignment="Top" Width="158"/>
         <Button Content="view all" HorizontalAlignment="Left" Margin="737,16,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.613,-1.825" Click="Button_Click_1"/>
 
 

@@ -10,22 +10,21 @@ internal class DalCart : ICart
  {
   return 0;
  }
+
  public void AddOrderItemToCart(OrderItem oi)//AddOrderItemToCart
  {
   userCart.ItemsList.Add(oi);
  }
 
-
  public void Delete(int productID)//AddOrderItemFronCart
  {
-  userCart.ItemsList.Remove((userCart.ItemsList.FirstOrDefault(item => item?.ID == productID)));
+  userCart.ItemsList.Remove((userCart.ItemsList.FirstOrDefault(item => item.ID == productID)));
  }
 
  public Cart getCart()
  {
   return userCart;
  }
-
 
  public IEnumerable<Cart?> GetAll(Func<Cart?, bool>? predict = null)
  {
@@ -41,5 +40,4 @@ internal class DalCart : ICart
  {
   userCart = cart;
  }
-
 }

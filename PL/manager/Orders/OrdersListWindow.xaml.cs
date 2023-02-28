@@ -1,18 +1,8 @@
 ﻿using BL.BO;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace PL;
 
@@ -31,13 +21,13 @@ public partial class OrdersListWindow : Window
  public static readonly DependencyProperty orderForListListProperty =
   DependencyProperty.Register(nameof(orderForListList), typeof(ObservableCollection<OrderForList?>), typeof(OrdersListWindow));
 
-
  public OrdersListWindow()
  {
   orderForListList = PL.PLfunctions.Convert(bl.Order.GetOrders());
   InitializeComponent();
 
  }
+
  private void updateOrder(OrderForList? order)
  {
   var item = orderForListList.FirstOrDefault(item => item.ID == order.ID);
@@ -53,5 +43,11 @@ public partial class OrdersListWindow : Window
    id = ((BL.BO.OrderForList)tmp.SelectedItem).ID;
    new UpdateOrderWindow(id,"manager", updateOrder).ShowDialog();
   }
+ }
+
+ private void goBackButton_Click(object sender, RoutedEventArgs e)
+ {
+  new managerMainWindow().Show();
+  this.Close();
  }
 }

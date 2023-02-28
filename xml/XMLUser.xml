@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <User>
   <Cart>
-        Customer name: ,
-        Customer Email: ,
-        Customer Address: ,
-        Total Price: 0,
-        Items List: </Cart>
-  <productsID />
+    <CustomerName> </CustomerName>
+    <CustomerEmail> </CustomerEmail>
+    <CustomerAddress> </CustomerAddress>
+    <TotalPrice />
+    <ItemsList />
+  </Cart>
 </User>

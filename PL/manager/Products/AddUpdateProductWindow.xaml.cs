@@ -1,28 +1,22 @@
 ﻿using BL.BO;
-using BlImplementation;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-
 
 namespace PL;
 
 /// <summary>
 /// Interaction logic for ProductWindow.xaml
 /// </summary>
-
 public partial class ProductWindow : Window
 {
  BL.BlApi.IBl? bl = BlApi.Factory.Get();
 
  private Action<ProductForList> action;
  public static Product product { get; set; } = new Product();
- public static string pageName;
+ public static string pageName { get; set; }
  public string errorMessageTextProduct
  {
   get { return (string)GetValue(errorMessageTextProperty); }
@@ -146,6 +140,7 @@ public partial class ProductWindow : Window
    this.Close();
   }
  }
+ 
  private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) { }
 
  /// <summary>

@@ -2,7 +2,6 @@
 using static Dal.DataSource;
 using DalApi;
 
-
 namespace Dal;
 
 /// <summary>
@@ -84,6 +83,5 @@ internal class DalProduct : IProduct
     {
         Product? x = DataSource._productsList.First();
     }
-
 }
 

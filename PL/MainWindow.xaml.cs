@@ -1,21 +1,5 @@
 ﻿using BL.BlApi;
-using BL.BO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using BL.BlImplementation;
-using DO;
 
 namespace PL;
 
@@ -26,10 +10,6 @@ public partial class MainWindow : Window
 {
  private IBl bl = BlApi.Factory.Get();
 
- //BL.BO.Cart? cart = new BL.BO.Cart();
-
-
-
  public BL.BO.Cart? cart
  {
   get { return (BL.BO.Cart?)GetValue(cartProperty); }
@@ -38,30 +18,40 @@ public partial class MainWindow : Window
  public static readonly DependencyProperty cartProperty =
      DependencyProperty.Register("cart", typeof(BL.BO.Cart), typeof(MainWindow));
 
-
-
-
  public MainWindow()
  {
   cart = new BL.BO.Cart()
   {
-   CustomerName=" ",
-   CustomerEmail=" ",
-   CustomerAddress=" "
+   CustomerName = " ",
+   CustomerEmail = " ",
+   CustomerAddress = " ",
+   TotalPrice=0
   };
   InitializeComponent();
  }
- void moveToManager_Click(object sender, RoutedEventArgs e) => new managerMainWindow().ShowDialog();
 
+ void moveToManager_Click(object sender, RoutedEventArgs e)
+ {
+  new managerMainWindow().Show();
+  this.Close();
+ }
  private void loginButton_Click(object sender, RoutedEventArgs e)
  {
   bl.Cart.updateUserCart(cart);
   new LoginWindow().Show();
+  this.Close();
+
  }
 
  private void guestButton_Click(object sender, RoutedEventArgs e)
  {
   bl.Cart.updateUserCart(cart);
   new LoginWindow().Show();
+  this.Close();
+ }
+
+ private void Button_Click(object sender, RoutedEventArgs e)
+ {
+  new SimulatorWindow().Show();
  }
 }

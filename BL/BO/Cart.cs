@@ -1,5 +1,4 @@
-﻿
-namespace BL.BO;
+﻿namespace BL.BO;
 
 public class Cart
 {
@@ -24,5 +23,4 @@ public class Cart
         Total Price: {TotalPrice},
         Items List: {itemsList}");
  }
-
 }

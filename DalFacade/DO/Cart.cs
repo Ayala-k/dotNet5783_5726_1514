@@ -13,7 +13,7 @@ public struct Cart
  public string? CustomerName { get; set; }
  public string? CustomerEmail { get; set; }
  public string? CustomerAddress { get; set; }
- public List<OrderItem?>? ItemsList { get; set; } = new List<OrderItem?>();
+ public List<OrderItem> ItemsList { get; set; } = new List<OrderItem>();
  public double TotalPrice { get; set; }
  public IEnumerable<int> OrdersIdList { get; set; }=new List<int>();
 
@@ -24,12 +24,11 @@ public struct Cart
   {
    itemsList += (item.ToString());
   }
-  return (
-  $@"
-        Customer name: {CustomerName},
-        Customer Email: {CustomerEmail},
-        Customer Address: {CustomerAddress},
-        Total Price: {TotalPrice},
-        Items List: {itemsList}");
+  return ($@"
+          Customer name: {CustomerName},
+          Customer Email: {CustomerEmail},
+          Customer Address: {CustomerAddress},
+          Total Price: {TotalPrice},
+          Items List: {itemsList}");
  }
 }

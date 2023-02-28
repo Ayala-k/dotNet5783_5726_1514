@@ -1,14 +1,25 @@
-﻿namespace DO;
+﻿using System.Xml.Linq;
+
+namespace DO;
 
 /// <summary>
 /// Structure for order items
 /// </summary>
 public struct OrderItem
 {
-    /// <summary>
-    /// Unique ID of order item
-    /// </summary>
-    public int ID { get; set; }
+ //public OrderItem() { }
+ public OrderItem(OrderItem oi)
+ {
+  ID= oi.ID;
+  OrderID= oi.OrderID;
+  ProductID = oi.ProductID;
+  Price = oi.Price;
+  Amount = oi.Amount;
+ }
+ /// <summary>
+ /// Unique ID of order item
+ /// </summary>
+ public int ID { get; set; }
 
     /// <summary>
     /// ID of product

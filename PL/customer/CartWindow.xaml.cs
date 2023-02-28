@@ -1,7 +1,4 @@
-﻿using BL.BlApi;
-using BL.BO;
-using DalApi;
-using DO;
+﻿using BL.BO;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -65,11 +62,10 @@ public partial class CartWindow : Window
  public CartWindow(BL.BO.Cart c, Action<ProductItem> action, Action<int, int> action2)
  {
   cart2 = c;
-  if (bl.Cart.getUserCart().CustomerName != null)
+  if (bl.Cart.getUserCart().CustomerName != "")
   {
    orderItemsList = new ObservableCollection<BL.BO.OrderItem?>(from BL.BO.OrderItem oi in bl.Cart.getUserCart().ItemsList
                                                                select new BL.BO.OrderItem(oi));
-
   }
   else
    orderItemsList = new ObservableCollection<BL.BO.OrderItem?>(from BL.BO.OrderItem oi in cart2.ItemsList
@@ -109,7 +105,7 @@ public partial class CartWindow : Window
   }
   catch (BL.BO.NotEnoughInStockException exp)
   {
-   errorMessageText2 = exp.Message.ToString() + ",updated to amount in stock";
+   MessageBox.Show(exp.Message.ToString() + ",updated to amount in stock");
    orderItemsList = PL.PLfunctions.Convert(cart2.ItemsList);
    action2((int)((Button)sender).Tag, cart2.ItemsList.FirstOrDefault(o => o.ProductID == (int)((Button)sender).Tag).Amount);
   }
@@ -124,7 +120,6 @@ public partial class CartWindow : Window
  }
  private void CommitOrderButton_Click(object sender, RoutedEventArgs e)
  {
-
   try
   {
    int orderID = bl.Cart.CommitOrder(cart2);
@@ -132,17 +127,6 @@ public partial class CartWindow : Window
    cart2.ItemsList.ForEach(o => action2(o.ProductID, 0));
    cart2 = new BL.BO.Cart();
    orderItemsList = orderItemsList = new ObservableCollection<BL.BO.OrderItem?>();
-   //foreach oi in cart2.ItemsList
-   // action2()
-
-
-
-   //if (bl.Cart.getUserCart().CustomerName != null)
-   //{
-   // //
-   //}
-
-
   }
   catch (BL.BO.EntityNotFoundLogicException exp)
   {

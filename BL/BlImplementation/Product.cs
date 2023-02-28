@@ -22,6 +22,7 @@ internal class Product : BlApi.IProduct
                                                   select productDal!.copy(product);
   return productsListBL;
  }
+ 
  public IEnumerable<BO.ProductItem?> GetProductIItems(Func<ProductItem, bool>? predict = null)
  {
   IEnumerable<DO.Product?> productsListDal = Dal.Product.GetAll();
@@ -36,6 +37,7 @@ internal class Product : BlApi.IProduct
                                                 select productDal!.copy(product);
   return productsListBL;
  }
+ 
  /// <summary>
  /// get details abput specific product 
  /// </summary>
@@ -174,13 +176,13 @@ internal class Product : BlApi.IProduct
    throw new BO.EntityAlreadyExistsLogicException("product already exist", e);
   }
  }
+
  /// <summary>
  /// delete product
  /// </summary>
  /// <param name="productID"></param>
  /// <exception cref="BO.EntityInUseException"></exception>
  /// <exception cref="BO.EntityNotFoundLogicException"></exception>
-
  public void DeleteProduct(int productID)
  {
   //check that the product is not ordered by a customer now

@@ -1,5 +1,4 @@
-﻿
-namespace BL.BO;
+﻿namespace BL.BO;
 
 public class OrderForList
 {
@@ -9,13 +8,11 @@ public class OrderForList
  public int AmountOfItems { get; set; }
  public double TotalPrice { get; set; }
 
-
  public override string ToString() => $@"
         Order For List ID:{ID},
         Customer name: {CustomerName},
         Status: {Status},
         Amount Of Items: {AmountOfItems},
         Total Price: {TotalPrice}";
-
 }
 

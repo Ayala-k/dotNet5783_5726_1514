@@ -368,6 +368,13 @@ internal class Order : BlApi.IOrder
   }
 
  }
+ public int? SelectOrder()
+ {
+  IEnumerable<DO.Order?> ordersListDal = Dal.Order.GetAll(order=>order?.DeliveryDate==null);
+  if (ordersListDal.Count() == 0)
+   return null;
+  return ordersListDal.OrderBy(order => order?.ShipDate == null ? order?.OrderDate : order?.ShipDate).ToList()[0]?.ID;
+ }
 
  #region private methods
 

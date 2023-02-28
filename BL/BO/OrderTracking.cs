@@ -1,7 +1,4 @@
-﻿
-using System;
-
-namespace BL.BO;
+﻿namespace BL.BO;
 
 public class OrderTracking
 {
@@ -11,8 +8,6 @@ public class OrderTracking
     {
         public DateTime? ProgressDate { get; set; }
         public string ProgressDescription { get; set; }
-
-
     }
     public IEnumerable<DateAndProgressDescription?>? DateAndProgressDescriptionsList;
 

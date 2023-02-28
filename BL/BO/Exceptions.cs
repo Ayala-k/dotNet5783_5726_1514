@@ -1,5 +1,4 @@
-﻿
-using DO;
+﻿using DO;
 
 namespace BL.BO;
 
@@ -29,7 +28,6 @@ public class EntityAlreadyExistsLogicException : Exception
     public EntityAlreadyExistsLogicException(string str) : base(str) { }
     public EntityAlreadyExistsLogicException(string str, EntityAlreadyExistsException e) : base(str, e) { }
 }
-
 
 public class ProgressAlreadyDoneException : Exception
 {

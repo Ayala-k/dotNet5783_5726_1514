@@ -16,5 +16,4 @@ public class ProductItem
         category: {Category},
         in stock: {InStock},
         amount in cart: {AmountInCart},";
-
 }

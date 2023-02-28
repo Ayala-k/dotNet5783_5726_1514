@@ -1,5 +1,4 @@
-﻿
-namespace BL.BO;
+﻿namespace BL.BO;
 
 public class OrderItem
 {
@@ -25,5 +24,4 @@ public class OrderItem
         price: {Price},
         amount: {Amount},
         total price: {TotalPrice}";
-
 }

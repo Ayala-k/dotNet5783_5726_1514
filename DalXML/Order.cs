@@ -1,5 +1,4 @@
-﻿
-using DalApi;
+﻿using DalApi;
 using DO;
 using System.Xml.Linq;
 
@@ -7,7 +6,6 @@ namespace Dal;
 
 internal class Order : IOrder
 {
-    string rootName = "OrdersList";
     string orderPath = @"XMLOrder.xml";
 
     public int Add(DO.Order order)

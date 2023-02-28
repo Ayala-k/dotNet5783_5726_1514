@@ -72,5 +72,4 @@ internal class DalOrderItem : IOrderItem
         return (_orderItemsList.FirstOrDefault(item => predict(item)))
      ?? throw new EntityNotFoundException("order item not found");
     }
-
 }

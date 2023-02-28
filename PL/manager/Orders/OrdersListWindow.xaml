@@ -7,11 +7,22 @@
         mc:Ignorable="d"
         Title="OrdersListWindow" Height="450" Width="800"
         DataContext="{Binding RelativeSource={RelativeSource self}}">
- 
-    <Grid>
-  <ListView x:Name="tmp" ItemsSource="{Binding orderForListList}" SelectionChanged="orderListview_SelectionChanged">
+ <Window.Background>
+  <ImageBrush ImageSource="C:\Users\WIN-10\source\repos\dotNet5783_5726_1514\PL\images\gitar.jpg"/>
+ </Window.Background>
+ <Window.Resources>
+  <Style TargetType="Button">
+   <Setter Property="Background" Value="DarkGray" />
+   <Setter Property="Foreground" Value="White" />
+  </Style>
+ </Window.Resources>
+ <Grid>
+  <ListView x:Name="tmp" ItemsSource="{Binding orderForListList}" SelectionChanged="orderListview_SelectionChanged" Margin="10,35,95,33">
+
    <ListView.View>
+  
     <GridView>
+     
      <GridViewColumn Width="Auto" Header="ID">
       <GridViewColumn.CellTemplate>
        <DataTemplate >
@@ -54,6 +65,7 @@
 
   </ListView>
 
+  <Button Content="back" HorizontalAlignment="Left" Margin="27,10,0,0" VerticalAlignment="Top" Click="goBackButton_Click"/>
 
  </Grid>
 </Window>

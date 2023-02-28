@@ -7,78 +7,90 @@
         mc:Ignorable="d"
         Title="CartWindow" Height="450" Width="800"
         DataContext="{Binding RelativeSource={RelativeSource self}}">
-    <Grid Margin="0,0,-596,-386">
-        <!--DataContext="{Binding cart2,Mode=TwoWay}-->
-        <ListView SelectedItem="{Binding selectedItem}" Margin="21,46,932,85" ItemsSource="{Binding orderItemsList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="Auto" Header="Name">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate >
-                                <TextBlock Margin="-5,-1" Text="{Binding Name}" TextAlignment="Right" Padding="2"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="Auto" Header="ProductID">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Margin="-5,-1" Text="{Binding ProductID}" Padding="2"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="Auto" Header="Price">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Margin="-5,-1" Text="{Binding Price}" TextAlignment="Center" Padding="2"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="Auto" Header="Amount">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox PreviewTextInput="PreviewTextInput" Margin="-5,-1" Text="{Binding Amount}" TextAlignment="Center" Padding="2"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="Auto" Header="Total Price for Product">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Margin="-5,-1" Text="{Binding TotalPrice}" TextAlignment="Center" Padding="2"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="Auto" Header="">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Margin="-5,-1" Content="remove" Tag="{Binding ProductID}"  Padding="2" Click="removeButton_Click"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="Auto" Header="">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Margin="-5,-1" Content="update" Tag="{Binding ProductID}"  Padding="2" Click="updateAmountButton_Click"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <Grid DataContext="{Binding cart2, UpdateSourceTrigger=PropertyChanged}">
-            <Label Content="Total Price:" HorizontalAlignment="Left" Margin="475,46,0,0" VerticalAlignment="Top"/>
-            <TextBlock HorizontalAlignment="Left" Margin="547,51,0,0" TextWrapping="Wrap" Text="{Binding TotalPrice}" VerticalAlignment="Top" RenderTransformOrigin="-0.372,0.483" Width="89"/>
-            <TextBox Text="{Binding CustomerName, Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="820,122,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="80"/>
-            <TextBox Text="{Binding CustomerEmail, Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="826,161,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="80"/>
-            <TextBox Text="{Binding CustomerAddress, Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="829,198,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="80"/>
-            <Label Content="customer name" HorizontalAlignment="Left" Margin="719,125,0,0" VerticalAlignment="Top"/>
-            <Label Content="customer email" HorizontalAlignment="Left" Margin="719,156,0,0" VerticalAlignment="Top"/>
-            <Label Content="customer address" HorizontalAlignment="Left" Margin="719,188,0,0" VerticalAlignment="Top"/>
+ <Window.Background>
+  <ImageBrush ImageSource="C:\Users\WIN-10\source\repos\dotNet5783_5726_1514\PL\images\gitar.jpg"/>
+ </Window.Background>
+ <Window.Resources>
+  <Style TargetType="Button">
+   <Setter Property="Background" Value="DarkGray" />
+   <Setter Property="Foreground" Value="White" />
+  </Style>
+  <Style TargetType="Label">
+   <Setter Property="Foreground" Value="DarkGray" />
+  </Style>
+ </Window.Resources>
+ <Grid Margin="0,0,-596,-386">
+  <!--DataContext="{Binding cart2,Mode=TwoWay}-->
+  <ListView SelectedItem="{Binding selectedItem}" Margin="21,46,932,85" ItemsSource="{Binding orderItemsList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+   <ListView.View>
+    <GridView>
+     <GridViewColumn Width="Auto" Header="Name">
+      <GridViewColumn.CellTemplate>
+       <DataTemplate >
+        <TextBlock Margin="-5,-1" Text="{Binding Name}" TextAlignment="Right" Padding="2"/>
+       </DataTemplate>
+      </GridViewColumn.CellTemplate>
+     </GridViewColumn>
+     <GridViewColumn Width="Auto" Header="ProductID">
+      <GridViewColumn.CellTemplate>
+       <DataTemplate>
+        <TextBlock Margin="-5,-1" Text="{Binding ProductID}" Padding="2"/>
+       </DataTemplate>
+      </GridViewColumn.CellTemplate>
+     </GridViewColumn>
+     <GridViewColumn Width="Auto" Header="Price">
+      <GridViewColumn.CellTemplate>
+       <DataTemplate>
+        <TextBlock Margin="-5,-1" Text="{Binding Price}" TextAlignment="Center" Padding="2"/>
+       </DataTemplate>
+      </GridViewColumn.CellTemplate>
+     </GridViewColumn>
+     <GridViewColumn Width="Auto" Header="Amount">
+      <GridViewColumn.CellTemplate>
+       <DataTemplate>
+        <TextBox PreviewTextInput="PreviewTextInput" Margin="-5,-1" Text="{Binding Amount}" TextAlignment="Center" Padding="2"/>
+       </DataTemplate>
+      </GridViewColumn.CellTemplate>
+     </GridViewColumn>
+     <GridViewColumn Width="Auto" Header="Total Price for Product">
+      <GridViewColumn.CellTemplate>
+       <DataTemplate>
+        <TextBlock Margin="-5,-1" Text="{Binding TotalPrice}" TextAlignment="Center" Padding="2"/>
+       </DataTemplate>
+      </GridViewColumn.CellTemplate>
+     </GridViewColumn>
+     <GridViewColumn Width="Auto" Header="">
+      <GridViewColumn.CellTemplate>
+       <DataTemplate>
+        <Button Margin="-5,-1" Content="remove" Tag="{Binding ProductID}"  Padding="2" Click="removeButton_Click"/>
+       </DataTemplate>
+      </GridViewColumn.CellTemplate>
+     </GridViewColumn>
+     <GridViewColumn Width="Auto" Header="">
+      <GridViewColumn.CellTemplate>
+       <DataTemplate>
+        <Button Margin="-5,-1" Content="update" Tag="{Binding ProductID}"  Padding="2" Click="updateAmountButton_Click"/>
+       </DataTemplate>
+      </GridViewColumn.CellTemplate>
+     </GridViewColumn>
+    </GridView>
+   </ListView.View>
+  </ListView>
+  <Grid DataContext="{Binding cart2, UpdateSourceTrigger=PropertyChanged}">
+   <Label Content="Total Price:" HorizontalAlignment="Left" Margin="499,211,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.028,6.662"/>
+   <TextBlock HorizontalAlignment="Left" Margin="587,211,0,0" TextWrapping="Wrap" Text="{Binding TotalPrice}" VerticalAlignment="Top" RenderTransformOrigin="-0.372,0.483" Width="89"/>
+   <TextBox Text="{Binding CustomerName, Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="596,122,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="80"/>
+   <TextBox Text="{Binding CustomerEmail, Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="596,153,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="80"/>
+   <TextBox Text="{Binding CustomerAddress, Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="602,184,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="80"/>
+   <Label Content="customer name" HorizontalAlignment="Left" Margin="499,118,0,0" VerticalAlignment="Top"/>
+   <Label Content="customer email" HorizontalAlignment="Left" Margin="499,149,0,0" VerticalAlignment="Top"/>
+   <Label Content="customer address" HorizontalAlignment="Left" Margin="499,180,0,0" VerticalAlignment="Top"/>
 
-        </Grid>
+  </Grid>
 
-        <Button Content="commit order" HorizontalAlignment="Left" Margin="747,265,0,0" VerticalAlignment="Top" Click="CommitOrderButton_Click"/>
-        <Label Foreground="Red" x:Name="errorMessage" Content="{Binding errorMessageText2,Mode=TwoWay}" HorizontalAlignment="Left" Margin="478,307,0,0" VerticalAlignment="Top" RenderTransformOrigin="45.88,1.264" Height="42" Width="464"/>
-        <TextBlock HorizontalAlignment="Left" Margin="656,349,0,0" TextWrapping="Wrap" Text="{Binding orderCommitedText}" VerticalAlignment="Top"/>
+  <Button Content="commit order" HorizontalAlignment="Left" Margin="550,261,0,0" VerticalAlignment="Top" Click="CommitOrderButton_Click"/>
+  <Label Foreground="Red" x:Name="errorMessage" Content="{Binding errorMessageText2,Mode=TwoWay}" HorizontalAlignment="Left" Margin="478,307,0,0" VerticalAlignment="Top" RenderTransformOrigin="45.88,1.264" Height="42" Width="464"/>
+  <TextBlock HorizontalAlignment="Left" Margin="656,349,0,0" TextWrapping="Wrap" Text="{Binding orderCommitedText}" VerticalAlignment="Top"/>
 
-    </Grid>
+ </Grid>
 </Window>

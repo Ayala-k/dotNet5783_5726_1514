@@ -1,5 +1,4 @@
-﻿
-namespace BL.BlApi;
+﻿namespace BL.BlApi;
 
 public interface ICart
 {
@@ -9,5 +8,4 @@ public interface ICart
  public void updateUserCart(BO.Cart cart);
  public BO.Cart getUserCart();
  public void addOrderItemUserCart(int productID);
-
 }

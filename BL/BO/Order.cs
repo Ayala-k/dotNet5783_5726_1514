@@ -1,5 +1,4 @@
-﻿
-namespace BL.BO;
+﻿namespace BL.BO;
 
 public class Order
 {
@@ -13,9 +12,6 @@ public class Order
  public DateTime? DeliveryDate { get; set; }
  public List<OrderItem?>? ItemsList { get; set; }
  public double TotalPrice { get; set; }
-
-
-
 
  public override string ToString()
  {

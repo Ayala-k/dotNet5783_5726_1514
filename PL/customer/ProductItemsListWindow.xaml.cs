@@ -1,19 +1,9 @@
 ﻿using BL.BO;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace PL;
 
@@ -69,14 +59,13 @@ public partial class ProductItemsListWindow : Window
  {
   productItemsList = PL.PLfunctions.Convert(bl.Product.GetProductIItems());
   productItemsListToView = productItemsList;
-  if (bl.Cart.getUserCart().CustomerName != " ")
+  if (bl.Cart.getUserCart().CustomerName != "")
   {
    cart = bl.Cart.getUserCart();
   }
   else
    cart = new Cart();
   InitializeComponent();
-  MessageBox.Show(cart.ToString());
  }
 
  private void Button_Click(object sender, RoutedEventArgs e) => new CartWindow(cart, updateProductToList, updateProductToListAmountInCart).ShowDialog();
@@ -98,9 +87,9 @@ public partial class ProductItemsListWindow : Window
                            group p by p.Category into categoryGroup
                            from pr in categoryGroup
                            select pr).ToList();
-
   productItemsListToView = PL.PLfunctions.Convert(GropupingProducts);
  }
+ 
  private void updateProductToList(ProductItem productItem)
  {
   var item = productItemsListToView.FirstOrDefault(item => item.ID == productItem.ID);
@@ -123,6 +112,7 @@ public partial class ProductItemsListWindow : Window
    Price = item.Price
   };
  }
+ 
  private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
  {
   if (selectedProductItem is BL.BO.ProductItem)
@@ -132,5 +122,11 @@ public partial class ProductItemsListWindow : Window
  private void Button_Click_1(object sender, RoutedEventArgs e)
  {
   productItemsListToView = productItemsList;
+ }
+
+ private void goBackButton_Click(object sender, RoutedEventArgs e)
+ {
+  new LoginWindow().Show();
+  this.Close();
  }
 }

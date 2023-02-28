@@ -7,18 +7,77 @@
         mc:Ignorable="d"
         Title="ProductItemsListWindow" Height="450" Width="800"
         DataContext="{Binding RelativeSource={RelativeSource self}}">
-    <Grid>
-  <Button Content="go to cart" HorizontalAlignment="Left" Margin="734,53,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.444,9.962" Click="Button_Click"/>
-        <ListView ItemsSource="{Binding productItemsListToView, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" SelectedItem="{Binding selectedProductItem, Mode=OneWayToSource}" Margin="0,68,381,77" SelectionChanged="ListView_SelectionChanged">
+ <Window.Background>
+  <ImageBrush ImageSource="C:\Users\WIN-10\source\repos\dotNet5783_5726_1514\PL\images\gitar.jpg"/>
+ </Window.Background>
+ <Window.Resources>
+  <Style TargetType="Button">
+   <Setter Property="Background" Value="DarkGray" />
+   <Setter Property="Foreground" Value="White" />
+  </Style>
+ </Window.Resources>
+ <Grid>
+  <Button Content="go to cart" HorizontalAlignment="Center" Margin="0,384,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.444,9.962" Click="Button_Click" Height="26" Width="100"/>
+  <ComboBox ItemsSource="{Binding categories}" SelectedItem="{Binding selectedCategory}" HorizontalAlignment="Left" Margin="316,37,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged"/>
+  <Button Content="order by categories" HorizontalAlignment="Left" Margin="194,37,0,0" VerticalAlignment="Top" Click="ButtonGroupingByCategory_Click"/>
+  <Button Content="view all" HorizontalAlignment="Left" Margin="455,37,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
+
+  <Button Content="back" HorizontalAlignment="Left" Margin="27,10,0,0" VerticalAlignment="Top" Click="goBackButton_Click"/>
+
+
+
+  <ListView ItemsSource="{Binding productItemsListToView, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" SelectedItem="{Binding selectedProductItem, Mode=OneWayToSource}" Margin="0,68,138,77" SelectionChanged="ListView_SelectionChanged">
    <ListView.View>
     <GridView>
-     <GridViewColumn/>
+     <GridViewColumn Width="Auto" Header="ID">
+      <GridViewColumn.CellTemplate>
+       <DataTemplate >
+   <TextBlock Margin="-5,-1" Text="{Binding ID}" TextAlignment="Right" Padding="2"/>
+  </DataTemplate>
+  </GridViewColumn.CellTemplate>
+  </GridViewColumn>
+  <GridViewColumn Width="Auto" Header="Name">
+   <GridViewColumn.CellTemplate>
+    <DataTemplate>
+     <TextBlock Margin="-5,-1" Text="{Binding Name}" Padding="2"/>
+    </DataTemplate>
+   </GridViewColumn.CellTemplate>
+  </GridViewColumn>
+     <GridViewColumn Width="Auto" Header="Category">
+   <GridViewColumn.CellTemplate>
+    <DataTemplate>
+     <TextBlock Margin="-5,-1" Text="{Binding Category}" TextAlignment="Center" Padding="2"/>
+    </DataTemplate>
+   </GridViewColumn.CellTemplate>
+  </GridViewColumn>
+     <GridViewColumn Width="Auto" Header="InStock">
+   <GridViewColumn.CellTemplate>
+    <DataTemplate>
+     <TextBlock Margin="-5,-1" Text="{Binding InStock}" TextAlignment="Center" Padding="2"/>
+    </DataTemplate>
+      </GridViewColumn.CellTemplate>
+     </GridViewColumn>
+     <GridViewColumn Width="Auto" Header="Price">
+      <GridViewColumn.CellTemplate>
+       <DataTemplate>
+        <TextBlock Margin="-5,-1" Text="{Binding Price}" TextAlignment="Center" Padding="2"/>
+       </DataTemplate>
+      </GridViewColumn.CellTemplate>
+     </GridViewColumn>
+     <GridViewColumn Width="Auto" Header="AmountInCart">
+      <GridViewColumn.CellTemplate>
+       <DataTemplate>
+        <TextBlock Margin="-5,-1" Text="{Binding AmountInCart}" TextAlignment="Center" Padding="2"/>
+       </DataTemplate>
+      </GridViewColumn.CellTemplate>
+     </GridViewColumn>
     </GridView>
    </ListView.View>
-  </ListView>
-  <ComboBox ItemsSource="{Binding categories}" SelectedItem="{Binding selectedCategory}" HorizontalAlignment="Left" Margin="545,52,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged"/>
-  <Button Content="order by categories" HorizontalAlignment="Left" Margin="424,53,0,0" VerticalAlignment="Top" Click="ButtonGroupingByCategory_Click"/>
-        <Button Content="view all" HorizontalAlignment="Left" Margin="678,54,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
 
-    </Grid>
+  </ListView>
+
+
+
+
+ </Grid>
 </Window>

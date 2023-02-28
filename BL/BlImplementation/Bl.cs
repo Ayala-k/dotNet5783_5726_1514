@@ -1,5 +1,4 @@
-﻿
-namespace BlImplementation;
+﻿namespace BlImplementation;
 
 sealed internal class Bl : BL.BlApi.IBl
 {

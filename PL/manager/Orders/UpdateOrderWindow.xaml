@@ -9,7 +9,14 @@
  DataContext="{Binding RelativeSource={RelativeSource self}}">
  <Window.Resources>
   <local:ConvertBoolToVisible x:Key="myCnvrtr"/>
+   <Style TargetType="Button">
+    <Setter Property="Background" Value="DarkGray" />
+    <Setter Property="Foreground" Value="White" />
+   </Style>
  </Window.Resources>
+ <Window.Background>
+   <ImageBrush ImageSource="C:\Users\WIN-10\source\repos\dotNet5783_5726_1514\PL\images\gitar.jpg"/>
+ </Window.Background>
  <Grid>
   <Label Content="id:" HorizontalAlignment="Left" Margin="104,28,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.676,0.654"/>
   <Label Content="customer name:" HorizontalAlignment="Left" Margin="32,54,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.469,0.375"/>
@@ -23,10 +30,10 @@
   <Label Content="total price:" HorizontalAlignment="Left" Margin="47,264,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.469,0.375"/>
 
   <Label Foreground="Red" Content="{Binding errorMessageTextOrder}" HorizontalAlignment="Right" Margin="0,354,537,0" VerticalAlignment="Top" Height="22" Width="121"/>
-  <Button IsEnabled="{Binding shipDate}" Visibility="{Binding buttonPermission,Converter={StaticResource myCnvrtr}}" Content="update" Click="buttonUpdateShipping_Click" HorizontalAlignment="Center" Margin="0,206,0,0" VerticalAlignment="Top" Height="28" Width="80" RenderTransformOrigin="-1.562,0.616" />
-  <Button IsEnabled="{Binding deliveryDate}" Visibility="{Binding buttonPermission,Converter={StaticResource myCnvrtr}}" Content="update" Click="buttonUpdateDelivery_Click" HorizontalAlignment="Center" Margin="0,240,0,0" VerticalAlignment="Top" Height="28" Width="80" />
+  <Button IsEnabled="{Binding shipDate}" Visibility="{Binding buttonPermission,Converter={StaticResource myCnvrtr}}" Content="update" Click="buttonUpdateShipping_Click" HorizontalAlignment="Left" Margin="308,206,0,0" VerticalAlignment="Top" Height="28" Width="80" RenderTransformOrigin="-1.562,0.616" />
+  <Button IsEnabled="{Binding deliveryDate}" Visibility="{Binding buttonPermission,Converter={StaticResource myCnvrtr}}" Content="update" Click="buttonUpdateDelivery_Click" HorizontalAlignment="Left" Margin="308,240,0,0" VerticalAlignment="Top" Height="28" Width="80" />
   <Grid DataContext="{Binding order}" Margin="-166,-129,0,109" HorizontalAlignment="Left" Width="510">
-   <ListView ItemsSource="{Binding ItemsList}" Margin="644,233,-446,59">
+   <ListView ItemsSource="{Binding ItemsList}" Margin="571,227,-373,65">
     <ListView.View>
      <GridView>
       <GridViewColumn Width="Auto" Header="Name">
@@ -81,6 +88,6 @@
 
    <TextBlock Text="{Binding TotalPrice}" HorizontalAlignment="Left" Margin="307,396,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="19"/>
   </Grid>
-  <Label Content="items list:" HorizontalAlignment="Left" Margin="479,62,0,0" VerticalAlignment="Top"/>
+  <Label Content="items list:" HorizontalAlignment="Left" Margin="412,62,0,0" VerticalAlignment="Top"/>
  </Grid>
 </Window>

@@ -63,7 +63,6 @@ internal class OrderItem : IOrderItem
                select orderItem;
     }
 
-
     /// <summary>
     /// Gets a condition and returns an order with this condition
     /// </summary>
